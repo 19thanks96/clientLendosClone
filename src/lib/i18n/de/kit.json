@@ -1,0 +1,14 @@
+{
+  "timer": "Endet in:",
+  "dateFormat" : {
+    "date": "d",
+    "hours" : "h",
+    "minutes": "m",
+    "seconds" : "s"
+  },
+  "btn_ok": "Ok",
+  "btn_claim": "Einlösen",
+  "btn_go": "Go",
+  "btn_get coins" : "get coins",
+  "btn_hold" : "Hold"
+}

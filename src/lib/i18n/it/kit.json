@@ -1,0 +1,14 @@
+{
+  "timer": "Termina tra:",
+  "dateFormat" : {
+    "date": "g",
+    "hours" : "h",
+    "minutes": "m",
+    "seconds" : "s"
+  },
+  "btn_ok": "Ok",
+  "btn_claim": "Richiedi",
+  "btn_go": "Go",
+  "btn_hold" : "Hold",
+  "btn_get coins" : "get coins"
+}

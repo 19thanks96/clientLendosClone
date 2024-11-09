@@ -1,0 +1,14 @@
+{
+  "timer": "Slutter på:",
+  "dateFormat" : {
+    "date": "d",
+    "hours" : "t",
+    "minutes": "m",
+    "seconds" : "s"
+  },
+  "btn_ok": "Ok",
+  "btn_claim": "Kreve",
+  "btn_go": "Go",
+  "btn_hold" : "Hold",
+  "btn_get coins" : "get coins"
+}

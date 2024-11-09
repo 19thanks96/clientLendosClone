@@ -1,0 +1,14 @@
+{
+  "timer": "Se termine par:",
+  "dateFormat" : {
+    "date": "j",
+    "hours" : "h",
+    "minutes": "m",
+    "seconds" : "s"
+  },
+  "btn_ok": "Ok",
+  "btn_claim": "Réclamer",
+  "btn_go": "Go",
+  "btn_get coins" : "get coins",
+  "btn_hold" : "Holded"
+}

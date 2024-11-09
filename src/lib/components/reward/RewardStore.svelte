@@ -38,7 +38,7 @@
 	let scale = 0.9
 	onMount(() => {
 		if (screen.width > 768) {
-			scale = 0.65
+			scale = 0.5
 		}
 	})
 </script>
@@ -62,7 +62,7 @@
 	</div>
 	<div class="h-full w-full flex justify-center third-reward-element">
 		<div id="claimRewardDmButton" style="opacity: {opacityButton}; transition: all 0.5s ease-out;"
-				 class='absolute third-reward-element text-center vhFont-[16] port:text-[3.148vw] vwWidth-[122] vhHeight-[40] leading-[1.2] port:w-[23.704vw] port:h-[7.778vw] z-50 flex items-center justify-center fixed bottom-[6.75%] port:bottom-[6.25%]'>
+				 class='absolute third-reward-element text-center vhFont-[16] port:text-[3.148vw] vwWidth-[122] vhHeight-[40] leading-[1.2] port:w-[23.704vw] port:h-[7.778vw] z-50 flex items-center justify-center fixed bottom-[6.75%] port:bottom-[5%]'>
 			<AppButton color="green" caption="Got  It" isActive={true} on:click={() => holdReward()} />
 		</div>
 	</div>

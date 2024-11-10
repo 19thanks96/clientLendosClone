@@ -23,7 +23,7 @@
 <div style="background-image: url({img});"
      class="z-[5] h-[20%] scale-[118%] port:scale-[118.5%] w-full absolute top-[-5%] port:top-[-2.6%] overflow-hidden bg-contain bg-no-repeat pointer-events-none">
     <div
-            class=" top-0 h-[38%] land:pl-[1.875vw] land:mt-[-0.5%] port:pl-[4.63vw] flex flex-row justify-center port:mt-[0.75%] items-center pointer-events-auto">
+            class=" top-0 h-[47.5%] land:pl-[1.875vw] land:mt-[-0.5%] port:pl-[4.63vw] flex flex-row justify-center port:mt-[0.75%] items-center pointer-events-auto">
 
         <div class=" header-main-block-text  land:h-[7vh] port:mt-[-1%] flex flex-row justify-center items-center p-1">
             <span class="land:tracking-[-1.4px]">{text}</span>
@@ -95,7 +95,7 @@
     .header-main-block-text {
       -webkit-text-stroke-color: #C60909;
       -webkit-text-stroke-width: thin;
-      font-size: 3vh;
+      font-size: 6vw;
       line-height: 4vh;
       filter: drop-shadow(0.1vw 0.5vw #8E1010);
       font-family: 'Fira Sans';

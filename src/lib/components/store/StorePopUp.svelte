@@ -73,7 +73,6 @@
                 type: 'offerClaim',
                 message: {offerId: $showPopUpStoreLayout.id}
             });
-            // handleClosePopup()
         }
         $userBalanceBeforeRewardState = $showPopUpStoreLayout.balance - $showPopUpStoreLayout.price;
 
@@ -82,8 +81,6 @@
     $:if ($showPopUpStoreLayout.mode === StorePopUpMode.claim && !isAnimationFinished) {
         holdReward();
         isAnimationFinished = true
-        // handleClosePopup()
-
     }
 
     const handleClosePopup = () => {
@@ -153,7 +150,6 @@
     <UserBalance balance={$showPopUpStoreLayout.balance}
                  img={`https://p2w.imgix.net/resources/client/common/Icn_Coin.png?auto=compress&auto=format`}/>
 </div>
-{#if $showPopUpStoreLayout.mode !== StorePopUpMode.claim}
 <div class="absolute max-h-[70vh] vhWidth-[535] port:max-h-[56.146vh] port:w-[74.352vw] z-[22] land:scale-75 translate-y-[10%]">
     <div class="w-full h-full  ml-[12.5%] port:mt-[-12%] port:ml-[8%] relative ">
 
@@ -212,7 +208,7 @@
             </div>
         {/if}
         <div style=" white-space: pre-line;"
-             class="text-center {$showPopUpStoreLayout.purchaseSuccessful ? 'my-[6.5vh]' : $showPopUpStoreLayout.endDate ? 'mt-[3vh]' : 'mt-[1vh]'} px-[2vh] max-h-[20vh] w-[80%] font-['Fira_Sans'] font-[600] text-[#6C717E] scroll-store-popup touch-pan-y overflow-y-auto vhFont-[28] port:text-[2.188vh] ">
+             class="text-center {$showPopUpStoreLayout.purchaseSuccessful ? 'my-[6.5vh]' : $showPopUpStoreLayout.endDate ? 'mt-[3vh]' : 'mt-[1vh]'} px-[2vh] max-h-[16vh] w-[80%] font-['Fira_Sans'] font-[600] text-[#6C717E] scroll-store-popup touch-pan-y overflow-y-auto vhFont-[28] port:text-[2.188vh] ">
             {$showPopUpStoreLayout.description}
         </div>
         {#if $showPopUpStoreLayout.price && $showPopUpStoreLayout.mode !== StorePopUpMode.claim}
@@ -257,7 +253,7 @@
         </div>
     </div>
 </div>
-    {/if}
+
 
 <style>
     .animate-rotation {

@@ -6,7 +6,7 @@
 
 <div style={`border-image-source: url(${base}/newImg/Cmt_Dm_Bg_PopUp.png);`}
      class="relative w-[20.65%] h-[65%] mt-[9%]  port:w-[77.05%] port:h-[66.75%]  port:mt-[29%] main-block ">
-    <div class="absolute w-[108%] h-[26%]  port:h-[26%] top-[-16%] port:top-[-17%]  left-[50%] sofa" style="">
+    <div class="absolute w-[108%] h-[26%]  port:h-[42%] top-[-16%] port:top-[-20%]  left-[50%] sofa" style="">
         <slot name="header"/>
     </div>
     <div class="relative w-full h-[-webkit-fill-available] flex justify-center pb-[7%] port:pb-[7%] port:px-[2%]">
@@ -100,7 +100,7 @@
             box-shadow: 0px 0.442vw 0.442vw 0px rgba(159, 138, 108, 0.70) inset, 0px 0.262vw 0px 0px #FAEFD0;
         }
         .sofa {
-            width: 107.5%;
+            width: 100%;
             //transform: translate(-50%, -53%);
         }
 

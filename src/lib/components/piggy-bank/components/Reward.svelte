@@ -1,7 +1,9 @@
 <script lang="ts">
-    import pig from "$lib/components/piggy-bank/images/pig.svelte?raw";
-    import pillow from "$lib/components/piggy-bank/images/pillow.svelte?raw";
-    import coin from "$lib/components/piggy-bank/images/coin.svelte?raw";
+    // import pig from "$lib/components/piggy-bank/images/pig.svelte?raw";
+    // import pillow from "$lib/components/piggy-bank/images/pillow.svelte?raw";
+    // import coin from "$lib/components/piggy-bank/images/coin.svelte?raw";
+    import cosmonautCharacter from "$lib/components/piggy-bank/images/cosmonautCharacter.svg?raw";
+
     import Button from "./Button.svelte";
     import {createEventDispatcher} from "svelte";
     import {playerState} from "$lib/state/player.state";
@@ -108,12 +110,15 @@
             <span class="reward__title__text" data-text={"Open Box"}>Open Box</span>
         </div>
         <div class="pig__wrapper">
-            <div class="pig">
-                {@html pig}
+            <div>
+                {@html cosmonautCharacter}
             </div>
-            <div class="pillow">
-                {@html pillow}
-            </div>
+<!--            <div class="pig">-->
+<!--                &lt;!&ndash;{@html pig}&ndash;&gt;-->
+<!--            </div>-->
+<!--            <div class="pillow">-->
+<!--                &lt;!&ndash;{@html pillow}&ndash;&gt;-->
+<!--            </div>-->
         </div>
         <div class="amount__reward"></div>
         <div class="button__wrapper">
@@ -185,9 +190,10 @@
     .pig__wrapper {
         width: 500px;
         height: 350px;
-        background-image: url("/src/lib/components/piggy-bank/images/backgroundReward.svg");
+        background-image: url("/src/lib/components/piggy-bank/images/coins.svg");
         background-repeat: no-repeat;
-        background-size: contain;
+        background-position: 50% 50%;
+        background-size: cover;
     }
 
     .reward__title {
@@ -230,7 +236,7 @@
         }
 
         .pig__wrapper {
-            width: 400px;
+            width: 310px;
             height: 400px;
             background-size: contain;
             /*margin-bottom: 25px;*/

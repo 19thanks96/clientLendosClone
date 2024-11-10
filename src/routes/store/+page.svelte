@@ -8,18 +8,14 @@
     import {showPopUpStoreLayout} from '$lib/state/storePopup.state';
     import {base} from '$app/paths';
     import {AdapterCommunicationService} from '$lib/adapter-listener';
-    import RewardStore from '$lib/components/reward/RewardStore.svelte';
-    import {rewardState} from '$lib/state/reward.state';
-    import { onMount } from 'svelte';
+    import ExitButton from '$lib/components/common/ExitButton.svelte';
 
     let goodsArray: unknown, title: unknown;
 
     $: if ($playerState.isInitialized && $playerState.store && $playerState.store.offers) {
         goodsArray = $playerState.store.offers;
     }
-    onMount(() => {
-        console.log($playerState.tutorial)
-    })
+
     const exit = () => AdapterCommunicationService.sendMessage({type: 'exit', message: 'click'});
 
 </script>
@@ -30,6 +26,9 @@
             <div class="{$showPopUpStoreLayout.isOpen ? 'opacity-0':'opacity-1'}">
                 <UserBalance balance={$playerState.general.balance}
                              img={`https://p2w.imgix.net/resources/client/common/Icn_Coin.png?auto=compress&auto=format`}/>
+                <ExitButton on:click={exit}
+                            background={`https://p2w.imgix.net/resources/client/dm/Btn_Red_S.png?auto=compress&auto=format`}
+                            image={`https://p2w.imgix.net/resources/client/dm/Icn_Close.png?auto=compress&auto=format`}/>
             </div>
             <PrivacyButton
                     background={`https://p2w.imgix.net/resources/client/store/Btn_Cmn_S_Blue_Hover.png?auto=compress&auto=format`}
@@ -44,9 +43,5 @@
             </div>
         {/if}
     </BgImage>
-    {#if $rewardState.isOpen}
-        <RewardStore  rewardAmount={$rewardState.amount}
-                         on:close={() => $rewardState.isOpen = false }/>
-    {/if}
 </div>
 

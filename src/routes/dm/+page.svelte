@@ -12,6 +12,7 @@
     import RewardLayoutDm from '$lib/components/reward/RewardLayoutDm.svelte';
     import {base} from '$app/paths';
     import Title from '$lib/components/mission/Title.svelte';
+    import ExitButton from '$lib/components/common/ExitButton.svelte';
 
     let missions, balance, dateEnd, name;
     $: if ($playerState.isInitialized && $playerState?.mg && $playerState?.mg?.missions) {
@@ -36,6 +37,9 @@
             <div class="{$rewardState.isOpen ? 'opacity-0' :'opacity-1'}">
                 <UserBalance {balance}
                              img={`https://p2w.imgix.net/resources/client/common/Icn_Coin.png?auto=compress&auto=format`}/>
+                <ExitButton on:click={exit}
+                            background={`https://p2w.imgix.net/resources/client/dm/Btn_Red_S.png?auto=compress&auto=format`}
+                            image={`https://p2w.imgix.net/resources/client/dm/Icn_Close.png?auto=compress&auto=format`}/>
             </div>
             {#key $playerState}
                 <MainBlock>

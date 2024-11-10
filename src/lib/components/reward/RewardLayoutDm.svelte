@@ -93,8 +93,8 @@
     <div class='second-reward-element w-full h-full'>
         <SpinningLight
                 image={'https://p2w.imgix.net/resources/client/dm/FX_Overlay_Yellow.png?auto=compress&auto=format'}/>
-        <ScaledImg image={'https://p2w.imgix.net/resources/client/dm/Img_Win_DM1.png?auto=compress&auto=format'}
-                   starsImage={base + '/newImg/Fx_Cmn_Overlay_Yellow.svg'}
+        <ScaledImg image={base + '/newImg/Img_Cmn_Reward_Charater.png'}
+                   starsImage={base + '/newImg/Coins.png'}
                    />
     </div>
 

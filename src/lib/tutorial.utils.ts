@@ -42,7 +42,6 @@ export const selectItemsOnPage = (ids: string[]) => {
 export const deselectItemsOnPage = (ids: string[]) => {
     ids.forEach((e) => {
         const item = document.getElementById(e);
-            console.log(item, 'blua')
         if (item) {
             if (checkElementPosition(item, 'relative')) {
                 item.style.position = 'relative';

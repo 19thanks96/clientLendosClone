@@ -50,8 +50,8 @@
 
     .mobile-bind-to-top{
       position: fixed;
-      left: 2%;
-      top: 2%;
+      left: 5%;
+      top: 3%;
     }
   }
 </style>

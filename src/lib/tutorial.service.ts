@@ -92,6 +92,14 @@ export const enrichTutorialMissions = (missions: Mission[], tutorial: TutorialTy
             if (isInitial) {
                 tutorialMissions = [
                     ...tutorialMissions,
+                    {
+                        ...initialTutorialMission,
+                        status: MissionStatus.inactive
+                    },
+                    {
+                        ...initialPbMission,
+                        status: MissionStatus.inactive
+                    }
                 ]
             }
             return tutorialMissions;
@@ -287,31 +295,30 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
         }
         case TutorialSteps.offerStep1: {
             addBackgroundGlass(3);
-            // const tutorial = get(playerState).tutorial as TutorialType;
-            // if (tutorial) {
-            //     playerState.set({
-            //         ...get(playerState),
-            //         store: {
-            //             ...get(playerState).store,
-            //             offers: [
-            //                 {
-            //                     id: 'tutorialOffer',
-            //                     name: tutorial.tutorStoreCardTitle || 'Free spins',
-            //                     reward: 'x2',
-            //                     type: StoreOfferType.freeSpins,
-            //                     description: tutorial.storeS1ModalDescription || '',
-            //                     endDate: undefined,
-            //                     price: tutorial.tutorialMissionReward * 2 || 0,
-            //                     reusable: false,
-            //                 },
-            //                 ...get(playerState).store.offers
-            //             ]
-            //         }
-            //     });
-            // }
+            const tutorial = get(playerState).tutorial as TutorialType;
+            if (tutorial) {
+                playerState.set({
+                    ...get(playerState),
+                    store: {
+                        ...get(playerState).store,
+                        offers: [
+                            {
+                                id: 'tutorialOffer',
+                                name: tutorial.tutorStoreCardTitle || 'Free spins',
+                                reward: 'x2',
+                                type: StoreOfferType.freeSpins,
+                                description: tutorial.storeS1ModalDescription || '',
+                                endDate: undefined,
+                                price: tutorial.tutorialMissionReward * 2 || 0,
+                                reusable: false,
+                            },
+                            ...get(playerState).store.offers
+                        ]
+                    }
+                });
+            }
             await tick();
             const offerElement = document.getElementById('tutorialOffer');
-            console.log(offerElement, 'tutorialOffer');
             const coordinates = offerElement?.getBoundingClientRect();
             selectItemsOnPage(['tutorialOffer'])
             AdapterCommunicationService.sendMessage({
@@ -329,8 +336,6 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
         }
         case TutorialSteps.offerStep2: {
             deselectItemsOnPage(['tutorialOffer'])
-
-
             await tick();
             const sorePopUpBuyButton = document.getElementById('sorePopUpBuyButton');
             const coordinates = sorePopUpBuyButton?.getBoundingClientRect();
@@ -348,7 +353,6 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
             break;
         }
         case TutorialSteps.offerStep3: {
-            removeBackgroundGlass();
             await tick();
             const sorePopUpClaimButton = document.getElementById('sorePopUpClaimButton');
             const coordinates = sorePopUpClaimButton?.getBoundingClientRect();

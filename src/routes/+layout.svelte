@@ -33,22 +33,22 @@
         let isFormWidget = $page.url.searchParams.get('fromWidget')
         await loadTranslations(Lang[currentLang || 'en'] || 'en');
 
-        //open replay
-        // try {
-        //     if (browser) {
-        //         const tracker = new Tracker({
-        //             projectKey: import.meta.env.VITE_OR_KEY,
-        //             ingestPoint: import.meta.env.VITE_OR_ENDPOINT,
-        //             crossdomain: {
-        //                 parentDomain: '*'
-        //             }
-        //         });
-				//
-        //         await tracker.start({userID: userId + '-iframe' ?? ''});
-        //     }
-        // } catch (e) {
-        //     console.error(e);
-        // }
+        open replay
+        try {
+            if (browser) {
+                const tracker = new Tracker({
+                    projectKey: import.meta.env.VITE_OR_KEY,
+                    ingestPoint: import.meta.env.VITE_OR_ENDPOINT,
+                    crossdomain: {
+                        parentDomain: '*'
+                    }
+                });
+
+                await tracker.start({userID: userId + '-iframe' ?? ''});
+            }
+        } catch (e) {
+            console.error(e);
+        }
 
         //#tutorial
         let loadMissionsForTutorial = () => {
@@ -94,24 +94,24 @@
                 $playerState.mg.missions = enrichTutorialMissions($playerState.mg.missions, $playerState.tutorial, 'piggyBank', true, $playerState.tutorial.step);
             } else if ($playerState.tutorial && $playerState.tutorial.step === 3) {
                 const tutorialOffer = $playerState.store?.offers?.find((el) => el?.id === 'tutorialOffer');
-                // if (!tutorialOffer) {
-                //     $playerState.store = {
-                //         ...$playerState.store,
-                //         offers: [
-                //             {
-                //                 id: 'tutorialOffer',
-                //                 name: $playerState.tutorial.tutorStoreCardTitle || 'Free spins',
-                //                 reward: 'x2',
-                //                 type: StoreOfferType.freeSpins,
-                //                 description: $playerState.tutorial.storeS1ModalDescription || '',
-                //                 endDate: undefined,
-                //                 price: $playerState.tutorial.tutorialMissionReward * 2 || 0,
-                //                 reusable: false
-                //             },
-                //             ...get(playerState).store.offers
-                //         ]
-                //     };
-                // }
+                if (!tutorialOffer) {
+                    $playerState.store = {
+                        ...$playerState.store,
+                        offers: [
+                            {
+                                id: 'tutorialOffer',
+                                name: $playerState.tutorial.tutorStoreCardTitle || 'Free spins',
+                                reward: 'x2',
+                                type: StoreOfferType.freeSpins,
+                                description: $playerState.tutorial.storeS1ModalDescription || '',
+                                endDate: undefined,
+                                price: $playerState.tutorial.tutorialMissionReward * 2 || 0,
+                                reusable: false
+                            },
+                            ...get(playerState).store.offers
+                        ]
+                    };
+                }
                 $playerState.mg.missions = enrichTutorialMissions($playerState.mg.missions, $playerState.tutorial, 'store', true, $playerState.tutorial.step);
             }
         };
@@ -190,7 +190,6 @@
                         $showPopUpStoreLayout.isLoading = false;
                         $showPopUpStoreLayout.purchaseSuccessful = true;
                         $showPopUpStoreLayout.mode = StorePopUpMode.claim;
-											$rewardState.isOpen = true
                     },
                     () => {
                         $showPopUpStoreLayout.isLoading = false;

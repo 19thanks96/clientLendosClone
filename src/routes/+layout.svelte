@@ -33,22 +33,22 @@
         let isFormWidget = $page.url.searchParams.get('fromWidget')
         await loadTranslations(Lang[currentLang || 'en'] || 'en');
 
-        open replay
-        try {
-            if (browser) {
-                const tracker = new Tracker({
-                    projectKey: import.meta.env.VITE_OR_KEY,
-                    ingestPoint: import.meta.env.VITE_OR_ENDPOINT,
-                    crossdomain: {
-                        parentDomain: '*'
-                    }
-                });
-
-                await tracker.start({userID: userId + '-iframe' ?? ''});
-            }
-        } catch (e) {
-            console.error(e);
-        }
+        // open replay
+        // try {
+        //     if (browser) {
+        //         const tracker = new Tracker({
+        //             projectKey: import.meta.env.VITE_OR_KEY,
+        //             ingestPoint: import.meta.env.VITE_OR_ENDPOINT,
+        //             crossdomain: {
+        //                 parentDomain: '*'
+        //             }
+        //         });
+				//
+        //         await tracker.start({userID: userId + '-iframe' ?? ''});
+        //     }
+        // } catch (e) {
+        //     console.error(e);
+        // }
 
         //#tutorial
         let loadMissionsForTutorial = () => {

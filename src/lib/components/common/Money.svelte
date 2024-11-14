@@ -17,7 +17,7 @@
 
     const onClickBalance = async () => {
         if (isClickable && !isFormWidget) {
-            await goto('/store')
+            // await goto('/store')
         }
     }
 </script>

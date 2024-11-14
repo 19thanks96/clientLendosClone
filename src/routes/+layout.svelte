@@ -30,12 +30,6 @@
 		let isFormWidget = $page.url.searchParams.get('fromWidget');
 		await loadTranslations(Lang[currentLang || 'en'] || 'en');
 
-		document.addEventListener('DOMContentLoaded', () => {
-			AdapterCommunicationService.sendMessage({
-				type: 'ImageLoaded'
-			});
-		});
-
 		// open replay
 		// try {
 		//     if (browser) {

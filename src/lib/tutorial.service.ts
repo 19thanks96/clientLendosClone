@@ -321,10 +321,10 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
             }
             await tick();
             const offerElement = document.getElementById('tutorialOffer');
-            const coordinates = offerElement?.getBoundingClientRect();
             selectItemsOnPage(['tutorialOffer'])
             setTimeout(() => {
 
+            const coordinates = offerElement?.getBoundingClientRect();
             AdapterCommunicationService.sendMessage({
                 type: 'setTutorialCoordinates', message: {
                     element: 'offerElement',

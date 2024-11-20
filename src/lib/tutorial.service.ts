@@ -323,6 +323,8 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
             const offerElement = document.getElementById('tutorialOffer');
             const coordinates = offerElement?.getBoundingClientRect();
             selectItemsOnPage(['tutorialOffer'])
+            setTimeout(() => {
+
             AdapterCommunicationService.sendMessage({
                 type: 'setTutorialCoordinates', message: {
                     element: 'offerElement',
@@ -334,6 +336,7 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
                     }
                 }
             });
+            }, 1000)
             break;
         }
         case TutorialSteps.offerStep2: {

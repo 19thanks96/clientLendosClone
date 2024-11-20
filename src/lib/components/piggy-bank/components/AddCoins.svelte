@@ -21,7 +21,9 @@ const increaseDesiredHoldAmount = () => {
 
     //#tutorial
     if($playerState?.tutorial && $playerState?.tutorial.step===2){
-      $pbState.desiredHoldDepositAmount += $pbState.step * 5;
+      if($pbState.desiredHoldDepositAmount < $pbState.step * 5) {
+        $pbState.desiredHoldDepositAmount += $pbState.step * 5;
+      }
         AdapterCommunicationService.sendMessage({
             type: 'track',
             message: {type: 'clickTutorPbS1PlusButton'}

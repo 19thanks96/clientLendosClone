@@ -321,17 +321,19 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
             const offerElement = document.getElementById('tutorialOffer');
             const coordinates = offerElement?.getBoundingClientRect();
             selectItemsOnPage(['tutorialOffer'])
-            AdapterCommunicationService.sendMessage({
-                type: 'setTutorialCoordinates', message: {
-                    element: 'offerElement',
-                    coordinates: {
-                        x: coordinates?.x || 0,
-                        y: coordinates?.y || 0,
-                        width: coordinates?.width || 0,
-                        height: coordinates?.height || 0
+            setTimeout(() => {
+                AdapterCommunicationService.sendMessage({
+                    type: 'setTutorialCoordinates', message: {
+                        element: 'offerElement',
+                        coordinates: {
+                            x: coordinates?.x || 0,
+                            y: coordinates?.y || 0,
+                            width: coordinates?.width || 0,
+                            height: coordinates?.height || 0
+                        }
                     }
-                }
-            });
+                });
+            }, 1000)
             break;
         }
         case TutorialSteps.offerStep2: {

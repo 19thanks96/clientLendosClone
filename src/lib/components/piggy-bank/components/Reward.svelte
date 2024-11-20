@@ -122,7 +122,7 @@
         </div>
         <div class="amount__reward"></div>
         <div class="button__wrapper">
-            <Button text="Claim" className="main" on:click={claimRewardWithRedirect}/>
+            <Button text="Claim" className="main" id="claimRewardPbButton" on:click={claimRewardWithRedirect}/>
         </div>
     </section>
 </div>
@@ -267,7 +267,7 @@
         }
 
         .button__wrapper {
-            margin-top: 30px;
+            margin-top: 100px;
         }
 
     }

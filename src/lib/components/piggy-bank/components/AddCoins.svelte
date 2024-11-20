@@ -61,6 +61,7 @@ const decreaseDesiredHoldAmount = () => {
                 type: 'track',
                 message: {type: 'clickTutorPbS1MinusButton'}
             });
+            return;
         }
         $pbState.desiredHoldDepositAmount -= $pbState.step;
         $pbState.desiredHoldDepositAmount = $pbState.desiredHoldDepositAmount < 0

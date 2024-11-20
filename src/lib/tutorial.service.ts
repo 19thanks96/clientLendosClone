@@ -296,7 +296,9 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
         case TutorialSteps.offerStep1: {
             addBackgroundGlass(3);
             const tutorial = get(playerState).tutorial as TutorialType;
-            if (tutorial) {
+            const offers = get(playerState).store.offers
+            const isExistTutorMission = offers.some(item => item?.id === "tutorialOffer");
+            if (tutorial && !isExistTutorMission ) {
                 playerState.set({
                     ...get(playerState),
                     store: {

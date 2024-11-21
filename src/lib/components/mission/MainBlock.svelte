@@ -30,7 +30,7 @@
          class="absolute  left-0 bottom-[-2%] text-[0.7rem]    text-[#CCB5A5]  flex justify-center items-center w-[100%] vhHeight-[31] port:h-[6.111vw]">
 
         <img src='https://p2w.imgix.net/resources/client/dm/Dm_Timer_Left.png?auto=compress&auto=format'
-             class="h-full" alt="btn"/>
+             class="h-full" alt="btn" draggable="false"/>
         <div
           style="background-image: url('https://p2w.imgix.net/resources/client/dm/Dm_Timer_Center.png?auto=compress&auto=format');"
           class="bg-contain h-full flex items-center bg-repeat-x vhFont-[14] port:text-[3.056vw]">
@@ -40,7 +40,7 @@
             </div>
         </div>
         <img src='https://p2w.imgix.net/resources/client/dm/Dm_Timer_Right.png?auto=compress&auto=format'
-             class="h-full "/>
+             class="h-full "  draggable="false"/>
 
     </div>
 </div>

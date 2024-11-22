@@ -226,6 +226,11 @@
         text-shadow: 0 -2px 0 rgba(173, 90, 35, 1);
         z-index: -1;
     }
+    @media screen and (max-width: 600px) {
+        .pig__wrapper{
+            margin-bottom: 0;
+        }
+    }
 
     @media screen and (max-width: 450px) {
         .reward {
@@ -267,7 +272,7 @@
         }
 
         .button__wrapper {
-            margin-top: 100px;
+            margin-top: 50px;
         }
 
     }

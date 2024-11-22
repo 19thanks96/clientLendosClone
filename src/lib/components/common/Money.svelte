@@ -23,7 +23,7 @@
 </script>
 
 <div on:click={onClickBalance}
-     class="{isClickable? 'cursor-pointer':''} mobile-bind-to-top absolute z-[11] top-[0.15vw] left-[1.25vw] port:top-[2.037vw] port:left-[4.037vw] flex items-center justify-center vwHeight-[64] font-['Fira_Sans'] font-black vwFont-[18] port:h-[5.926vw] port:w-[22.222vw] port:text-[3.519vw] text-white vwWidth-[114.38]">
+     class=" mobile-bind-to-top absolute z-[11] top-[0.15vw] left-[1.25vw] port:top-[2.037vw] port:left-[4.037vw] flex items-center justify-center vwHeight-[64] font-['Fira_Sans'] font-black vwFont-[18] port:h-[5.926vw] port:w-[22.222vw] port:text-[3.519vw] text-white vwWidth-[114.38]">
     <img alt="" class="vwHeight-[30] port:h-[5.926vw]"
          src='https://p2w.imgix.net/resources/client/common/Coin_Bg_Left.png?auto=compress&auto=format'>
     <div

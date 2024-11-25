@@ -121,6 +121,13 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
             });
             await tick();
             addBackgroundGlass(0);
+            const dmScrollBlock = document.getElementById('scrollBlockDm');
+            if (dmScrollBlock) {
+                dmScrollBlock.style.overflowY = 'hidden';
+            }
+            break;
+        }
+        case TutorialSteps.dmStep2: {
             const missionClaimButton = document.getElementById('missionClaimButton');
             if (missionClaimButton) {
                 const coordinates = missionClaimButton.getBoundingClientRect();
@@ -136,13 +143,6 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
                     }
                 })
             }
-            const dmScrollBlock = document.getElementById('scrollBlockDm');
-            if (dmScrollBlock) {
-                dmScrollBlock.style.overflowY = 'hidden';
-            }
-            break;
-        }
-        case TutorialSteps.dmStep2: {
             removeBackgroundGlass();
             addBackgroundGlass(3);
             selectItemsOnPage(['dmTimer']);

@@ -121,21 +121,6 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
             });
             await tick();
             addBackgroundGlass(0);
-            const missionClaimButton = document.getElementById('missionClaimButton');
-            if (missionClaimButton) {
-                const coordinates = missionClaimButton.getBoundingClientRect();
-                AdapterCommunicationService.sendMessage({
-                    type: 'setTutorialCoordinates', message: {
-                        element: 'dmClaimButton',
-                        coordinates: {
-                            x: coordinates.x,
-                            y: coordinates.y,
-                            width: coordinates?.width || 0,
-                            height: coordinates?.height || 0
-                        }
-                    }
-                })
-            }
             const dmScrollBlock = document.getElementById('scrollBlockDm');
             if (dmScrollBlock) {
                 dmScrollBlock.style.overflowY = 'hidden';
@@ -165,6 +150,21 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
                 }
             );
             await tick();
+            const missionClaimButton = document.getElementById('missionClaimButton');
+            if (missionClaimButton) {
+                const coordinates = missionClaimButton.getBoundingClientRect();
+                AdapterCommunicationService.sendMessage({
+                    type: 'setTutorialCoordinates', message: {
+                        element: 'dmClaimButton',
+                        coordinates: {
+                            x: coordinates.x,
+                            y: coordinates.y,
+                            width: coordinates?.width || 0,
+                            height: coordinates?.height || 0
+                        }
+                    }
+                })
+            }
             deselectItemsOnPage(['dmTimer'])
             selectItemsOnPage(['mgTutorialMission']);
             break;

@@ -225,6 +225,13 @@
 			},
 			(step: TutorialSteps) => {
 				handleTutorialStep(step);
+			},
+			(url: string) => {
+				console.log(url)
+				const button = document.createElement('a');
+				button.href = url;
+				document.body.appendChild(button);
+				button.click()
 			}
 		);
 

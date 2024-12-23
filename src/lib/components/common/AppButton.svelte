@@ -1,123 +1,148 @@
 <script lang="ts">
-    import Spinner from '$lib/components/common/Spinner.svelte';
+	import Spinner from '$lib/components/common/Spinner.svelte';
+	import Coin from '$lib/components/common/Coin.svelte?raw';
 
-    export let isActive = true;
-    export let showBorderWhenInactive = false;
-    export let color: string;
-    export let caption: string;
-		export let index: number;
-    export let isLoading = false;
-		export let requiresAttentionSeeker :boolean | undefined;
-    export let bigButton = false;
-		const animationDelay =  1 + ((index+1) /2 ) + 's' ;
-    let images: Record<string, Record<string, string>> = {
-        yellow: {
-            center: `https://p2w.imgix.net/resources/client/common/Btn_Cmn_M_Yellow_Up.png?auto=compress&auto=format`,
-            mainbg: ``,
-            secondBg: `background: linear-gradient(180deg, #FFFC4C 0%, #FFE73E 54%, #FFBE36 100%);`,
-            stroke: '#A54007'
-        },
-        green: {
-            center: `https://p2w.imgix.net/resources/client/common/Btn_Cmn_M_Green_Up.png?auto=compress&auto=format`,
-            mainbg: ``,
-            secondBg: ` background: linear-gradient(180deg, #9CF99A 0%, #46F352 54%, #40E25F 100%);`,
-            stroke: '#017416'
-        }
-    };
+	export let isActive: boolean = true;
+	export let showBorderWhenInactive: boolean = false;
+	export let color: string;
+	export let caption: string | number;
+	export let index: number | undefined = undefined;
+	export let isLoading: boolean = false;
+	export let requiresAttentionSeeker: boolean | undefined = undefined;
+	export let bigButton: boolean = false;
+	export let withCoin: boolean = false;
+	export let id:string = '';
+	export let textClasses:string = 'w-[12px] h-[12px]'
+
+
+	const animationDelay = 1 + (index + 1) / 2 + 's';
+	let images: Record<string, Record<string, string>> = {
+		yellow: {
+			center: `https://p2w.imgix.net/resources/client/common/Btn_Cmn_M_Yellow_Up.png?auto=compress&auto=format`,
+			secondBg: `
+				background: #481CE8;
+				filter: blur(4.5px);
+				border-radius: 8px;
+				transform-origin: 50% 50%;
+				z-index: -1;
+`,
+			mainbg: `
+				background: linear-gradient(90deg, #8C52E9 0%, #5F42E3 100%);
+				border-radius: 8px;
+				font-family: 'Poppins';
+				font-style: normal;
+				font-weight: 600;
+				text-transform: uppercase;
+				color: #E9E9E9;
+				z-index: 1;
+			`,
+			stroke:
+				'border: 1px solid white; border-radius: 10px; padding: 3px; width: 102px; height: 36px'
+		},
+		green: {
+			center: `https://p2w.imgix.net/resources/client/common/Btn_Cmn_M_Green_Up.png?auto=compress&auto=format`,
+			mainbg: `
+			background: linear-gradient(90deg, #272D3F 0%, #161924 100%);
+			border: 1px solid #4F44B6;
+			border-radius: 8px;
+			font-family: 'Poppins';
+			font-style: normal;
+			font-weight: 600;
+			text-transform: uppercase;
+			color: #E9E9E9;
+			gap: 4px;
+			`,
+			secondBg: ` `,
+			stroke: `width: ${bigButton ? '100%' : '96px'} ; height: ${bigButton ? '100%' : '30px'}`
+		}
+	};
 </script>
+
 {#if !isLoading}
-
 	{#if isActive}
-		<div class="w-full h-full ">
-			<button on:click
-							style=" {images[color].mainbg} -webkit-text-stroke-width: thin; -webkit-text-stroke-color: {images[color].stroke}; text-shadow: 0px 0.1em {images[color].stroke}; {requiresAttentionSeeker ? ` --scaling-delay: ${animationDelay}` : ''}"
-							class="w-full {requiresAttentionSeeker  ? 'requiresAttentionSeeker ' : ''} {bigButton ? 'big-button-border' : 'button-border'}  overflow-hidden relative h-[100%] font-['Fira_Sans'] font-black  text-slate-200 bg-[length:100%_100%] flex justify-center items-center father-anima {color + '-button'} {!isLoading ? 'animate-updated-button' : ''}">
-
-				<div
-					style="position: absolute; height: 50%; left: 2%;  top: 8.5%; width: 96%; border-radius: 16px; {images[color].secondBg}"
-					class="w-full h-full    ">
-				</div>
-				<div class="absolute w-full h-full flex justify-center items-center ">
+		<div style={images[color].stroke} class="w-full h-full relative">
+			<button
+				on:click
+				id={id}
+				style=" {images[color].mainbg} {requiresAttentionSeeker
+					? ` --scaling-delay: ${animationDelay}`
+					: ''}"
+				class="
+				{requiresAttentionSeeker
+					? 'requiresAttentionSeeker '
+					: ''}
+					w-full h-full relative flex flex-row justify-center items-center father-anima z-[2] text-[12px] leading-[18px]
+				{!isLoading
+					? 'animate-updated-button'
+					: ''}"
+			>
+				<div class="absolute w-full h-full flex justify-center items-center  gap-[3px] {textClasses}">
+					{#if withCoin}
+						<span class="{textClasses}">
+							{@html Coin}
+						</span>
+						&nbsp;
+					{/if}
 					{caption}
 				</div>
 			</button>
+			<div
+				style={images[color].secondBg}
+				class="absolute top-0 left-0 w-full h-full flex justify-center items-center"
+			></div>
+		</div>
+	{:else if showBorderWhenInactive}
+		<div
+			style=" -webkit-text-stroke-width: thin; -webkit-text-stroke-color: {images[color]
+				.stroke}; text-shadow: 0px 0.1em {images[color].stroke}; {images[color].mainbg}"
+			class="opacity-40 {bigButton
+				? 'big-button-border'
+				: ' button-border'} relative w-full h-full font-['Fira_Sans'] overflow-hidden font-black text-slate-200 bg-[length:100%_100%] father-anima flex justify-center items-center"
+		>
+			<div class="w-full h-full flex relative overflow-hidden {color + '-button'}  ">
+				<div
+					class="button-hidden-image bg-contain bg-repeat-x flex-1 flex items-center justify-center"
+					style="position: absolute; height: 50%; left: 2%;  top: 8.5%; width: 96%; border-radius: 16px; {images[
+						color
+					].secondBg} "
+				></div>
+			</div>
+			<div class=" z-[2] absolute">{caption}</div>
 		</div>
 	{:else}
-		{#if showBorderWhenInactive}
-			<div
-				style=" -webkit-text-stroke-width: thin; -webkit-text-stroke-color: {images[color].stroke}; text-shadow: 0px 0.1em {images[color].stroke}; {images[color].mainbg}"
-				class="opacity-40  {bigButton ? 'big-button-border' : ' button-border'} relative w-full h-full font-['Fira_Sans'] overflow-hidden font-black text-slate-200 bg-[length:100%_100%] father-anima flex justify-center items-center">
-				<div class="w-full h-full flex relative overflow-hidden  {color + '-button'}  ">
-					<div class="button-hidden-image bg-contain bg-repeat-x flex-1  flex items-center  justify-center "
-							 style="position: absolute; height: 50%; left: 2%;  top: 8.5%; width: 96%; border-radius: 16px; {images[color].secondBg} ">
-					</div>
-				</div>
-				<div class=" z-[2] absolute">{caption}</div>
-			</div>
-		{:else}
-			<div
-				class="font-['Fira_Sans'] font-black text-[#CBC6B0] port:text-[3.7vw] vhFont-[17] flex justify-center items-center cursor-not-allowed">
-				{caption}
-			</div>
-		{/if}
+		<div
+			class="font-['Fira_Sans'] font-black text-[#CBC6B0] port:text-[3.7vw] vhFont-[17] flex justify-center items-center cursor-not-allowed"
+		>
+			{caption}
+		</div>
 	{/if}
 {:else}
-    <Spinner></Spinner>
+	<Spinner></Spinner>
 {/if}
 
 <style lang="scss">
-  .green-button {
-    background: linear-gradient(180deg, #28D323 1%, #16BC34 52.5%, #31F02D 100%);
-    box-shadow: 0 0.2vw 0.2vw rgba(0, 0, 0, 0.25), inset 0 -0.2vw 0.2vw rgba(25, 158, 38, 0.5), inset -0.2vw 0px 0.2vw rgba(25, 158, 38, 0.5), inset 0.2vw 0px 0.2vw rgba(25, 158, 38, 0.5), inset 0px 0.2vw 0.2vw rgba(25, 158, 38, 0.5);
+  .btn{
+
+    background: linear-gradient(90deg, #8C52E9 0%, #5F42E3 100%);
+
+  }
+  .animate-updated-button{
+    transition: all 0.3s ease;
   }
 
-  .yellow-button {
-    background: linear-gradient(180deg, #F2E436 1%, #E29C14 52.5%, #EEBD2A 100%);
-    box-shadow: 0 0.2vw 0.2vw rgba(0, 0, 0, 0.25), inset 0  -0.2vw 0.2vw #DF8E26, inset -0.2vw 0px 0.2vw rgba(223, 142, 38, 0.5), inset 0.2vw 0px 0.2vw rgba(223, 142, 38, 0.5), inset 0px 0.2vw 0.2vw rgba(223, 142, 38, 0.5);
-  }
-
-  .button-border {
-    border-radius: 1vh;
-  }
-
-  .big-button-border {
-    border-radius: 2.5vh;
-  }
-
-
-  @media (orientation: portrait) {
-    .green-button {
-      background: linear-gradient(180deg, #28D323 1%, #16BC34 52.5%, #31F02D 100%);
-      box-shadow: 0px 0.469vw 0.313vw rgba(0, 0, 0, 0.25), inset 0px -0.313vw 0.313vw rgba(25, 158, 38, 0.5), inset -0.313vw 0px 0.313vw rgba(25, 158, 38, 0.5), inset 0.313vw 0px 0.313vw rgba(25, 158, 38, 0.5), inset 0px 0.313vw 0.313vw rgba(25, 158, 38, 0.5);
-    }
-
-    .yellow-button {
-      background: linear-gradient(180deg, #F2E436 1%, #E29C14 52.5%, #EEBD2A 100%);
-      box-shadow: 0px 0.469vw 0.313vw rgba(0, 0, 0, 0.25), inset 0px -0.313vw 0.313vw #DF8E26, inset -0.313vw 0px 0.313vw rgba(223, 142, 38, 0.5), inset 0.313vw 0px 0.313vw rgba(223, 142, 38, 0.5), inset 0px 0.313vw 0.313vw rgba(223, 142, 38, 0.5);
-    }
-
-    .button-border {
-      border-radius: 1.25vh;
-    }
-    .big-button-border {
-      border-radius: 2vh;
-    }
-  }
-
-
-  .father-anima:not(:active) {
+  .animate-updated-button:not(:active) {
     animation: shrink 0.5s ease forwards;
   }
 
-  .father-anima:active {
+  .animate-updated-button:active {
     animation: decrease 0.5s ease forwards;
   }
 
-  .father-anima:hover {
+  .animate-updated-button:hover {
     animation: decrease 0.5s ease forwards;
   }
 
-  .father-anima:not(:hover) {
+  .animate-updated-button:not(:hover) {
     animation: shrink 0.5s ease forwards;
   }
 
@@ -138,65 +163,5 @@
       transform: scale(1);
     }
   }
-
-
-  @keyframes slideIn {
-    from {
-      transform: translate(-200px, 0px) rotate(35deg);
-    }
-    to {
-      transform: translate(calc(500px), 0px) rotate(35deg);
-    }
-  }
-
-  .yellow-button.animate-updated-button:before {
-    background: linear-gradient(to right, #fdfcf200, #fdfcf2);
-    content: "";
-    height: 15vw;
-    will-change: transform;
-    position: absolute;
-    transform: translate(-300px, -200px);
-    width: 6vw;
-    animation: slideIn 2s  both;
-    animation-delay: 0.75s;
-    z-index: 4;
-  }
-
-  .requiresAttentionSeeker.animate-updated-button:before {
-    background: linear-gradient(to right, #fdfcf200, #fdfcf2);
-    content: "";
-    position: absolute;
-    width: 6vw;
-    will-change: transform;
-    height: 15vw;
-    animation: slideIn 3s infinite;
-		transform: translate(1200px, 1220px) rotate(35deg);
-		animation-delay:  0.5s;
-    z-index: 4;
-	}
-
-
-  .requiresAttentionSeeker:not(:hover){
-    animation: scalingBig  3s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
-    animation-delay:  var(--scaling-delay);
-
-  }
-
-
-  @keyframes scalingBig {
-    0%, 10%, 20%, 25% {
-
-      transform: scale(1, 1);
-    }
-    5%, 15% {
-
-      transform: scale(1.1, 1.1);
-    }
-    100% {
-
-      transform: scale(1, 1) ;
-    }
-  }
-
 
 </style>

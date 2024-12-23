@@ -1,10 +1,4 @@
 <script lang="ts">
-    // import pig from "$lib/components/piggy-bank/images/pig.svelte?raw";
-    // import pillow from "$lib/components/piggy-bank/images/pillow.svelte?raw";
-    // import coin from "$lib/components/piggy-bank/images/coin.svelte?raw";
-    import cosmonautCharacter from "$lib/components/piggy-bank/images/cosmonautCharacter.svg?raw";
-
-    import Button from "./Button.svelte";
     import {createEventDispatcher} from "svelte";
     import {playerState} from "$lib/state/player.state";
     import {goto} from "$app/navigation";
@@ -13,10 +7,11 @@
     import {MissionStatus} from "../../../../common/models/mission.type";
     import {enrichTutorialMissions} from "$lib/tutorial.service";
     import {rewardState} from "$lib/state/reward.state";
-    import overlayStars from "$lib/components/piggy-bank/images/overlayStars.svelte?raw";
+
     import RewardText from "$lib/components/reward/RewardText.svelte";
     import UserBalance from "$lib/components/common/Money.svelte";
-    import SpinningLight from "$lib/components/reward/SpinningLight.svelte";
+ import SecondAppButton from '$lib/components/common/SecondAppButton.svelte';
+ import RewardCongratulationText from '$lib/components/reward/RewardCongratulationText.svelte';
 
     export let balance: number;
     export let rewardAmount: number;
@@ -94,186 +89,64 @@
 
 
 </script>
-<div class="overlay">
-    <section class="reward">
-        <RewardText rewardAmount={rewardAmount} {startAnimation}/>
-        <div class="fixed w-full h-full top-0 flex justify-center items-center">
-            <SpinningLight
-                    image={'https://p2w.imgix.net/resources/client/dm/FX_Overlay_Yellow.png?auto=compress&auto=format'}/>
+
+<div class="z-[11] bg-black bg-opacity-90 absolute top-0 left-0 right-0  bottom-0 text-white overflow-hidden rounded-[32px] ">
+    <div class='first-reward-element'>
+        <RewardCongratulationText first="You" second="Open box!"/>
+    </div>
+    <div class="third-reward-element balance-pos">
+        <UserBalance {balance} isNotReward={false}/>
+    </div>
+    <div style="background-image: url('https://p2w.imgix.net/resources/client/dm/DMReward.png?auto=compress&auto=format');background-position: bottom; background-size: 100% 100%; " class='second-reward-element w-full h-full bg-cover bg-no-repeat  bg-black'>
+    </div>
+    <div style="background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 38.5%, rgba(0, 0, 0, 0.7) 61%, rgba(0, 0, 0, 0) 100%);"
+         class="w-full h-[138px] fixed  right-0 bottom-0  z-[12]">
+
+    </div>
+
+    <RewardText on:holdReward={claimRewardWithRedirect} {rewardAmount} {startAnimation}/>
+    <div class="h-full w-full flex justify-center third-reward-element">
+        <div id="claimRewardDmButton" style="opacity: {opacityButton}; transition: all 0.5s ease-out;"
+             class='third-reward-element text-center w-[90%] h-[45px]  z-50 flex items-center justify-center fixed bottom-[4%] '>
+            <SecondAppButton caption="Claim"  on:click={() => claimRewardWithRedirect()} variant="reward"/>
         </div>
-        <UserBalance balance={$userBalanceBeforeRewardState}
-                     img={`https://p2w.imgix.net/resources/client/common/Icn_Coin.png?auto=compress&auto=format`}/>
-        <div class="overlayStars">{@html overlayStars}</div>
-        <div class="reward__title">
-            <span class="reward__title__text" data-text={"You"}>You</span>
-            <br>
-            <span class="reward__title__text" data-text={"Open Box"}>Open Box</span>
-        </div>
-        <div class="pig__wrapper">
-            <div>
-                {@html cosmonautCharacter}
-            </div>
-<!--            <div class="pig">-->
-<!--                &lt;!&ndash;{@html pig}&ndash;&gt;-->
-<!--            </div>-->
-<!--            <div class="pillow">-->
-<!--                &lt;!&ndash;{@html pillow}&ndash;&gt;-->
-<!--            </div>-->
-        </div>
-        <div class="amount__reward"></div>
-        <div class="button__wrapper">
-            <Button text="Claim" className="main" id="claimRewardPbButton" on:click={claimRewardWithRedirect}/>
-        </div>
-    </section>
+    </div>
+
 </div>
-
 <style>
-    .overlay {
-        width: 100vw;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-image: radial-gradient(rgba(40, 113, 223, 0.7), rgba(5, 17, 40, 0.63)); /* Background for the Info overlay */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10;
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-    }
 
-    .amount__reward {
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        flex-direction: column;
-        position: relative;
-    }
-
-    .pig__wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        position: relative;
-        margin-bottom: 50px;
-    }
-
-    .pillow {
-        position: absolute;
-        top: 38%;
-        left: 16%;
-        z-index: 1;
-    }
-
-    .pig {
-        z-index: 2;
-    }
-
-    .overlayStars {
-        position: absolute;
-    }
-
-    .reward {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        height: 100vh;
-        width: 100vw;
-        gap: 55px;
-        position: relative;
-    }
-
-    .pig__wrapper {
-        width: 500px;
-        height: 350px;
-        background-image: url("/src/lib/components/piggy-bank/images/coins.svg");
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        background-size: cover;
-    }
-
-    .reward__title {
-        text-align: center;
-        padding-bottom: 35px;
-    }
-
-    .reward__title__text {
-        font-size: 58px;
-        font-family: "Fira Sans", sans-serif;
-        font-weight: 900;
-        background: -webkit-linear-gradient(90deg, rgba(255, 248, 214, 1), rgba(255, 246, 24, 1), rgba(255, 205, 3, 1) 50%, rgba(255, 248, 89, 1) 50%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        position: relative;
-        z-index: 1;
-        text-transform: uppercase;
-    }
-
-    .reward__title__text::before {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        color: transparent;
-        text-transform: uppercase;
-        pointer-events: none;
-        white-space: nowrap;
-        text-shadow: 0 -2px 0 rgba(173, 90, 35, 1);
-        z-index: -1;
-    }
-    @media screen and (max-width: 600px) {
-        .pig__wrapper{
-            margin-bottom: 0;
+    @keyframes show-reward {
+        0% {
+            transform: scale(0);
         }
-    }
-
-    @media screen and (max-width: 450px) {
-        .reward {
-            gap: 5px;
-            height: 300px;
-            width: 300px;
-            background-size: contain;
+        100% {
+            transform: scale(1);
         }
 
-        .pig__wrapper {
-            width: 310px;
-            height: 400px;
-            background-size: contain;
-            /*margin-bottom: 25px;*/
-        }
+    }
 
-        .pig {
-            padding-top: 50px;
-            padding-bottom: 60px;
-        }
+    .first-reward-element {
+        animation: show-reward 0.1s ease-in-out;
+    }
 
-        .pillow {
-            top: 43%;
-            left: 18%;
-        }
+    .second-reward-ement {
+        animation: show-elements 0.75s ease-in-out;
+    }
 
-        .amount__icon {
-            top: 55%;
-        }
+    .third-reward-element {
+        animation: show-elements 1.25s ease-in-out;
+    }
 
-        .reward__title__text {
-            font-size: 48px;
+    @keyframes show-elements {
+        0% {
+            opacity: 0;
         }
+        90% {
+            opacity: 0;
 
-        .amount__reward {
-            margin-left: 20px;
-            margin-top: -10px;
-            margin-bottom: 40px;
         }
-
-        .button__wrapper {
-            margin-top: 50px;
+        100% {
+            opacity: 1;
         }
-
     }
 </style>

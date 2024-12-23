@@ -14,6 +14,7 @@
     import {MissionStatus} from "../../../common/models/mission.type";
     import {enrichTutorialMissions} from "$lib/tutorial.service";
     import {tutorialState} from "$lib/state/tutorial.state";
+    import SecondAppButton from '$lib/components/common/SecondAppButton.svelte';
 
     let balance = $userBalanceBeforeRewardState;
     export let rewardAmount: number
@@ -82,27 +83,25 @@
     }
 </script>
 
-<div class="z-[11] bg-black bg-opacity-90 absolute top-0 left-0 right-0  bottom-0 text-white overflow-hidden ">
+<div class="z-[11] bg-black bg-opacity-90 absolute top-0 left-0 right-0  bottom-0 text-white overflow-hidden rounded-[32px] ">
     <div class='first-reward-element'>
         <RewardCongratulationText/>
     </div>
     <div class="third-reward-element balance-pos">
-        <UserBalance {balance}
-                     img={`https://p2w.imgix.net/resources/client/common/Icn_Coin.png?auto=compress&auto=format`}/>
+        <UserBalance {balance} isNotReward={false}/>
     </div>
-    <div class='second-reward-element w-full h-full'>
-        <SpinningLight
-                image={'https://p2w.imgix.net/resources/client/dm/FX_Overlay_Yellow.png?auto=compress&auto=format'}/>
-        <ScaledImg image={base + '/newImg/Img_Cmn_Reward_Charater.png'}
-                   starsImage={base + '/newImg/Coins.png'}
-                   />
+    <div style="background-image: url('https://p2w.imgix.net/resources/client/dm/DMReward.png?auto=compress&auto=format');background-position: bottom; background-size: 100% 100%; " class='second-reward-element w-full h-full bg-cover bg-no-repeat  bg-black'>
+    </div>
+    <div style="background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 38.5%, rgba(0, 0, 0, 0.7) 61%, rgba(0, 0, 0, 0) 100%);"
+         class="w-full h-[138px] fixed  right-0 bottom-0  z-[12]">
+
     </div>
 
     <RewardText on:holdReward={holdReward} {rewardAmount} {startAnimation}/>
     <div class="h-full w-full flex justify-center third-reward-element">
         <div id="claimRewardDmButton" style="opacity: {opacityButton}; transition: all 0.5s ease-out;"
-             class='absolute third-reward-element text-center vhFont-[16] port:text-[3.148vw] vwWidth-[122] vhHeight-[40] leading-[1.2] port:w-[23.704vw] port:h-[7.778vw] z-50 flex items-center justify-center fixed bottom-[6.75%] port:bottom-[6.25%]'>
-            <AppButton color="green" caption="Claim" isActive={true} on:click={() => holdReward()}/>
+             class='third-reward-element text-center w-[90%] h-[45px]  z-50 flex items-center justify-center fixed bottom-[4%] '>
+            <SecondAppButton caption="Claim"  on:click={() => holdReward()} variant="reward"/>
         </div>
     </div>
 

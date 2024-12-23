@@ -21,6 +21,7 @@
 	import { enrichTutorialMissions, handleTutorialStep } from '$lib/tutorial.service';
 	import { tutorialState } from '$lib/state/tutorial.state';
 	import { get } from 'svelte/store';
+	import { goto } from '$app/navigation';
 	// import {browser} from '$app/environment';
 	// import Tracker from '@openreplay/tracker'
 
@@ -226,12 +227,9 @@
 			(step: TutorialSteps) => {
 				handleTutorialStep(step);
 			},
-			(url: string) => {
-				console.log(url)
-				const button = document.createElement('a');
-				button.href = url;
-				document.body.appendChild(button);
-				button.click()
+			async (url: string) => {
+				await goto(url)
+				console.log('redirecting to ' + url);
 			}
 		);
 

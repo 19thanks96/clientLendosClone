@@ -2,6 +2,7 @@
 	import { base } from '$app/paths';
 	import { t } from '$lib/i18n/config';
 	import { onMount } from 'svelte';
+	import coin from '$lib/components/common/Coin.svelte?raw';
 
 	export let startAnimation: boolean;
 	export let rewardAmount: number;
@@ -32,64 +33,56 @@
 <div style="position: fixed;
 display: flex;
 flex-direction: column;"
-		 class=" z-[12] opacity-0 flex justify-center  bottom-[18%] port:bottom-[17.25%] w-full font-black text-center third-reward-element">
-	<div style="color: #F7FCFF;
-text-shadow: 0px 2.524px 0px #151413;
--webkit-text-stroke-width: 1.2618380784988403;
--webkit-text-stroke-color: #3E3A37;
-font-family: 'Changa One';
-
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;"
-			 class=" vhFont-[32] font-black port:text-[6.204vw] font-['Fira_Sans'] tracking-[0.042vw] port:tracking-[0.074vw] ml-[0.3vw] port:ml-[2vw]">
+		 class=" z-[12] opacity-0 flex justify-center  bottom-[18%] port:bottom-[12%] w-full font-black text-center third-reward-element">
+	<div style="font-style: normal;"
+			 class="font-Poppins text-[14px] leading-[1] font-[600] text-[#A1A5AD]">
 		{$t('dm.reward')}
 	</div>
 	<div class="vhHeight-[54] port:h-[10.463vw]  flex justify-center items-center">
 		<div
-			style=" background-image: url('https://p2w.imgix.net/resources/client/common/Icn_Coin.png?auto=compress&auto=format'); background-position: center center;     aspect-ratio: 1 / 1.05; transform: scale(1.1) translateY(5px);"
-			class="{startAnimation ? 'opacity-0' : 'opacity-1'} startPosAnimateCoin ml-[-4px] mr-[10px] h-full bg-no-repeat bg-contain inline-block"></div>
-		<div style="transition: all 0.5s ease-out; background: var(--H1-Headline, linear-gradient(181deg, #FFFF71 30.91%, #FCE000 46.39%, #FCE000 51.6%, #F2B40D 52.06%, #F5CF18 63.15%));
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;"
-				 class="{startAnimation ? 'opacity-0' : 'opacity-1'} font-['Fira_Sans'] vhFont-[43] leading-[1.05] port:leading-[1.06] font-black port:text-[8.373vw] text-slate-200">
+			style=" transform: scale(0.7); transform-origin: right;"
+			class="{startAnimation ? 'opacity-0' : 'opacity-1'} startPosAnimateCoin ml-[-4px] mr-[10px] h-full bg-no-repeat bg-contain inline-block">
+			{@html coin}
+		</div>
+		<div style="transition: all 0.5s ease-out;"
+				 class="{startAnimation ? 'opacity-0' : 'opacity-1'} font-['Poppins'] font-[700] text-[28px] leading-[1.5] text-[#E9E9E9] tracking-[0.01em]">
 			{frontMoney}
 		</div>
-
 	</div>
 
 </div>
 
-<div style="animation-delay: 0s; background-image: url('https://p2w.imgix.net/resources/client/common/Icn_Coin.png?auto=compress&auto=format'); background-position: center center; aspect-ratio: 1/1;
+<div style="animation-delay: 0s;
      --coinLeft: {coinLeft}; --coinWidth: {coinWidth}; --coinHeight: {coinHeight}; --coinTop: {coinTop};
       --startAnimationLeft: {startAnimationLeft}; --startAnimationWidth: {startAnimationWidth}; --startAnimationHeight: {startAnimationHeight}; --startAnimationTop: {startAnimationTop};
 "
-		 class="absolute   {startAnimation ? 'to-monney' : ''}  opacity-0   bg-no-repeat bg-contain inline-block w-[3.5%] h-[3.5%]"></div>
+		 class="absolute   {startAnimation ? 'to-monney' : ''}  opacity-0   bg-no-repeat bg-contain inline-block w-[3.5%] h-[3.5%]">
+	{@html coin}
+</div>
 <div
-	style="animation-delay: 0.1s; background-image: url('https://p2w.imgix.net/resources/client/common/Icn_Coin.png?auto=compress&auto=format'); background-position: center center; aspect-ratio: 1/1;
+	style="animation-delay: 0.1s;
 	--coinLeft: {coinLeft}; --coinWidth: {coinWidth}; --coinHeight: {coinHeight}; --coinTop: {coinTop};
  --startAnimationLeft: {startAnimationLeft}; --startAnimationWidth: {startAnimationWidth}; --startAnimationHeight: {startAnimationHeight}; --startAnimationTop: {startAnimationTop};
 "
-	class="absolute {startAnimation ? 'to-monney' : ''}  opacity-0   bg-no-repeat bg-contain inline-block w-[3.5%] h-[3.5%]"></div>
+	class="absolute {startAnimation ? 'to-monney' : ''}  opacity-0   bg-no-repeat bg-contain inline-block w-[3.5%] h-[3.5%]">{@html coin}</div>
 <div
-	style="animation-delay: 0.2s; background-image: url('https://p2w.imgix.net/resources/client/common/Icn_Coin.png?auto=compress&auto=format'); background-position: center center; aspect-ratio: 1/1;
+	style="animation-delay: 0.2s;
 	--coinLeft: {coinLeft}; --coinWidth: {coinWidth}; --coinHeight: {coinHeight}; --coinTop: {coinTop};
  --startAnimationLeft: {startAnimationLeft}; --startAnimationWidth: {startAnimationWidth}; --startAnimationHeight: {startAnimationHeight}; --startAnimationTop: {startAnimationTop};
 "
-	class="absolute {startAnimation ? 'to-monney' : ''}  opacity-0   bg-no-repeat bg-contain inline-block w-[3.5%] h-[3.5%]"></div>
+	class="absolute {startAnimation ? 'to-monney' : ''}  opacity-0   bg-no-repeat bg-contain inline-block w-[3.5%] h-[3.5%]">{@html coin}</div>
 <div
-	style="animation-delay: 0.3s; background-image: url('https://p2w.imgix.net/resources/client/common/Icn_Coin.png?auto=compress&auto=format'); background-position: center center; aspect-ratio: 1/1;
+	style="animation-delay: 0.3s;
 	--coinLeft: {coinLeft}; --coinWidth: {coinWidth}; --coinHeight: {coinHeight}; --coinTop: {coinTop};
  --startAnimationLeft: {startAnimationLeft}; --startAnimationWidth: {startAnimationWidth}; --startAnimationHeight: {startAnimationHeight}; --startAnimationTop: {startAnimationTop};
 "
-	class="absolute {startAnimation ? 'to-monney' : ''}  opacity-0   bg-no-repeat bg-contain inline-block w-[3.5%] h-[3.5%]"></div>
+	class="absolute {startAnimation ? 'to-monney' : ''}  opacity-0   bg-no-repeat bg-contain inline-block w-[3.5%] h-[3.5%]">{@html coin}</div>
 <div
-	style="animation-delay: 0.4s; background-image: url('https://p2w.imgix.net/resources/client/common/Icn_Coin.png?auto=compress&auto=format'); background-position: center center; aspect-ratio: 1/1;
+	style="animation-delay: 0.4s;
 	--coinLeft: {coinLeft}; --coinWidth: {coinWidth}; --coinHeight: {coinHeight}; --coinTop: {coinTop};
  --startAnimationLeft: {startAnimationLeft}; --startAnimationWidth: {startAnimationWidth}; --startAnimationHeight: {startAnimationHeight}; --startAnimationTop: {startAnimationTop};
 "
-	class="absolute {startAnimation ? 'to-monney' : ''}  opacity-0   bg-no-repeat bg-contain inline-block w-[3.5%] h-[3.5%]"></div>
+	class="absolute {startAnimation ? 'to-monney' : ''}  opacity-0   bg-no-repeat bg-contain inline-block w-[3.5%] h-[3.5%]">{@html coin}</div>
 
 
 <style lang="scss">

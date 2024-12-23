@@ -12,9 +12,6 @@
 </div>
 <div class="w-full relative h-[17.5%] land:h-[60%] port:mt-[-18.75%] land:mt-[-1vh] scale-110 bg-contain bg-no-repeat flex justify-center items-center">
     <div class="absolute top-0 port:w-[110%] port:h-[104%] w-[116%] h-[103%] translate-y-[-100%]">
-<!--        <ExitButton on:click={exit}-->
-<!--                    background={`https://p2w.imgix.net/resources/client/dm/Btn_Red_S.png?auto=compress&auto=format`}-->
-<!--                    image={`https://p2w.imgix.net/resources/client/dm/Icn_Close.png?auto=compress&auto=format`}/>-->
     </div>
 </div>
 

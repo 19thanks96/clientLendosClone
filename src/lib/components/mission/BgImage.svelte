@@ -10,30 +10,13 @@
 	onMount(() => ready = true);
 
 </script>
-<!--<div style=""-->
-<!--		 class="relative overflow-hidden h-full w-full bg-cover  flex justify-center items-center opacity-80">-->
-<!--	<div-->
-<!--		style=""-->
-<!--		class="   absolute overflow-hidden land:w-[100vw] port:w-[100vh] land:h-[100vw] port:h-[100vh]">-->
-<!--	</div>-->
+
+<!--<div style="	backdrop-filter: blur(20px);"-->
+<!--	class="h-full bg-[rgb(0,0,0,0.4)] absolute top-0 left-0 bottom-0 right-0 w-full  flex justify-center items-center opacity-80 overflow-hidden">-->
+
+
 <!--</div>-->
-<div style="	backdrop-filter: blur(20px);"
-	class="h-full bg-[rgb(0,0,0,0.4)] absolute top-0 left-0 bottom-0 right-0 w-full  flex justify-center items-center opacity-80 overflow-hidden">
-
-<!--	<div style="background-image: url({bgImage});"-->
-<!--			 class="bg-center  bg-no-repeat  overscroll-none overflow-hidden  land:w-[87vh] port:w-[100vw] land:h-[87vh] port:h-[100vw] port:scale-150  bg-contain   ">-->
-<!--	</div>-->
-
-</div>
 <div class="w-full h-full  flex justify-center items-center absolute top-0 overflow-hidden">
-	<!--{#if !isTutorial}-->
-	<!--<div style="background-image: url({leftSideImg});"-->
-	<!--		 class="w-[20.5%] h-[68.5%] absolute right-[122vw] bottom-[11%] bg-contain bg-no-repeat  { ready  ? 'left-side-img' : ''} "></div>-->
-	<!--	{:else }-->
-	<!--	<div style="background-image: url({leftSideImg});"-->
-	<!--			 class="w-[22%] h-[68.5%] absolute right-[122vw] bottom-[11%] bg-contain bg-no-repeat  { ready ? 'left-side-img-tutorial' : ''} "></div>-->
-
-	<!--{/if}-->
 	<slot />
 </div>
 

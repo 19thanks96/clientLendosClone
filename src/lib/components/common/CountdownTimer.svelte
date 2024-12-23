@@ -15,7 +15,7 @@
     onMount(() => {
         updateRemaining();
         const interval = setInterval(updateRemaining, 1000);
-        // return () => clearInterval(interval);
+
     });
 </script>
 

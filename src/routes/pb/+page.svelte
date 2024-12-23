@@ -33,17 +33,7 @@
             syncWithPlayerPbState($playerState);
         }
     }
-    let i = 0
-    if(i === 0) {
-        $playerState.pb.intermediateMultiplierPercents = 50
-        $playerState.pb.balance = 1200
-        $playerState.pb.balanceMax = 2000
-        $playerState.general.balance = 800
-        // $rewardState.isOpen = true
-        // $rewardState.amount = 1000
-        // $userBalanceBeforeRewardState = 5000
-        i++
-    }
+
 
     const exit = () => AdapterCommunicationService.sendMessage({type: 'exit', message: 'click'});
 
@@ -154,7 +144,7 @@
         left: 0;
         top: 190px;
         /*gap: 8px;*/
-        overflow-y: scroll;
+        overflow-y: auto;
         scrollbar-width: none;
         z-index: 2;
     }

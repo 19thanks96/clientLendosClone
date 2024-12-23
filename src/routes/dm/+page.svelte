@@ -113,7 +113,7 @@
     left: 0;
     top: 180px;
     gap: 8px;
-    overflow-y: scroll;
+    overflow-y: auto;
     scrollbar-width: none;
     z-index: 2;
   }

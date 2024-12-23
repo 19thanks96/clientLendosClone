@@ -91,14 +91,23 @@
 	let container: HTMLDivElement | undefined;
 	let isDragging = false; // Флаг отслеживания состояния перетаскивания
 
+	const getClientX = (event: MouseEvent | TouchEvent): number => {
+		if (event instanceof MouseEvent) {
+			return event.clientX; // Используем стандартный clientX для мыши
+		}
+		if (event instanceof TouchEvent && event.touches.length > 0) {
+			return event.touches[0].clientX; // Для сенсорных устройств выбираем первое касание
+		}
+		return 0; // Если ничего не подходит
+	};
 
-
-	const handleMouseMove = (event: MouseEvent) => {
+	const handleMove = (event: MouseEvent | TouchEvent) => {
 		if (!isDragging || !thumb || !container) return;
 
 		// Рассчитываем новый процент перемещения
 		const containerRect = container.getBoundingClientRect();
-		const left = Math.max(0, Math.min(event.clientX - containerRect.left - thumb.offsetWidth / 2, containerRect.width));
+		const clientX = getClientX(event);
+		const left = Math.max(0, Math.min(clientX - containerRect.left - thumb.offsetWidth / 2, containerRect.width));
 		const leftInPercent = (left / containerRect.width) * 100;
 
 		if (leftInPercent >= 0 && leftInPercent <= 100) {
@@ -110,15 +119,28 @@
 
 	const handleMouseDown = () => {
 		isDragging = true;
-		document.addEventListener('mousemove', handleMouseMove);
+		document.addEventListener('mousemove', handleMove);
 		document.addEventListener('mouseup', handleMouseUp);
 	};
 
 	const handleMouseUp = () => {
 		isDragging = false;
-		document.removeEventListener('mousemove', handleMouseMove);
+		document.removeEventListener('mousemove', handleMove);
 		document.removeEventListener('mouseup', handleMouseUp);
 	};
+
+	const handleTouchDown = () => {
+		isDragging = true;
+		document.addEventListener('touchmove', handleMove);
+		document.addEventListener('touchend', handleTouchUp);
+	};
+
+	const handleTouchUp = () => {
+		isDragging = false;
+		document.removeEventListener('touchmove', handleMove);
+		document.removeEventListener('touchend', handleTouchUp);
+	};
+
 
 	const handleChange  = () => {
 		$pbState.desiredHoldDepositAmount = currentPosInBalance
@@ -142,6 +164,7 @@
 
 		if (thumb) {
 			thumb.addEventListener('mousedown', handleMouseDown);
+			thumb.addEventListener('touchstart', handleTouchDown);
 		}
 	});
 
@@ -149,8 +172,9 @@
 	onDestroy(() => {
 		if (thumb) {
 			thumb.removeEventListener('mousedown', handleMouseDown);
+			thumb.removeEventListener('touchend', handleTouchDown);
 		}
-		document.removeEventListener('mousemove', handleMouseMove);
+		document.removeEventListener('mousemove', handleMove);
 		document.removeEventListener('mouseup', handleMouseUp);
 	});
 </script>
@@ -175,7 +199,7 @@
 			class="thumb text-[#7E8394] " id="my-thumb"
 		>
 			<div class="flex justify-center items-center w-1/2 h-1/2" >
-			{@html LessGreaterThanSvg}
+				{@html LessGreaterThanSvg}
 
 			</div>
 		</div>
@@ -223,8 +247,8 @@
     height: 16px;
   }
 
-	.slider-description{
-		top: -62%;
+  .slider-description{
+    top: -62%;
     z-index: 2;
     width: 165px;
     height: 50px;
@@ -235,16 +259,16 @@
     border-radius: 12px;
   }
   .slider-description:after{
-		content: '';
-		position: absolute;
-		top: 48px;
+    content: '';
+    position: absolute;
+    top: 48px;
     width: 15px;
-		height: 15px;
+    height: 15px;
     background: #000000;
     border: 1px solid #1E2026;
-		transform: rotate(45deg) translateY(-70%);
-		left: 50%;
-		mask: linear-gradient(to right bottom, rgb(0,0,0,0) 49%, rgb(0,0,0,1) 50%);
+    transform: rotate(45deg) translateY(-70%);
+    left: 50%;
+    mask: linear-gradient(to right bottom, rgb(0,0,0,0) 49%, rgb(0,0,0,1) 50%);
   }
 
   .slider-container {
@@ -282,7 +306,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-		position: absolute;
+    position: absolute;
     top: 50%;
 
     transform: translate(-50%, -50%);

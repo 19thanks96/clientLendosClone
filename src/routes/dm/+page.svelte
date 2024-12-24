@@ -76,6 +76,8 @@
     border: 1px solid #1E2026;
     //box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.5);
     border-radius: 32px;
+    z-index: -2;
+
   }
 
   .blackHole {
@@ -83,6 +85,8 @@
     height: 210px;
     position: absolute;
     top: 0px;
+    z-index: -2;
+
   }
 
   .astronaut {
@@ -92,6 +96,7 @@
     top: 8px;
     margin: auto;
     width: 100%;
+		z-index: 0;
   }
 
   .timer {
@@ -115,7 +120,7 @@
     gap: 8px;
     overflow-y: auto;
     scrollbar-width: none;
-    z-index: 2;
+    //z-index: 2;
   }
 	@media screen and (max-width: 370px) {
 		.mission-list {

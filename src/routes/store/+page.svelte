@@ -47,9 +47,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="offerList-list flex flex-col items-start p-0 absolute top-[32%] left-0 right-0 z-[5] h-11 h-[auto] ">
+			<div class="offer-list flex flex-col items-start p-0 absolute top-[32%] left-0 right-0  h-11 h-[auto] ">
 				<div style=" scrollbar-width: none;"
-						 class="h-[350px] flex-col justify-start items-start gap-2 inline-flex w-full overflow-y-scroll">
+						 class="h-[350px] flex-col justify-start items-start gap-2 inline-flex w-full overflow-y-auto ">
 					<OfferList offers={$playerState.store?.offers} handleOfferByType={isFreespinOnScreen}
 					/>
 				</div>
@@ -100,6 +100,7 @@
     background: #050505;
     border: 1px solid #1E2026;
     border-radius: 32px;
+		z-index: -2;
   }
 
   .blackHole {
@@ -107,6 +108,8 @@
     height: 210px;
     position: absolute;
     top: 0px;
+    z-index: -2;
+
   }
 
   .astronaut {
@@ -116,35 +119,14 @@
     top: 8px;
     margin: auto;
     width: 100%;
-  }
+    z-index: 0;
 
-  .timer {
-    width: 90px;
-    height: 26px;
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 14px;
-    z-index: 2;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
   }
 
 
-  .mission-list {
-    width: 100%;
-    height: 404px;
-    left: 0;
-    top: 180px;
-    gap: 8px;
-    overflow-y: auto;
-    scrollbar-width: none;
-    z-index: 2;
-  }
+	.offer-list{
+		//z-index: 5;
+	}
 
-  @media screen and (max-width: 370px) {
-    .mission-list {
-      height: 360px;
-    }
-  }
 
 </style>

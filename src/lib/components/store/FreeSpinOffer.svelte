@@ -45,7 +45,7 @@
 
 </script>
 
-<div class="w-[370px] h-[116px] justify-center items-center inline-flex">
+<div class="w-[370px] h-[116px] justify-center items-center inline-flex" id={offer.id}>
 	<div  class="w-[370px] h-[116px] bg-[#0e0f12] rounded-xl border border-[#1e2025] flex flex-row relative">
 
 <!--		<div class="w-[368px] h-[38px] bg-black/40 rounded-bl-[11px] rounded-br-[11px] absolute bottom-0 z-[-1]"></div>-->

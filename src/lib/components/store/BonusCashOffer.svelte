@@ -1,5 +1,5 @@
 <script lang="ts">
-	import timer from '$lib/components/common/Timer.svelte?raw';
+	import timer from '$lib/components/common/timer.svelte?raw';
 	import CountdownTimer from '$lib/components/common/CountdownTimer.svelte';
 	import AppButton from '$lib/components/common/AppButton.svelte';
 	import { formatNumber } from '$lib/utils';
@@ -47,7 +47,7 @@ export let index;
 </script>
 
 
-<div class="w-[120px] h-[204px] flex-col justify-center items-center inline-flex">
+<div class="w-[120px] h-[204px] flex-col justify-center items-center inline-flex" id={offer.id}>
 	<div class="w-[120px] h-[204px] bg-[#0e0f12] rounded-xl border border-[#1e2025]">
 		<div class="w-[120px] h-[204px] relative">
 

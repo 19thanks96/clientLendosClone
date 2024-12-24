@@ -6,7 +6,8 @@ export const addBackgroundGlass = (blur = 0) => {
     fullPageDiv.style.left = '0';
     fullPageDiv.style.width = '100%';
     fullPageDiv.style.height = '100%';
-    fullPageDiv.style.background = blur === 0 ? '' : 'rgba(24, 61, 175, 0.27)';
+    fullPageDiv.style.borderRadius = '32px';
+    fullPageDiv.style.background = blur === 0 ? '' : 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.40) 1.76%, rgba(0, 0, 0, 0.70) 6.5%);';
     fullPageDiv.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
     fullPageDiv.style.backdropFilter = `blur(${blur}px)`
     fullPageDiv.style.zIndex = '15'

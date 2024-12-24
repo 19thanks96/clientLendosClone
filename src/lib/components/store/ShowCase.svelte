@@ -59,7 +59,7 @@
 
 </script>
 <div style="scrollbar-gutter: stable; "
-     class=" absolute overflow-hidden overflow-y-scroll scrolled touch-pan-y pr-[1.2vw] port:pr-[0.5vw]  scrollable h-[100.5%] port:h-[101%] w-[110%] port:w-[104%] rounded-[4vh] port:rounded-[5vw] content-start  flex flex-wrap gap-y-[2.3%]  port:gap-y-[5%] showcase">
+     class=" absolute overflow-hidden overflow-y-auto scrolled touch-pan-y pr-[1.2vw] port:pr-[0.5vw]  scrollable h-[100.5%] port:h-[101%] w-[110%] port:w-[104%] rounded-[4vh] port:rounded-[5vw] content-start  flex flex-wrap gap-y-[2.3%]  port:gap-y-[5%] showcase">
     <div class="w-full h-[1%] port:h-[1%]"></div>
     { #each goodsArray as offer (offer.id)}
         <div style="flex: 1 1 100%;"

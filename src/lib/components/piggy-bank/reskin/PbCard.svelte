@@ -9,6 +9,7 @@ export let price:number = 1;
 export let priceDescription:string = '';
 export let finalCoins:number = 1;
 export let currentBalance:number = 0;
+export let id:string;
 
 </script>
 
@@ -41,7 +42,7 @@ export let currentBalance:number = 0;
 			</div>
 		</div>
 		<div class="w-[166px] h-[30px] mt-[10px] {currentBalance < price ? 'opacity-30' : 'opacity-[1]'} flex justify-center items-center">
-			<SecondAppButton caption="OPEN"  on:click variant="reward" isLoading={$pbState?.isLoading}/>
+			<SecondAppButton caption="OPEN"  on:click variant="reward" isLoading={$pbState?.isLoading} {id}/>
 		</div>
 
 

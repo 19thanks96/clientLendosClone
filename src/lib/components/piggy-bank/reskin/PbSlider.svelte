@@ -1,18 +1,16 @@
 <script lang="ts">
 
-	import { pbState, syncWithPlayerPbState } from '$lib/state/pb.state';
+	import { pbState } from '$lib/state/pb.state';
 	import {playerState} from "$lib/state/player.state";
 	import {AdapterCommunicationService} from "$lib/adapter-listener";
 	import coin from '$lib/components/common/Coin.svelte?raw';
 	import { onDestroy, onMount } from 'svelte';
 	import LessGreaterThanSvg from '$lib/components/piggy-bank/reskin/LessGreaterThanSvg.svelte?raw';
-	//#tutorial
-	// syncWithPlayerPbState
 	let isSendTutorialRequest = false;
-	let currentPos = ($playerState.pb.balance / $playerState.pb.balanceMax) || 0;
+	let currentPos =  0;
 	let step = $pbState.step / $playerState.pb.balanceMax * 100
-	let maxPercent = ($playerState.general.balance  / $playerState.pb.balanceMax  * 100) + (($playerState.pb.balance / $playerState.pb.balanceMax) * 100)
-	let hideTimeoutHint;
+	let maxPercent = ($playerState.general.balance  / ($playerState.pb.balanceMax -  $playerState.pb.balance)  * 100)
+	let hideTimeoutHint : number;
 
 
 	$:currentPosInPercent = currentPos * 100;
@@ -21,7 +19,7 @@
 
 	const increaseDesiredHoldAmount = () => {
 		currentPosInPercent = Math.max(0, Math.min( Math.max(0, Math.min(currentPosInPercent + step, 100) ), maxPercent) );
-		currentPosInBalance = Math.round($playerState.pb.balanceMax / 100 * currentPosInPercent)  || 0 ;
+		currentPosInBalance = Math.round(($playerState.pb.balanceMax - $playerState.pb.balance) / 100 * currentPosInPercent)  || 0 ;
 
 
 
@@ -66,7 +64,7 @@
 	const decreaseDesiredHoldAmount = () => {
 
 		currentPosInPercent = Math.max(0, Math.min(Math.min(100, Math.max(currentPosInPercent - step, 0) ), maxPercent) );
-		currentPosInBalance = Math.round($playerState.pb.balanceMax / 100 * currentPosInPercent)  || 0 ;
+		currentPosInBalance = Math.round(($playerState.pb.balanceMax - $playerState.pb.balance) / 100 * currentPosInPercent)  || 0 ;
 
 		//#tutorial
 		if ($playerState.tutorial && $playerState.tutorial.step === 2 && $pbState.desiredHoldDepositAmount === $pbState.bankRemainingBalance) {
@@ -104,15 +102,15 @@
 	const handleMove = (event: MouseEvent | TouchEvent) => {
 		if (!isDragging || !thumb || !container) return;
 
-		// Рассчитываем новый процент перемещения
+
 		const containerRect = container.getBoundingClientRect();
 		const clientX = getClientX(event);
 		const left = Math.max(0, Math.min(clientX - containerRect.left - thumb.offsetWidth / 2, containerRect.width));
 		const leftInPercent = (left / containerRect.width) * 100;
 
 		if (leftInPercent >= 0 && leftInPercent <= 100) {
-			currentPosInPercent = Math.max(0, Math.min(leftInPercent, maxPercent) );
-			currentPosInBalance = Math.round($playerState.pb.balanceMax / 100 * currentPosInPercent)  || 0 ;
+			currentPosInPercent = Math.max(0, Math.min(leftInPercent,  ($playerState.general.balance  / ($playerState.pb.balanceMax -  $playerState.pb.balance)  * 100)) );
+			currentPosInBalance = Math.round(($playerState.pb.balanceMax - $playerState.pb.balance) / 100 * currentPosInPercent)  || 0 ;
 			handleChange()
 		}
 	};
@@ -143,7 +141,7 @@
 
 
 	const handleChange  = () => {
-		$pbState.desiredHoldDepositAmount = currentPosInBalance
+		$pbState.desiredHoldDepositAmount = currentPosInBalance +  $playerState.pb.balance
 		if(thumb && hint && hint.style.opacity !== '1') {
 			hint.style.opacity = '1';
 			hint.style.transition = 'opacity 0.1s ease-in-out';
@@ -188,7 +186,7 @@
 	<div class="text-[#d1d1d1] text-xl font-bold font-['Poppins'] uppercase tracking-tight inline">
 		{currentPosInBalance}
 		/
-		{$playerState.pb.balanceMax}</div>
+		{$playerState.pb.balanceMax - $playerState.pb.balance}</div>
 </div>
 <div bind:this={container} class="slider-container">
 	<div class="slider">
@@ -199,7 +197,7 @@
 			class="thumb text-[#7E8394] " id="my-thumb"
 		>
 			<div class="flex justify-center items-center w-1/2 h-1/2" >
-				{@html LessGreaterThanSvg}
+			{@html LessGreaterThanSvg}
 
 			</div>
 		</div>
@@ -247,8 +245,8 @@
     height: 16px;
   }
 
-  .slider-description{
-    top: -62%;
+	.slider-description{
+		top: -62%;
     z-index: 2;
     width: 165px;
     height: 50px;
@@ -259,16 +257,16 @@
     border-radius: 12px;
   }
   .slider-description:after{
-    content: '';
-    position: absolute;
-    top: 48px;
+		content: '';
+		position: absolute;
+		top: 48px;
     width: 15px;
-    height: 15px;
+		height: 15px;
     background: #000000;
     border: 1px solid #1E2026;
-    transform: rotate(45deg) translateY(-70%);
-    left: 50%;
-    mask: linear-gradient(to right bottom, rgb(0,0,0,0) 49%, rgb(0,0,0,1) 50%);
+		transform: rotate(45deg) translateY(-70%);
+		left: 50%;
+		mask: linear-gradient(to right bottom, rgb(0,0,0,0) 49%, rgb(0,0,0,1) 50%);
   }
 
   .slider-container {
@@ -306,7 +304,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+		position: absolute;
     top: 50%;
 
     transform: translate(-50%, -50%);

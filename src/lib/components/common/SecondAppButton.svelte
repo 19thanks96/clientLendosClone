@@ -4,6 +4,7 @@
 	export let caption: string;
 	export let isLoading = false;
 	export let variant: 'default' | 'reward' = 'default';
+	export let id: string = '';
 </script>
 
 {#if !isLoading}
@@ -23,6 +24,7 @@
 	{:else if variant === 'reward'}
 		<div class="w-full h-full relative">
 			<button
+				id={id}
 				on:click
 				class="
 					w-full h-full relative flex flex-row justify-center items-center z-[2] border border-[rgba(39,_42,_48,_1)] bg-[] rounded-[12px] btn

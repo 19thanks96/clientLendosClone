@@ -95,7 +95,7 @@
 	};
 </script>
 
-<div class=" flex flex-col items-center p-0 relative pb-main-wrapper">
+<div id="pbBetControls" class=" flex flex-col items-center p-0 relative pb-main-wrapper pbBetControls">
 
 	<PbProgressBar pb={piggyBank} />
 	<div style='background-image: url({base}/reskin/safe.png)'
@@ -104,14 +104,14 @@
 
 	<div class="w-full pt-[8px]">
 
-		<PbCard currentBalance={$pbState.desiredHoldDepositAmount} on:click={clickHold}
+		<PbCard currentBalance={$pbState.desiredHoldDepositAmount} on:click={clickClaim} id='pbClaimButton'
 						price={piggyBank.balanceMax }
 						priceDescription='mega cashback' finalCoins={Math.round(amountMaxReward())}
 						multiplier={calculateMultiplier(piggyBank.finalMultiplierPercents)} />
 	</div>
 	<div class="w-full pt-[8px]">
 
-		<PbCard currentBalance={$pbState.desiredHoldDepositAmount} on:click={clickClaim}
+		<PbCard currentBalance={$pbState.desiredHoldDepositAmount}   on:click={clickHold} id='pbHoldButton'
 						price={piggyBank.balanceMax / 100 * piggyBank.intermediateMultiplierPercents}
 						priceDescription='Space cashback' finalCoins={Math.round(calculateAdjustedMinReward())}
 						multiplier={calculateMultiplier(piggyBank.intermediateMultiplierPercents)} />
@@ -142,7 +142,6 @@
     /*gap: 8px;*/
     overflow-y: scroll;
     scrollbar-width: none;
-    z-index: 2;
   }
 
 

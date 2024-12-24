@@ -34,7 +34,6 @@
         }
     }
 
-
     const exit = () => AdapterCommunicationService.sendMessage({type: 'exit', message: 'click'});
 
 
@@ -102,6 +101,8 @@
         background: #050505;
         border: 1px solid #1E2026;
         border-radius: 32px;
+        z-index: -2;
+
     }
 
 
@@ -110,6 +111,8 @@
 
         background-position: center;
         mask: linear-gradient(to bottom, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%);
+        z-index: -2;
+
     }
     .blackHole,
     .header-wrapper{
@@ -125,6 +128,8 @@
         top: 8px;
         margin: auto;
         width: 100%;
+        z-index: 0;
+
     }
 
     .timer {
@@ -138,16 +143,6 @@
         font-weight: 600;
     }
 
-    .pb-main-wrapper {
-        width: 100%;
-        height: 410px;
-        left: 0;
-        top: 190px;
-        /*gap: 8px;*/
-        overflow-y: auto;
-        scrollbar-width: none;
-        z-index: 2;
-    }
 
 
 

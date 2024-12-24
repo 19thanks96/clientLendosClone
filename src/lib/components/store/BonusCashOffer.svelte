@@ -1,5 +1,5 @@
 <script lang="ts">
-	import timer from '$lib/components/common/timer.svelte?raw';
+	import timer from '$lib/components/common/Timer.svelte?raw';
 	import CountdownTimer from '$lib/components/common/CountdownTimer.svelte';
 	import AppButton from '$lib/components/common/AppButton.svelte';
 	import { formatNumber } from '$lib/utils';

@@ -13,7 +13,7 @@
 			(!handleOfferByType && item.type === 'bonusCash');
 	}) || [];
 
-	$:classesByType = handleOfferByType ?   " flex-col  gap-y-[8px]  w-full" : "flex-row flex-wrap gap-[5px]"
+	$:classesByType = handleOfferByType ?   " flex-col  gap-y-[8px]  w-full" : "flex-row flex-wrap gap-[5px] justify-start items-start"
 </script>
 
 

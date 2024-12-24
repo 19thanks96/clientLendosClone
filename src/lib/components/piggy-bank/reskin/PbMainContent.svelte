@@ -22,6 +22,9 @@
 		$pbState.desiredHoldDepositAmount === $pbState.bankRemainingBalance && $pbState.desiredHoldDepositAmount > 0 :
 		$pbState.desiredHoldDepositAmount > 0;
 
+	$:{
+		console.log('pbState !!!', $pbState.desiredHoldDepositAmount);
+	}
 
 	function calculateMultiplier(percentage: number, baseMultiplier = 1, maxMultiplier = 2) {
 		return baseMultiplier + (percentage / 100) * (maxMultiplier - baseMultiplier);
@@ -111,7 +114,7 @@
 	</div>
 	<div class="w-full pt-[8px]">
 
-		<PbCard currentBalance={$pbState.desiredHoldDepositAmount}   on:click={clickHold} id='pbHoldButton'
+		<PbCard currentBalance={$pbState.desiredHoldDepositAmount}   on:click={clickClaim} id='pbClaimButton'
 						price={piggyBank.balanceMax / 100 * piggyBank.intermediateMultiplierPercents}
 						priceDescription='Space cashback' finalCoins={Math.round(calculateAdjustedMinReward())}
 						multiplier={calculateMultiplier(piggyBank.intermediateMultiplierPercents)} />
@@ -123,12 +126,13 @@
 	<div class="w-[340px] h-[44px] flex justify-center items-center">
 
 		<AppButton
-			on:click={() => {}}
+			on:click={clickHold}
 			isLoading={$pbState?.isLoading}
 			caption={'Deposit'}
 			color={'green'}
-			isActive={true}
+			isActive={holdAllowed}
 			bigButton={true}
+			id='pbHoldButton'
 		/>
 	</div>
 </div>

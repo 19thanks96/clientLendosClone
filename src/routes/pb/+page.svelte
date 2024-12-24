@@ -60,27 +60,30 @@
             </div>
         </div>
         {#key $playerState}
+                <div class=" w-full h-full header-wrapper blackHole z-[-2]">
+
+
+                </div>
             <div style='background-image: url({base}/reskin/astronautPb.png)'
                  class="absolute h-full bg-contain bg-no-repeat astronaut z-[2]">
 
             </div>
-            <div class="absolute top-[16px] left-0 right-0 bottom-0 border-rounded overflow-hidden">
-                <div style='background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 1) 95%), url({base}/reskin/blackHole.png)'
-                     class="w-full h-full bg-contain bg-no-repeat blackHole">
-                </div>
-                <div class=" w-full h-full header-wrapper">
-
-                    <div
-												class="relative top-[43%] left-[66%] timer text-[#D2D2D2] text-[10px] leading-[1.5] flex items-center pl-[5px]">
+            <div class=" w-full h-full header-wrapper blackHole z-[2] top-[15px_!important]">
+                <div
+                  class="relative top-[43%] left-[66%] timer text-[#D2D2D2] text-[10px] leading-[1.5] flex items-center pl-[5px]">
                         <span class="h-[15px] w-[15px] ">
 													{@html timer}
                         </span>
-													<span  class="h-auto  ml-[5px] font-['Poppins'] font-[600] text-[10px] leading-[15px] text-[#D2D2D2]">
+                    <span  class="h-auto  ml-[5px] font-['Poppins'] font-[600] text-[10px] leading-[15px] text-[#D2D2D2]">
 													<CountdownTimer {dateEnd} />
 												</span>
-                    </div>
-                    <Title  title="Info Bank"
-                      description={$playerState.pb.info} text={$playerState.pb.name} />
+                </div>
+                <Title  title="Info Bank"
+                        description={$playerState.pb.info} text={$playerState.pb.name} />
+            </div>
+            <div class="absolute top-[16px] left-0 right-0 bottom-0 border-rounded overflow-hidden">
+                <div style='background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 1) 95%), url({base}/reskin/blackHole.png)'
+                     class="w-full h-full bg-contain bg-no-repeat blackHole">
                 </div>
             </div>
 
@@ -107,11 +110,10 @@
 
 
     .blackHole {
-        background-size: contain;
+        background-size: cover;
 
         background-position: center;
         mask: linear-gradient(to bottom, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%);
-        z-index: -2;
 
     }
     .blackHole,

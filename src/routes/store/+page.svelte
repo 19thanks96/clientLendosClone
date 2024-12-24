@@ -34,17 +34,19 @@
 		</div>
 		{#key $playerState}
 			<div style='background-image: url({base}/reskin/astronautStore.png)'
-					 class="absolute h-full bg-contain bg-no-repeat astronaut z-[2]">
+					 class="absolute h-full bg-contain bg-no-repeat astronaut">
 
 			</div>
-			<div class="absolute top-[16px] left-0 right-0 bottom-0 border-rounded overflow-hidden">
-				<div style='background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 1) 95%), url({base}/reskin/blackHole.png)'
-						 class="w-full h-full bg-contain bg-no-repeat blackHole">
-					<div class="absolute top-[64%] left-0  w-full">
+				<div class="w-full h-full bg-contain bg-no-repeat blackHole z-[2]">
+					<div class="absolute top-[64%] left-0  w-full ">
 
 						<Title  title="Info Store"
 							description={$playerState.store.info} text={'store'} />
 					</div>
+				</div>
+			<div class="absolute top-[16px] left-0 right-0 bottom-0 border-rounded overflow-hidden">
+				<div style='background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 1) 95%), url({base}/reskin/blackHole.png)'
+						 class="w-full h-full bg-contain bg-no-repeat blackHole ">
 				</div>
 			</div>
 			<div class="offer-list flex flex-col items-start p-0 absolute top-[32%] left-0 right-0  h-11 h-[auto] ">
@@ -80,7 +82,7 @@
 				</div>
 			</div>
 			<div
-				class="w-full h-full  top-0 left-0 right-0 bottom-0 flex justify-center items-center { $showPopUpStoreLayout.isOpen ? ' z-[10] fixed' : 'z-[-1] absolute '}">
+				class="w-full h-full  top-0 left-0 right-0 bottom-0 flex justify-center items-center ">
 				{#if $showPopUpStoreLayout.isOpen}
 					<StorePopUp />
 				{/if}
@@ -108,7 +110,7 @@
     height: 210px;
     position: absolute;
     top: 0px;
-    z-index: -2;
+    z-index: 0;
 
   }
 

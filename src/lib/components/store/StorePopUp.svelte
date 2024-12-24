@@ -153,9 +153,9 @@
             handleClosePopup()
         }
     }}
-					style=" aspect-ratio: 1/1; background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.46) 1.76%, rgba(0, 0, 0, 0.80) 6.5%);z-index: 0"
+					style=" aspect-ratio: 1/1; background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.46) 1.76%, rgba(0, 0, 0, 0.80) 6.5%);"
 					class="w-full h-[calc(100vh-10px)] absolute top-[15px]  bg-[length:100%_100%]  rounded-[32px] overflow-hidden "></button>
-	<div class="w-full z-[1]">
+	<div class="w-full ">
 		<div class="border-rounded">
 			<div class="w-full relative top-[-15px]">
 
@@ -165,10 +165,10 @@
 			</div>
 			</div>
 
-			<div style='background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 1) 35%), url({base}/reskin/blackHole.png)'
+			<div style='background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 1) 95%), url({base}/reskin/blackHole.png)'
 					 class="w-full h-full bg-contain bg-no-repeat blackHole rounded-[32px]">
 				<div style='background-image: url({base}/reskin/astronautStore.png)'
-						 class="relative  h-full bg-contain bg-no-repeat astronaut z-[2]">
+						 class="relative  h-full bg-contain bg-no-repeat astronaut ">
 					<div class="absolute top-[64%] left-0  w-full">
 
 						<Title
@@ -179,7 +179,7 @@
 			</div>
 			<div class="{isEnoughCoinsOrError ? 'h-[310px]' : 'h-[290px]'}  relative top-[-41px]">
 				<div
-					class="w-[370px] {isEnoughCoinsOrError ? 'h-[270px]' : 'h-[250px]'} bg-[#0e0f12] rounded-xl border border-[#1e2025] flex flex-col  relative z-[2] m-auto">
+					class="w-[370px] {isEnoughCoinsOrError ? 'h-[270px]' : 'h-[250px]'} bg-[#0e0f12] rounded-xl border border-[#1e2025] flex flex-col  relative  m-auto">
 					<div class="w-[370px] h-[153px] flex flex-row">
 
 
@@ -388,8 +388,9 @@
   .border-rounded {
     background: #050505;
     border: 1px solid #1E2026;
-
+    z-index: 0;
     border-radius: 32px;
+    position: relative;
   }
 
   .blackHole {

@@ -29,7 +29,7 @@
 </script>
 
 
-<div on:click={onClickBalance} class="absolute h-[26px] rounded-[14px] bg-black top-[35px] left-[13px] p-[4px_8px_4px_4px] flex flex-row gap-[7px] z-[9]">
+<div on:click={onClickBalance} class="absolute h-[26px] rounded-[14px] bg-black top-[35px] left-[13px] p-[4px_8px_4px_4px] flex flex-row gap-[7px] z-[1]">
 	{@html coin}
 <div class="monney-wrapper">
 	{frontMoney}

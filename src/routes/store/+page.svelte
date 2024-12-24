@@ -28,7 +28,7 @@
 	{#if $playerState.isInitialized && $playerState.store && $playerState.store.offers.length > 0 }
 		<div class="{$rewardState.isOpen ? 'opacity-0' :'opacity-1'}">
 			<UserBalance {balance} isNotReward={true}/>
-			<div class="absolute top-[36px] right-[15px] z-[9]">
+			<div class="absolute top-[36px] right-[15px] z-[1]">
 				<ExitButton on:click={exit} />
 			</div>
 		</div>

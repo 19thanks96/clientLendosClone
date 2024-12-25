@@ -388,7 +388,7 @@
   .border-rounded {
     background: #050505;
     border: 1px solid #1E2026;
-    z-index: 0;
+    //z-index: 0;
     border-radius: 32px;
     position: relative;
   }

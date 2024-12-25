@@ -343,6 +343,8 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
             deselectItemsOnPage(['tutorialOffer'])
             await tick();
             const sorePopUpBuyButton = document.getElementById('sorePopUpBuyButton');
+            selectItemsOnPage(['sorePopUpBuyButton'])
+
             const coordinates = sorePopUpBuyButton?.getBoundingClientRect();
             AdapterCommunicationService.sendMessage({
                 type: 'setTutorialCoordinates', message: {
@@ -358,6 +360,7 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
             break;
         }
         case TutorialSteps.offerStep3: {
+            deselectItemsOnPage(['sorePopUpBuyButton'])
             await tick();
             const sorePopUpClaimButton = document.getElementById('sorePopUpClaimButton');
             const coordinates = sorePopUpClaimButton?.getBoundingClientRect();

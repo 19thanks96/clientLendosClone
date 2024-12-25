@@ -235,7 +235,7 @@
 					<div bind:this={component}>
 					{#if $showPopUpStoreLayout.mode === StorePopUpMode.view}
 						<div id="sorePopUpBuyButton"
-								 class="w-full h-[44px] flex justify-center items-center mx-auto  px-[10px] text-[20px] {isEnoughCoins ? 'opacity-100' : 'opacity-20' }">
+								 class="w-full h-[44px] flex justify-center items-center mx-auto  px-[10px] text-[20px] {isEnoughCoins ? 'opacity-100' : 'opacity-20' }  relative z-20">
 							<AppButton
 								on:click={isEnoughCoins ? handleBuyAction : handleEarnCoinsAction}
 								isLoading={$showPopUpStoreLayout.isLoading}
@@ -249,7 +249,7 @@
 						</div>
 					{/if}
 							{#if $showPopUpStoreLayout.mode === StorePopUpMode.claim}
-									<div id="sorePopUpClaimButton" class="w-full h-[44px] flex justify-center items-center mx-auto mt-[15px] px-[10px]">
+									<div id="sorePopUpClaimButton" class="w-full h-[44px] flex justify-center items-center mx-auto mt-[15px] px-[10px]  relative z-20">
 											<AppButton on:click={traceAnimationAndExit} bigButton={true}
 																 caption="Claim"
 																 isActive={true}

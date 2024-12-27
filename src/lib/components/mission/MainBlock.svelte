@@ -6,7 +6,7 @@
 
 <div style={`border-image-source: url(${base}/newImg/Cmt_Dm_Bg_PopUp.png);`}
      class="relative w-[20.65%] h-[65%] mt-[9%]  port:w-[77.05%] port:h-[66.75%]  port:mt-[29%] main-block ">
-    <div class="absolute w-[108%] h-[26%]  port:h-[42%] top-[-16%] port:top-[-20%]  left-[50%] sofa" style="">
+    <div class="absolute w-[108%] h-[26%]  port:h-[26%] top-[-16%] port:top-[-17%]  left-[50%] sofa" style="">
         <slot name="header"/>
     </div>
     <div class="relative w-full h-[-webkit-fill-available] flex justify-center pb-[7%] port:pb-[7%] port:px-[2%]">
@@ -30,7 +30,7 @@
          class="absolute  left-0 bottom-[-2%] text-[0.7rem]    text-[#CCB5A5]  flex justify-center items-center w-[100%] vhHeight-[31] port:h-[6.111vw]">
 
         <img src='https://p2w.imgix.net/resources/client/dm/Dm_Timer_Left.png?auto=compress&auto=format'
-             class="h-full" alt="btn" draggable="false"/>
+             class="h-full" alt="btn"/>
         <div
           style="background-image: url('https://p2w.imgix.net/resources/client/dm/Dm_Timer_Center.png?auto=compress&auto=format');"
           class="bg-contain h-full flex items-center bg-repeat-x vhFont-[14] port:text-[3.056vw]">
@@ -40,7 +40,7 @@
             </div>
         </div>
         <img src='https://p2w.imgix.net/resources/client/dm/Dm_Timer_Right.png?auto=compress&auto=format'
-             class="h-full "  draggable="false"/>
+             class="h-full "/>
 
     </div>
 </div>
@@ -100,7 +100,7 @@
             box-shadow: 0px 0.442vw 0.442vw 0px rgba(159, 138, 108, 0.70) inset, 0px 0.262vw 0px 0px #FAEFD0;
         }
         .sofa {
-            width: 100%;
+            width: 107.5%;
             //transform: translate(-50%, -53%);
         }
 

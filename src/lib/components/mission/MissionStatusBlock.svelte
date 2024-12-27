@@ -1,6 +1,5 @@
 <script lang="ts">
     import {formatNumber} from '$lib/utils';
-    import coin from "$lib/components/common/Coin.svelte?raw";
 
     export let money: string;
     export let IcnCoin: string;
@@ -11,63 +10,41 @@
 
 </script>
 
-<div id={id} style="" class="flex flex-col w-[100px]  h-full py-[10px]   justify-between text-left grow-0">
-    <div
-            class=" flex w-[90px] h-[38px] justify-center items-center ">
-        <slot name="svg"/>
-    </div>
-    <div class=" h-[29px] flex justify-center items-center ">
+<div id={id} style="" class="flex flex-col w-[29%] port:w-[29%] h-full   justify-around text-left grow-0">
+    <div class=" text-[#989180] flex justify-center items-center ">
         <div
-                class="flex relative flex-col justify-center items-center   h-[12px] gap-x-[3px]  ">
+                class="flex relative reward-block-shade justify-center items-center   vhHeight-[21] port:h-[4.074vw] font-['Fira_Sans'] font-black vhFont-[17] port:text-[2.778vw]  text-[#B7B097] port:w-[31.111vw]">
 
-            <div class="reward-text">Reward:</div>
-            <span class="flex relative  justify-center items-center   h-[12px] gap-x-[3px]  ">
 
-            {@html coin}
+            <div
+                    style="background-image: url('{IcnCoin}'); background-position: center center; aspect-ratio: 1/1.04; background-size: 100% 100%;"
+                    class=" mx-[0.26vw] port:mx-[0.463vw] h-[97.5%] port:h-[105%] bg-no-repeat  "></div>
             <span
-                    class=" shade-numbers  flex justify-center items-center">{frontMoney}</span>
-            </span>
+                    class=" font-['Fira_Sans'] shade-numbers font-black vhFont-[17.48] leading-[1.2] port:text-[3.333vw] port:leading-[1.2] text-slate-200">{frontMoney}</span>
 
         </div>
+    </div>
+    <div
+            class=" flex vwHeight-[38] vwFont-[15]  port:text-[2.963vw] port:h-[7.315vw]  vwWidth-[102] port:w-[19.722vw] port:m-[-0.75vw]  justify-center self-center">
+        <slot name="svg"/>
     </div>
 </div>
 
 <style lang="scss">
   .shade-numbers {
 
-
-      height: 17px;
-      font-family: 'Poppins';
-      font-style: normal;
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 20px;
-      color: #E9E9E9;
+    -webkit-text-stroke-color: #3E3A37;
+    -webkit-text-stroke-width: thin;
+    filter: drop-shadow(0px 0.2vw 0px #151413);
   }
 
-  .reward-text{
-      /* Reward: */
+  @media (orientation: portrait) {
+    .shade-numbers {
 
-      width: 41px;
-      height: 12px;
+      -webkit-text-stroke-color: black;
+      -webkit-text-stroke-width: thin;
+      filter: drop-shadow(0.25vw 0.25vw #333);
 
-      font-family: 'Poppins';
-      font-style: normal;
-      font-weight: 500;
-      font-size: 10px;
-      line-height: 12px;
-      text-align: center;
-      color: #A1A5AD;
-
+    }
   }
-
-  //@media (orientation: portrait) {
-  //  .shade-numbers {
-  //
-  //    -webkit-text-stroke-color: black;
-  //    -webkit-text-stroke-width: thin;
-  //    filter: drop-shadow(0.25vw 0.25vw #333);
-  //
-  //  }
-  //}
 </style>

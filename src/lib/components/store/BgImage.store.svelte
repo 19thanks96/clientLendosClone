@@ -8,10 +8,19 @@
 	onMount(() => ready = true);
 
 </script>
+<div style="background: rgba(4, 18, 44, 0.7); backdrop-filter: blur(40px);"
+		 class="relative overflow-hidden h-full w-full bg-cover  flex justify-center items-center opacity-80">
+	<div
+		style="background: radial-gradient(56.26% 50% at 50% 50%, rgba(40, 113, 223, 0.7) 7.4%, rgba(5, 17, 40, 0.63) 94.4%);backdrop-filter: blur(40px);"
+		class="   absolute overflow-hidden land:w-[100vw] port:w-[100vh] land:h-[100vw] port:h-[100vh]">
+	</div>
+</div>
+<div
+	class="h-full absolute top-0 left-0 bottom-0 right-0 w-full  flex justify-center items-center opacity-80 overflow-hidden">
 
-<div style="	backdrop-filter: blur(20px);"
-	class="h-full absolute top-0 left-0 bottom-0 right-0 w-full  bg-[rgb(0,0,0,0.4)] flex justify-center items-center  overflow-hidden">
-
+	<div style="background-image: url({bgImage});"
+			 class="bg-center  bg-no-repeat  overscroll-none overflow-hidden  land:w-[87vh] port:w-[100vw] land:h-[87vh] port:h-[100vw] port:scale-150  bg-contain   ">
+	</div>
 </div>
 <div class="w-full h-full  flex justify-center items-center absolute top-0 overflow-hidden">
 	{#if !isTutorial}

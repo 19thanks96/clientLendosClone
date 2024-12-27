@@ -4,11 +4,10 @@
     export let text:string
     export let className:string
     export let isLoading:boolean = false
-    export let id: string
 
 </script>
 {#if !isLoading}
-    <button id={id} on:click class={`mainButton ${className === 'disabled' && 'mainButton__disabled'} ${className === 'info' && 'info__button__container'} ${className === 'claim' && 'mainButton__claim'} ${className === 'claimDisabled' && 'mainButton__claim__disabled'} ${className === 'main' && 'father-anima'} ${className === 'claim' && 'father-anima'}`} >
+    <button on:click class={`mainButton ${className === 'disabled' && 'mainButton__disabled'} ${className === 'info' && 'info__button__container'} ${className === 'claim' && 'mainButton__claim'} ${className === 'claimDisabled' && 'mainButton__claim__disabled'} ${className === 'main' && 'father-anima'} ${className === 'claim' && 'father-anima'}`} >
         <span class={`mainButton__inner ${className === 'disabled' && 'mainButton__inner__disabled'} ${className === 'claimDisabled' && 'mainButton__inner__disabled'} ${className === 'claim' && 'mainButton__claim__inner'} ${className === 'info' && 'info__button__inner'}`}></span>
         <span class={`mainButton__text ${className === 'disabled' && 'mainButton__text__disabled'}`}>{text}</span>
     </button>

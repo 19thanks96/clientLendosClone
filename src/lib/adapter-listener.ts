@@ -10,7 +10,6 @@ const subscribeOnInitUpdates = (initialDataHandler: (data: unknown) => void,
                                 missionClaimHandler: (missionClaim: MissionClaimTypeDto) => void,
                                 offerClaimHandler: (offerClaim: StoreOfferClaimResponse) => void,
                                 handleTutorialStep: (step: TutorialSteps) => void,
-                                handleRedirect:(url:string) => void,
 ) => {
     window.addEventListener("message", (e) => {
         const data = e.data;
@@ -33,8 +32,6 @@ const subscribeOnInitUpdates = (initialDataHandler: (data: unknown) => void,
                 offerClaimHandler(message);
             } else if (type === 'tutorial') {
                 handleTutorialStep(message)
-            } else if (type === 'redirect') {
-                handleRedirect(message)
             }else {
                 console.log('unknown message ::: ', data);
             }

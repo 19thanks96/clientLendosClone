@@ -1,33 +1,23 @@
 <script lang="ts">
     import {rewardState} from '$lib/state/reward.state';
-
+    import {syncWithPlayerPbState} from '$lib/state/pb.state';
     import {playerState} from '$lib/state/player.state';
     import Spinner from '$lib/components/common/Spinner.svelte';
     import {AdapterCommunicationService} from '$lib/adapter-listener';
+    import thor from "$lib/components/piggy-bank/images/thor.svelte?raw";
+    import Content from "$lib/components/piggy-bank/components/Content.svelte"
+    import CloseButton from "$lib/components/piggy-bank/components/CloseButton.svelte";
     import type {PiggyBankType} from "../../common/models/piggy-bank.type";
     import Reward from "$lib/components/piggy-bank/components/Reward.svelte";
     import {showInfoPopUp} from "$lib/state/infoPopUp.state";
     import Info from "$lib/components/piggy-bank/components/Info.svelte";
-    import { base } from '$app/paths';
-    import timer from '$lib/components/common/Timer.svelte?raw';
-    import CountdownTimer from '$lib/components/common/CountdownTimer.svelte';
-    import ExitButton from '$lib/components/common/ExitButton.svelte';
-    import UserBalance from '$lib/components/common/Money.svelte';
-    import Title from '$lib/components/mission/Title.svelte';
-
-    import {  syncWithPlayerPbState } from '$lib/state/pb.state';
-
-    import PbMainContent from '$lib/components/piggy-bank/reskin/PbMainContent.svelte';
-
+    import Money from "$lib/components/common/Money.svelte";
 
     let pb:PiggyBankType;
     let balance:number;
-    let dateEnd:string;
     $: if ($playerState.isInitialized) {
         pb = $playerState.pb;
         balance = $playerState.general.balance;
-        dateEnd = $playerState.mg.dateEnd;
-        name = $playerState.pb.name;
 
         if ($playerState.pb) {
             syncWithPlayerPbState($playerState);
@@ -35,9 +25,6 @@
     }
 
     const exit = () => AdapterCommunicationService.sendMessage({type: 'exit', message: 'click'});
-
-
-
 </script>
 
 
@@ -52,44 +39,15 @@
     {/if}
 
     {#if $playerState.isInitialized && $playerState.pb}
-        <div class="{$rewardState.isOpen ? 'opacity-0' :'opacity-1'}">
-            <UserBalance {balance} isNotReward={true}
-            />
-            <div class="absolute top-[36px] right-[15px] z-[9]">
-                <ExitButton on:click={exit} />
-            </div>
-        </div>
-        {#key $playerState}
-                <div class=" w-full h-full header-wrapper blackHole z-[-2]">
-
-
-                </div>
-            <div style='background-image: url({base}/reskin/astronautPb.png)'
-                 class="absolute h-full bg-contain bg-no-repeat astronaut z-[2]">
-
-            </div>
-            <div class=" w-full h-full header-wrapper blackHole z-[2] top-[15px_!important]">
-                <div
-                  class="relative top-[43%] left-[66%] timer text-[#D2D2D2] text-[10px] leading-[1.5] flex items-center pl-[5px]">
-                        <span class="h-[15px] w-[15px] ">
-													{@html timer}
-                        </span>
-                    <span  class="h-auto  ml-[5px] font-['Poppins'] font-[600] text-[10px] leading-[15px] text-[#D2D2D2]">
-													<CountdownTimer {dateEnd} />
-												</span>
-                </div>
-                <Title  title="Info Bank"
-                        description={$playerState.pb.info} text={$playerState.pb.name} />
-            </div>
-            <div class="absolute top-[16px] left-0 right-0 bottom-0 border-rounded overflow-hidden">
-                <div style='background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 1) 95%), url({base}/reskin/blackHole.png)'
-                     class="w-full h-full bg-contain bg-no-repeat blackHole">
-                </div>
-            </div>
-
-                <PbMainContent piggyBank={$playerState.pb}/>
-
-        {/key}
+        {#if !$rewardState.isOpen}
+            <Money {balance}
+                 img={`https://p2w.imgix.net/resources/client/common/Icn_Coin.png?auto=compress&auto=format`}></Money>
+        {/if}
+    <div class="modal__content">
+        <span class="thor">{@html thor}</span>
+        <CloseButton on:click={exit} />
+        <Content piggyBank={pb} />
+    </div>
     {:else}
           <div style='transform: translate(calc(50vw - 50%), calc(50vh - 50%));'
                              class="w-full h-full flex justify-center items-center">
@@ -99,53 +57,73 @@
 </aside>
 
 <style>
-
-    .border-rounded {
-        background: #050505;
-        border: 1px solid #1E2026;
-        border-radius: 32px;
-        z-index: -2;
-
-    }
-
-
-    .blackHole {
-        background-size: cover;
-
-        background-position: center;
-        mask: linear-gradient(to bottom, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%);
-
-    }
-    .blackHole,
-    .header-wrapper{
-        height: 225px;
+    .modal {
         position: absolute;
         top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: radial-gradient(rgba(40, 113, 223, 0.7),rgba(8, 25, 57, 0.7));
     }
 
-    .astronaut {
-        background-size: contain;
-        background-position: top center;
-        height: 205px;
-        top: 8px;
-        margin: auto;
-        width: 100%;
-        z-index: 0;
-
+    .modal__content{
+        position: relative;
+        height: 900px;
+        width: 1000px;
+        background-image: url("/src/lib/components/piggy-bank/images/background.svg");
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .info__overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(rgba(40, 113, 223, 0.7), rgba(5, 17, 40, 0.63)); /* Background for the Info overlay */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+    .thor {
+        position: absolute;
+        left: 0;
+        top: -5%;
+        animation: thor 1s ;
     }
 
-    .timer {
-        width: 90px;
-        height: 26px;
-        background: rgba(0, 0, 0, 0.8);
-        border-radius: 14px;
-        z-index: 2;
-        font-family: 'Poppins';
-        font-style: normal;
-        font-weight: 600;
+    @keyframes thor {
+        0%{
+            opacity: 0;
+            transform: translateX(-9000px);
+        }
+        100%{
+            opacity: 1;
+            transform: translateX(0);
+        }
     }
 
-
-
+    @media screen and (max-width: 1020px) {
+        .thor {
+            display: none;
+        }
+    }
+    @media screen and (max-width: 450px) {
+        .modal__content{
+            height: 600px;
+            width: 500px;
+            background-repeat: no-repeat;
+            background-size:contain;
+        }
+    }
 
 </style>

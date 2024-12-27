@@ -301,8 +301,7 @@ html[data-overlayscrollbars-body]>body{
     display:flex;
     flex-direction:row!important;
     flex-wrap:nowrap!important;
-    scroll-behavior:auto!important;
-    height: var(--overlayscrollbars-height);
+    scroll-behavior:auto!important
 }
 [data-overlayscrollbars-padding],[data-overlayscrollbars-viewport]:not([data-overlayscrollbars]){
     border:none;
@@ -614,9 +613,7 @@ body>.os-scrollbar{
 .os-scrollbar-vertical{
     bottom:var(--os-size);
     padding:var(--os-padding-axis) var(--os-padding-perpendicular);
-    width:var(--os-size);
-    border:var(--os-border-vertical);
-    border-radius:var(--os-border-radius-vertical);
+    width:var(--os-size)
 }
 .os-scrollbar-vertical .os-scrollbar-track:before{
     left:calc(var(--os-padding-perpendicular)*-1);

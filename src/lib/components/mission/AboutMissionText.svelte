@@ -1,42 +1,43 @@
 <script lang="ts">
 
-	import { formatNumber } from '$lib/utils';
-	import { base } from '$app/paths';
+    import {formatNumber} from '$lib/utils';
+    import {base} from '$app/paths';
 
-	export let name: string;
-	export let description: string;
+    export let name: string;
+    export let description: string;
 
-	export let money: string;
-	export let status: string;
-	export let progress: number;
-	let img = `${base}/newImg/Cmt_Mb_Progress_Full.png`;
-	let frontMoney = formatNumber(money);
+    export let money: string;
+    export let status: string;
+    export let progress: number;
+    let img = `${base}/newImg/Cmt_Mb_Progress_Full.png`;
+    let frontMoney = formatNumber(money);
 </script>
 
 <div
-	class="shrink overflow-hidden justify-evenly port:justify-between  grow flex h-full  flex-col px-[5px] py-[10px] leading-none ">
-	<div>
+        class="shrink overflow-hidden justify-evenly port:justify-between  grow flex h-full  flex-col land:px-[0.3vw] port:px-[1.08vw] leading-none ">
 
-		<div style="white-space:nowrap; "
-				 class="name ">{name}</div>
-		<div style="white-space:nowrap; "
-				 class="description">{description}</div>
-	</div>
+    <div style="white-space:nowrap; "
+         class="vwFont-[17.16] port:max-w-[29.907vw] port:text-[3.333vw]   leading-[1] port:leading-[1] text-[#C5683F] font-['Fira_Sans'] font-black text-ellipsis ">{name}</div>
+    <div style="white-space:nowrap; "
+         class="vwFont-[12] port:pb-[1.019vw] port:max-w-[29.907vw] port:text-[2.5vw] leading-[1.1] port:leading-[1.2] text-[#989180] font-['Fira_Sans'] font-black  text-ellipsis">{description}</div>
 
-	<div
-		class="w-full h-auto flex flex-col gap-[5px]"
-		style="">
-		<div class="progress-text">
-			{status}
-		</div>
-		<div class="progress-bar-bg">
+    <div
+            class="port:w-full vwHeight-[25] port:h-[5.37vw] vwWidth-[169] bg-contain bg-no-repeat flex items-center  bg-reward-progress "
+            style="">
+        <div
+                class="absolute z-[2] left-[45%] translate-x-[-50%] flex flex-row items-center port:gap-[0.463vw] gap-[0.26vw] font-['Fira_Sans'] font-black ">
 
-			<div style="width: min({progress}%, 100%)" class="progress-bar">
+            <div style=" -webkit-text-stroke-color: rgba(62, 58, 55, 1);"
+                 class="vwFont-[16] port:text-[2.963vw] text-[white] white-text-stroke leading-none port:leading-[1.2]">{status}</div>
+        </div>
+        <div class="h-full  port:w-full overflow-hidden" style="{`width: ${progress}%;` }">
+            <div
+                    class="h-full vwWidth-[169] port:w-[33.2vw] pbar2 bg-contain bg-no-repeat flex justify-center items-center relative"
+                    style="background-image: url({img}); background-size: 100% 100%;">
+            </div>
+        </div>
 
-			</div>
-		</div>
-
-	</div>
+    </div>
 
 </div>
 
@@ -52,63 +53,12 @@
     filter: drop-shadow(0px 0.2vw 0px #151413);
   }
 
-  .name {
-    width: 145px;
-    height: 17px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 1.2;
-    color: #DDDDDD;
-  }
-
-  .description {
-    width: 145px;
-    height: 14px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 1;
-    color: #A1A5AD;
-
-  }
-
-  .progress-text {
-    width: 67px;
-    height: 14px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 120%;
-    color: #CECECE;
-  }
-
-  .progress-bar-bg {
-
-
-    position: relative;
-    width: 100%;
-    height: 6px;
-    background: #000000;
-    border-radius: 4px;
-  }
-
-  .progress-bar {
-    width: 157px;
-    height: 6px;
-    background: linear-gradient(90deg, #524DD8 0%, #725FEA 100%), linear-gradient(90deg, #E6B223 0%, #EADB18 100%), linear-gradient(90deg, #524DD8 0%, #725FEA 100%), linear-gradient(90deg, #E6B223 0%, #EADB18 100%), linear-gradient(90deg, #645FF3 0%, #826FFF 100%);
-    border-radius: 4px;
-
-  }
 
   @media(orientation: portrait) {
 
     .white-text-stroke {
-      -webkit-text-stroke-width: 0.15vw;
-      filter: drop-shadow(0px 0.25vw 0px #151413);
+        -webkit-text-stroke-width: 0.15vw;
+        filter: drop-shadow(0px 0.25vw 0px #151413);
     }
     .bg-reward-progress {
       background: rgba(156, 132, 110, 0.15);

@@ -121,13 +121,6 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
             });
             await tick();
             addBackgroundGlass(0);
-            const dmScrollBlock = document.getElementById('scrollBlockDm');
-            if (dmScrollBlock) {
-                dmScrollBlock.style.overflowY = 'hidden';
-            }
-            break;
-        }
-        case TutorialSteps.dmStep2: {
             const missionClaimButton = document.getElementById('missionClaimButton');
             if (missionClaimButton) {
                 const coordinates = missionClaimButton.getBoundingClientRect();
@@ -143,6 +136,13 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
                     }
                 })
             }
+            const dmScrollBlock = document.getElementById('scrollBlockDm');
+            if (dmScrollBlock) {
+                dmScrollBlock.style.overflowY = 'hidden';
+            }
+            break;
+        }
+        case TutorialSteps.dmStep2: {
             removeBackgroundGlass();
             addBackgroundGlass(3);
             selectItemsOnPage(['dmTimer']);
@@ -296,9 +296,7 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
         case TutorialSteps.offerStep1: {
             addBackgroundGlass(3);
             const tutorial = get(playerState).tutorial as TutorialType;
-            const offers = get(playerState).store.offers
-            const isExistTutorMission = offers.some(item => item?.id === "tutorialOffer");
-            if (tutorial && !isExistTutorMission ) {
+            if (tutorial) {
                 playerState.set({
                     ...get(playerState),
                     store: {
@@ -321,10 +319,8 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
             }
             await tick();
             const offerElement = document.getElementById('tutorialOffer');
-            selectItemsOnPage(['tutorialOffer'])
-            setTimeout(() => {
-
             const coordinates = offerElement?.getBoundingClientRect();
+            selectItemsOnPage(['tutorialOffer'])
             AdapterCommunicationService.sendMessage({
                 type: 'setTutorialCoordinates', message: {
                     element: 'offerElement',
@@ -336,7 +332,6 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
                     }
                 }
             });
-            }, 1000)
             break;
         }
         case TutorialSteps.offerStep2: {

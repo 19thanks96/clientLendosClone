@@ -2,11 +2,13 @@
     import {goto} from '$app/navigation';
     import {playerState} from '$lib/state/player.state';
     import {page} from "$app/stores";
+		import coin from "$lib/components/common/Coin.svelte?raw";
+		import { AdapterCommunicationService } from '$lib/adapter-listener';
 
     export let balance: number;
-    export let img: string;
     let isFormWidget = $page.url.searchParams.get('fromWidget')
-    export let isReward = false;
+    export let isNotReward = true;
+
 
 
     $: frontMoney = Math.round(balance)?.toLocaleString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ') ?? '';
@@ -16,42 +18,38 @@
 
 
     const onClickBalance = async () => {
-        if (isClickable && !isFormWidget) {
+        if (isClickable && !isFormWidget && isNotReward) {
+					AdapterCommunicationService.sendMessage({
+						type: 'redirect',
+						message: '/store'
+					})
             await goto('/store')
         }
     }
 </script>
 
-<div on:click={onClickBalance}
-     class="{isClickable? 'cursor-pointer':''} mobile-bind-to-top absolute z-[11] top-[0.15vw] left-[1.25vw] port:top-[2.037vw] port:left-[4.037vw] flex items-center justify-center vwHeight-[64] font-['Fira_Sans'] font-black vwFont-[18] port:h-[5.926vw] port:w-[22.222vw] port:text-[3.519vw] text-white vwWidth-[114.38]">
-    <img alt="" class="vwHeight-[30] port:h-[5.926vw]"
-         src='https://p2w.imgix.net/resources/client/common/Coin_Bg_Left.png?auto=compress&auto=format'>
-    <div
-            class=" bg-contain bg-repeat-x vwHeight-[30] port:h-[5.926vw] flex items-center justify-center"
-            style="background-image: url('https://p2w.imgix.net/resources/client/common/Coin_Bg_Center.png?auto=compress&auto=format'); flex-grow: 1;">
-        {frontMoney}
-    </div>
-    <img src={'https://p2w.imgix.net/resources/client/common/Coin_Bg_Right.png?auto=compress&auto=format'}
-         class="vwHeight-[30] port:h-[5.926vw]" alt="">
-    <img src={img}
-         class="vwHeight-[30] port:h-[5.926vw] absolute top-0 left-0 getPos
-          bind-to-top" alt="">
+
+<div on:click={onClickBalance} class="absolute h-[26px] rounded-[14px] bg-black top-[35px] left-[13px] p-[4px_8px_4px_4px] flex flex-row gap-[7px]">
+	{@html coin}
+<div class="monney-wrapper">
+	{frontMoney}
+</div>
 </div>
 
+
+
+
+
 <style lang="scss">
-  .bind-to-top {
-    transform: scale(1.4) translate(-15%, 42.5%);
-  }
+	.monney-wrapper {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1;
 
-  @media (orientation: portrait) {
-    .bind-to-top {
-      transform: scale(1.4) translate(-9%, 4.5%);
-    }
-
-    .mobile-bind-to-top{
-      position: fixed;
-      left: 2%;
-      top: 2%;
-    }
-  }
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: #E9E9E9;
+	}
 </style>

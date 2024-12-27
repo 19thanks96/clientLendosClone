@@ -1,23 +1,22 @@
 <script lang="ts">
-    import {intervalToDuration} from 'date-fns';
-    import {onMount} from 'svelte';
-    import {t} from '$lib/i18n/config';
+    import { intervalToDuration } from 'date-fns';
+    import { onMount } from 'svelte';
+    import { t } from '$lib/i18n/config';
 
     export let dateEnd: Date;
-    let time;
+    let remaining;
+
+    const updateRemaining = () => {
+        remaining = intervalToDuration({ start: new Date(), end: dateEnd });
+    };
+
+    updateRemaining()
 
     onMount(() => {
-        const interval = setInterval(() => {
-            time = new Date();
-        }, 1000);
+        updateRemaining();
+        const interval = setInterval(updateRemaining, 1000);
 
-        return () => {
-            clearInterval(interval);
-        };
     });
-
-    $: remaining = intervalToDuration({start: time, end: dateEnd});
-
 </script>
 
 <span >

@@ -17,5 +17,6 @@ export type StorePopUpState = {
     price: number;
 	balance: number,
     endDate?: Date
+	img: string,
 }
 

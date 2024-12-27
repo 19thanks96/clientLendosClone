@@ -1,75 +1,133 @@
 <script lang="ts">
-    import BgImage from '$lib/components/mission/BgImage.svelte';
-    import MainBlock from '$lib/components/mission/MainBlock.svelte';
-    import HeaderMainBlock from '$lib/components/mission/HeaderMainBlock.svelte';
-    import UserBalance from '$lib/components/common/Money.svelte';
-    import MissionList from '$lib/components/mission/MissionList.svelte';
-    import CountdownTimer from '$lib/components/common/CountdownTimer.svelte';
-    import {rewardState} from '$lib/state/reward.state';
-    import {AdapterCommunicationService} from '$lib/adapter-listener';
-    import {playerState} from '$lib/state/player.state';
-    import Spinner from '$lib/components/common/Spinner.svelte';
-    import RewardLayoutDm from '$lib/components/reward/RewardLayoutDm.svelte';
-    import {base} from '$app/paths';
-    import Title from '$lib/components/mission/Title.svelte';
+	import UserBalance from '$lib/components/common/Money.svelte';
+	import MissionList from '$lib/components/mission/MissionList.svelte';
+	import CountdownTimer from '$lib/components/common/CountdownTimer.svelte';
+	import { rewardState } from '$lib/state/reward.state';
+	import { AdapterCommunicationService } from '$lib/adapter-listener';
+	import { playerState } from '$lib/state/player.state';
+	import Spinner from '$lib/components/common/Spinner.svelte';
+	import RewardLayoutDm from '$lib/components/reward/RewardLayoutDm.svelte';
+	import { base } from '$app/paths';
+	import Title from '$lib/components/mission/Title.svelte';
+	import ExitButton from '$lib/components/common/ExitButton.svelte';
+	import timer from '$lib/components/common/Timer.svelte?raw';
 
-    let missions, balance, dateEnd, name;
-    $: if ($playerState.isInitialized && $playerState?.mg && $playerState?.mg?.missions) {
-        missions = $playerState.mg.missions;
-        dateEnd = $playerState.mg.dateEnd;
-        name = $playerState.mg.name;
-        balance = $playerState.general.balance;
-    }
-
+	let missions, balance, dateEnd, name;
+	$: if ($playerState.isInitialized && $playerState?.mg && $playerState?.mg?.missions) {
+		missions = $playerState.mg.missions;
+		dateEnd = $playerState.mg.dateEnd;
+		name = $playerState.mg.name;
+		balance = $playerState.general.balance;
+	}
 
 
-
-    const exit = () => AdapterCommunicationService.sendMessage({type: 'exit', message: 'click'});
+	const exit = () => AdapterCommunicationService.sendMessage({ type: 'exit', message: 'click' });
 </script>
 
 <div style='height: 100dvh;' class=" w-screen overflow-hidden">
 
-    <BgImage bgImage={`${base}/newImg/Fx_Cmn_Overlay_Blue.png`} isTutorial={$playerState.tutorial}
-             leftSideImg={!$playerState.tutorial ? `${base}/newImg/Chs_Dm_Archer.png` : `https://p2w.imgix.net/resources/client/tutorial/npc1.png?auto=compress&auto=format`}>
+	{#if $playerState?.isInitialized && $playerState?.mg && $playerState?.mg?.missions?.length > 0}
+		<div class="{$rewardState.isOpen ? 'opacity-0' :'opacity-1'}">
+			<UserBalance {balance} isNotReward={true}
+			/>
+			<div class="absolute top-[36px] right-[15px] z-[9]">
+				<ExitButton on:click={exit} />
+			</div>
+		</div>
+		{#key $playerState}
+			<div class="w-full h-full bg-contain bg-no-repeat blackHole z-[3] top-[14px_!important] ">
+				<div
+					class="relative top-[43%] left-[66%] timer text-[#D2D2D2] text-[10px] leading-[1.5] flex items-center pl-[5px]">
+							  <span class="h-[15px] w-[15px] ">
+									{@html timer}
+								</span>
+					<span class="h-auto  ml-[5px] font-['Poppins'] font-[600] text-[10px] leading-[15px] text-[#D2D2D2]">
+                        <CountdownTimer {dateEnd} />
+                      </span>
+				</div>
+				<Title title="Info missions"
+							 description={$playerState.mg.info} text={name} />
+			</div>
+			<div class="absolute top-[16px] left-0 right-0 bottom-0 border-rounded overflow-hidden">
+				<div
+					style='background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 1) 95%),  url({base}/reskin/blackHole.png)'
+					class="w-full h-full bg-contain bg-no-repeat blackHole">
 
-        {#if $playerState?.isInitialized && $playerState?.mg && $playerState?.mg?.missions?.length > 0}
-            <div class="{$rewardState.isOpen ? 'opacity-0' :'opacity-1'}">
-                <UserBalance {balance}
-                             img={`https://p2w.imgix.net/resources/client/common/Icn_Coin.png?auto=compress&auto=format`}/>
-            </div>
-            {#key $playerState}
-                <MainBlock>
-                    <div class="w-full h-full" slot="header">
-                        <HeaderMainBlock
-                                bgHeaderMainBlock={`https://p2w.imgix.net/resources/client/dm/Pnl_Title_0002.png?auto=compress&auto=format`}
-                                text={name} {exit}/>
-                    </div>
+				</div>
+			</div>
+			<div style='background-image: url({base}/reskin/dmAstro.png)'
+					 class="absolute h-full bg-contain bg-no-repeat astronaut ">
 
-                    <div slot=mission>
-                        <MissionList {missions}/>
-                    </div>
+			</div>
+			<div class="mission-list flex flex-col items-start p-0 absolute">
+				<MissionList {missions} />
+			</div>
+		{/key}
 
-                    <div slot="title">
-                        <Title
-                                bgPopup={`https://p2w.imgix.net/resources/client/dm/Bg_Overlay_Reward.png?auto=compress&auto=format`}
-                                description={$playerState.mg.info} text={name}/>
-                    </div>
-                    <span class="font-['Fira_Sans'] font-black text-[#F6EAC0]" slot='timer'>
-											<CountdownTimer {dateEnd}/>
-                    </span>
-                </MainBlock>
-            {/key}
-
-        {:else}
-            <Spinner></Spinner>
-        {/if}
-    </BgImage>
-    {#if $rewardState.isOpen}
-        <RewardLayoutDm  rewardAmount={$rewardState.amount}
-                        on:close={() => $rewardState.isOpen = false }/>
-    {/if}
+	{:else}
+		<Spinner></Spinner>
+	{/if}
+	{#if $rewardState.isOpen}
+		<RewardLayoutDm rewardAmount={$rewardState.amount}
+										on:close={() => $rewardState.isOpen = false } />
+	{/if}
 </div>
 
 <style lang='scss'>
+  .border-rounded {
+    background: #050505;
+    border: 1px solid #1E2026;
+    //box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 32px;
+    z-index: 0;
+
+  }
+
+  .blackHole {
+    background-size: cover;
+    height: 210px;
+    position: absolute;
+    top: 0px;
+
+  }
+
+  .astronaut {
+    background-size: contain;
+    background-position: top center;
+    height: 205px;
+    top: 8px;
+    margin: auto;
+    width: 100%;
+
+  }
+
+  .timer {
+    width: 90px;
+    height: 26px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 14px;
+    z-index: 2;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+  }
+
+
+  .mission-list {
+    width: 100%;
+    height: 404px;
+    left: 0;
+    top: 180px;
+    gap: 8px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    //z-index: 2;
+  }
+
+  @media screen and (max-width: 370px) {
+    .mission-list {
+      height: 360px;
+    }
+  }
 
 </style>

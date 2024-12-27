@@ -47,14 +47,15 @@
 
     @media screen and (max-width: 760px) {
         .close__button {
-            top: 12%;
-            right: 10%;
+            top: 6%;
+            right: 6%;
         }
     }
     @media screen and (max-width: 450px) {
         .close__button {
-            top: 5%;
-            right: 15%;
+            position: fixed;
+            top: 2.6%;
+            right: 5%;
             height: 30px;
             width: 30px;
             border-radius: 13px;

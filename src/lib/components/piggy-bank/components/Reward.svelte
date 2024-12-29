@@ -37,9 +37,9 @@
             rewardAmount = balance
             clearInterval(interval);
             setTimeout(() => {
+                //#tutorial
                 dispatch('close')
                 AdapterCommunicationService.sendMessage({type: 'hidePopup', message: 'click'})
-                //#tutorial
                 if ($playerState.tutorial?.step === 2) {
                     let missionReward;
                     $playerState.mg.missions = $playerState.mg.missions.map((m) => {
@@ -56,6 +56,7 @@
                         message: {step: 2}
                     });
                     $playerState.tutorial.step = 3;
+                    goto('/dm')
                 } else {
                     redirectOrHideAfterTimeout()
                 }
@@ -106,7 +107,7 @@
 
     <RewardText on:holdReward={claimRewardWithRedirect} {rewardAmount} {startAnimation}/>
     <div class="h-full w-full flex justify-center third-reward-element">
-        <div id="claimRewardDmButton" style="opacity: {opacityButton}; transition: all 0.5s ease-out;"
+        <div id="claimRewardPbButton" style="opacity: {opacityButton}; transition: all 0.5s ease-out;"
              class='third-reward-element text-center w-[90%] h-[45px]  z-50 flex items-center justify-center fixed bottom-[4%] '>
             <SecondAppButton caption="Claim"  on:click={() => claimRewardWithRedirect()} variant="reward"/>
         </div>

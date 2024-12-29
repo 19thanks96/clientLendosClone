@@ -23,10 +23,9 @@
     let pb:PiggyBankType;
     let balance:number;
     let dateEnd:string;
-    $: if ($playerState.isInitialized) {
+    $: if ($playerState.isInitialized && $playerState.pb && $playerState.pb.name) {
         pb = $playerState.pb;
         balance = $playerState.general.balance;
-        dateEnd = $playerState.mg.dateEnd;
         name = $playerState.pb.name;
 
         if ($playerState.pb) {

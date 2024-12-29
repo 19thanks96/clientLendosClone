@@ -18,11 +18,17 @@
 	let currentPosInBalance = Math.round($playerState.pb.balanceMax / 100 * currentPosInPercent)  || 0 ;
 
 	const increaseDesiredHoldAmount = () => {
+		if($playerState.tutorial && $playerState.tutorial.step === 2 ) {
+			currentPosInPercent = 100
+		}
 		currentPosInPercent = Math.max(0, Math.min( Math.max(0, Math.min(currentPosInPercent + step, 100) ), maxPercent) );
 		currentPosInBalance = Math.round(($playerState.pb.balanceMax - $playerState.pb.balance) / 100 * currentPosInPercent)  || 0 ;
+		handleChange()
 
 
+	}
 
+	const handleIncreaseTutorialStep = () => {
 		const holdDepositCeil = $pbState?.bankRemainingBalance > $playerState?.general?.balance
 			? $playerState?.general?.balance
 			: $pbState.bankRemainingBalance;
@@ -42,7 +48,7 @@
 
 
 		if ($playerState.tutorial && $playerState.tutorial.step === 2 && $pbState.desiredHoldDepositAmount === $pbState.bankRemainingBalance) {
-			if (isSendTutorialRequest) return;
+			// if (isSendTutorialRequest) return;
 			const holdPbButton = document.getElementById('pbHoldButton');
 			const coordinates = holdPbButton?.getBoundingClientRect();
 			AdapterCommunicationService.sendMessage({
@@ -56,15 +62,18 @@
 					}
 				}
 			})
-			isSendTutorialRequest = true;
+			// isSendTutorialRequest = true;
 		}
-		handleChange()
 	}
 
 	const decreaseDesiredHoldAmount = () => {
-
+		if($playerState.tutorial && $playerState.tutorial.step === 2 ) {
+			currentPosInPercent = 0
+		}
 		currentPosInPercent = Math.max(0, Math.min(Math.min(100, Math.max(currentPosInPercent - step, 0) ), maxPercent) );
 		currentPosInBalance = Math.round(($playerState.pb.balanceMax - $playerState.pb.balance) / 100 * currentPosInPercent)  || 0 ;
+		handleChange()
+
 
 		//#tutorial
 		if ($playerState.tutorial && $playerState.tutorial.step === 2 && $pbState.desiredHoldDepositAmount === $pbState.bankRemainingBalance) {
@@ -82,7 +91,7 @@
 				: $pbState.desiredHoldDepositAmount;
 		}
 
-		handleChange()
+
 	}
 	let thumb: HTMLDivElement | undefined = undefined;
 	let hint: HTMLDivElement | undefined;
@@ -149,11 +158,15 @@
 				clearTimeout(hideTimeoutHint);
 			}
 			hideTimeoutHint = setTimeout(() => {
-				hint.style.opacity = '0';
-				hint.style.transition = 'opacity 0.5s ease-in-out';
+				if(hint) {
+					hint.style.opacity = '0';
+					hint.style.transition = 'opacity 0.5s ease-in-out';
+				}
 				hideTimeoutHint = undefined;
 			}, 1500);
-
+		}
+		if($playerState.tutorial && $playerState.tutorial.step === 2 ) {
+			handleIncreaseTutorialStep()
 		}
 	}
 
@@ -198,7 +211,6 @@
 		>
 			<div class="flex justify-center items-center w-1/2 h-1/2" >
 			{@html LessGreaterThanSvg}
-
 			</div>
 		</div>
 	</div>

@@ -123,7 +123,7 @@
 	<div class="w-full h-[100px] flex justify-center items-center relative">
 		<PbSlider />
 	</div>
-	<div class="w-[340px] h-[44px] flex justify-center items-center">
+	<div id="pbHoldButton" class="w-[340px] h-[44px] flex justify-center items-center">
 
 		<AppButton
 			on:click={clickHold}
@@ -132,7 +132,7 @@
 			color={'green'}
 			isActive={holdAllowed}
 			bigButton={true}
-			id='pbHoldButton'
+			id=''
 		/>
 	</div>
 </div>

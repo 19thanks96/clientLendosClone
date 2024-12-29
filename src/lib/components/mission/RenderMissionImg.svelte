@@ -16,7 +16,7 @@
 			<InfoButton rounded={6}/>
 		</div>
 		{#if isTutorialMission}
-			<img class="z-[7] absolute top-[-10%] left-[-5%] w-[44%] aspect-[1/1]  pointer-events-none"
+			<img class="z-[7] absolute top-[-4%] left-[-4%] w-[44%] aspect-[1/1]  pointer-events-none"
 					 src="https://p2w.imgix.net/resources/client/tutorial/Badge.png?auto=compress&auto=format"
 					 alt="Tutorial Badge" />
 		{/if}

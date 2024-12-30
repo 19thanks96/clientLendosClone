@@ -26,7 +26,7 @@
 </script>
 <div style='height: 100dvh;' class=" w-screen overflow-hidden">
 	{#if $playerState.isInitialized && $playerState.store && $playerState.store.offers.length > 0 }
-		<div class="{$rewardState.isOpen ? 'opacity-0' :'opacity-1'} z-[1]">
+		<div class="{$rewardState.isOpen ? 'opacity-0' :'opacity-1'} z-[1] relative">
 			<UserBalance {balance} isNotReward={true}/>
 			<div class="absolute top-[36px] right-[15px] ">
 				<ExitButton on:click={exit} />

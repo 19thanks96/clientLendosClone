@@ -47,7 +47,15 @@ export let index;
 </script>
 
 
-<div class="w-[120px] h-[204px] flex-col justify-center items-center inline-flex" id={offer.id}>
+<div role="button" tabindex={index + 3}
+	on:keydown={(e) => {
+           if (e.key === 'Enter' || e.key === ' ') {
+             e.preventDefault();
+             showStorePopUp(offer);
+           }
+         }}
+	on:click={() => showStorePopUp(offer)}
+	class="w-[120px] h-[204px] flex-col justify-center items-center inline-flex" id={offer.id}>
 	<div class="w-[120px] h-[204px] bg-[#0e0f12] rounded-xl border border-[#1e2025]">
 		<div class="w-[120px] h-[204px] relative">
 

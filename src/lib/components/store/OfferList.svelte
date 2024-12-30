@@ -17,12 +17,21 @@
 </script>
 
 
-<div class="flex  touch-pan-y  px-[8px] mx-auto {classesByType}" >
+<div class="flex  touch-pan-y  px-[8px] mx-auto {classesByType} h-full" >
 	{#each filteredOffers as offer, index }
+
 		{#if handleOfferByType}
-		<FreeSpinOffer {offer} {index}/>
+			{#if index}
+				<FreeSpinOffer {offer} {index}/>
 			{:else}
-			<BonusCashOffer {offer} {index}/>
+				<div class="w-full h-full text-[#e4e4e4] text-[16px] font-semibold font-['Poppins'] leading-[1] flex justify-center items-center ">Expecting new Free Spin</div>
 			{/if}
+		{:else}
+			{#if index}
+			<BonusCashOffer {offer} {index}/>
+			{:else}
+				<div class="w-full h-full text-[#e4e4e4] text-[16px] font-semibold font-['Poppins'] leading-[1] flex justify-center items-center ">Expecting new Bonus Cash</div>
+			{/if}
+		{/if}
 	{/each}
 </div>

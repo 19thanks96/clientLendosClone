@@ -14,11 +14,11 @@
 	}) || [];
 	$:console.log(handleOfferByType, filteredOffers.length);
 
-	$:classesByType = handleOfferByType ? ' flex-col  gap-y-[8px]  w-full' : 'flex-row flex-wrap gap-[5px] justify-start items-start ';
+	$:classesByType = handleOfferByType ? ' flex-col  gap-y-[8px]  w-full  mx-auto' : 'flex-row flex-wrap gap-[5px] justify-start items-start ';
 </script>
 
 
-<div class="flex  touch-pan-y  px-[8px] mx-auto {classesByType} h-full">
+<div class="flex  touch-pan-y  px-[8px] {classesByType} h-full">
 	{#if filteredOffers.length === 0}
 		{#if handleOfferByType}
 			<div

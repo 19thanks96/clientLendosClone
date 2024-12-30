@@ -147,7 +147,7 @@
 </script>
 
 
-<div id="store-popup-backdrop" class="absolute flex justify-center items-center w-full h-full z-[11]">
+<div id="store-popup-backdrop" class="absolute flex justify-center items-center w-full h-full z-[21]">
 	<button on:click={() => {
         if($showPopUpStoreLayout.mode !== StorePopUpMode.claim) {
             handleClosePopup()

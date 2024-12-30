@@ -99,7 +99,6 @@
 			<div
 				class="opacity-80 text-center text-[#e8e8e8] text-2xl font-bold font-['Poppins'] uppercase tracking-tight pt-[30px] mx-auto ">
 				FS {offer.reward ? offer.reward : '???'}</div>
-
 			<div class="w-[110px] h-[30px] flex justify-center items-center mx-auto mt-[15px]">
 				<AppButton
 					on:click={() => showStorePopUp(offer)}

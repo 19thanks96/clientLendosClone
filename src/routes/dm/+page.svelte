@@ -27,7 +27,7 @@
 <div style='height: 100dvh;' class=" w-screen overflow-hidden">
 
 	{#if $playerState?.isInitialized && $playerState?.mg && $playerState?.mg?.missions?.length > 0}
-		<div class="{$rewardState.isOpen ? 'opacity-0' :'opacity-1'} z-[1] relative">
+		<div class="{$rewardState.isOpen ? 'opacity-0' :'opacity-1'} z-[9] relative">
 			<UserBalance {balance} isNotReward={true}
 			/>
 			<div class="absolute top-[36px] right-[15px] z-[9]">

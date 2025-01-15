@@ -164,7 +164,7 @@
 					<div class="absolute top-[64%] left-0  w-full">
 
 						<Title
-							text={$showPopUpStoreLayout.type === StoreOfferType.bonusCash ?'Buy bonus cash' : 'buy free spins'}
+							text={$showPopUpStoreLayout.type === StoreOfferType.bonusCash ?'Buy bonus cash' : 'Buy free spins'}
 							withInfoButton={false} />
 					</div>
 				</div>
@@ -175,7 +175,7 @@
 					<div class="w-[370px] h-[153px] flex flex-row">
 
 
-						<div class="w-[110px] h-[140px] relative left-[5px] top-[5px] mr-[5px]">
+						<div style={$showPopUpStoreLayout.type === StoreOfferType.bonusCash ? `background-image: url(${base}/reskin/FX_Yellow_Offer.svg); background-size: contain;` : ''}  class="w-[110px] h-[140px] relative left-[5px] top-[5px] mr-[5px] {$showPopUpStoreLayout.type === StoreOfferType.bonusCash ? 'bg-[#e6d81e]' : '' }">
 							<div
 								class="absolute flex justify-center items-center w-[calc(100%-8px)] h-[24px] bg-neutral-950/60 rounded-md z-[2] left-[4px] top-[4px]">
 								<div
@@ -190,7 +190,7 @@
 							</div>
 							<div
 								class="left-[30px] top-[112px] absolute text-center text-white text-base font-bold font-['Poppins'] uppercase tracking-tight">
-								FS 100
+								{$showPopUpStoreLayout.reward ? $showPopUpStoreLayout.reward : '???'}
 							</div>
 							<div class="w-[110px] h-[110px] left-0 top-0 absolute justify-center items-center inline-flex">
 								{#if $showPopUpStoreLayout.img }
@@ -213,7 +213,7 @@
 					<div class="w-full h-px bg-[#1e2025]"></div>
 					<div
 						class="w-full h-[18px] text-center text-[#a0a5ad] text-[10px] font-normal font-['Poppins'] leading-[18px]">
-						10 Bonus Cash equals: 10 eur 10 usd 15 aud 15 cad 100 nok 15 nzd
+						{$showPopUpStoreLayout.description ? $showPopUpStoreLayout.description : '???'}
 					</div>
 					{#if isEnoughCoinsOrError}
 						<div class="w-full h-px bg-[#1e2025]"></div>

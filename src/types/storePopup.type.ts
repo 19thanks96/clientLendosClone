@@ -18,5 +18,8 @@ export type StorePopUpState = {
 	balance: number,
     endDate?: Date
 	img: string,
+	reward: string,
+	bet: string,
+	wager : string
 }
 

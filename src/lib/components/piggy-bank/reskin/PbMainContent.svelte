@@ -107,14 +107,14 @@
 
 		<PbCard currentBalance={$playerState.pb.balance} on:click={clickClaim} id='pbClaimButton'
 						price={piggyBank.balanceMax }
-						priceDescription='mega cashback' finalCoins={Math.round(amountMaxReward())}
+						priceDescription='mega reward' finalCoins={Math.round(amountMaxReward())}
 						multiplier={calculateMultiplier(piggyBank.finalMultiplierPercents)} />
 	</div>
 	<div class="w-full pt-[8px]">
 
 		<PbCard currentBalance={ $playerState.pb.balance}   on:click={clickClaim} id='pbClaimButton'
 						price={piggyBank.balanceMax / 100 * piggyBank.intermediateMultiplierPercents}
-						priceDescription='Space cashback' finalCoins={Math.round(calculateAdjustedMinReward())}
+						priceDescription='Space reward' finalCoins={Math.round(calculateAdjustedMinReward())}
 						multiplier={calculateMultiplier(piggyBank.intermediateMultiplierPercents)} />
 
 	</div>

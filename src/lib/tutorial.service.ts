@@ -255,7 +255,7 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
         case TutorialSteps.pbStep2: {
             removeBackgroundGlass();
             addBackgroundGlass(1);
-            selectItemsOnPage(['pbBetControls'])
+            selectItemsOnPage(['increasePbButton'])
             break;
         }
         case TutorialSteps.pbStep3: {
@@ -321,7 +321,7 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
             }
             await tick();
             const offerElement = document.getElementById('tutorialOffer');
-            selectItemsOnPage(['tutorialOffer'])
+            selectItemsOnPage(['tutorialOffer-btn'])
             setTimeout(() => {
 
             const coordinates = offerElement?.getBoundingClientRect();
@@ -340,7 +340,7 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
             break;
         }
         case TutorialSteps.offerStep2: {
-            deselectItemsOnPage(['tutorialOffer'])
+            deselectItemsOnPage(['tutorialOffer-btn'])
             await tick();
             const sorePopUpBuyButton = document.getElementById('sorePopUpBuyButton');
             const coordinates = sorePopUpBuyButton?.getBoundingClientRect();

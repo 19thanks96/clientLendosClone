@@ -10,6 +10,9 @@ export type StoreOffer = {
     reward: string
     endDate?: Date
     reusable: boolean
+    bet: string
+    wager : string
+    img: string
 }
 
 export type StoreOfferClaimResponse = {

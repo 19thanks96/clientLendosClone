@@ -37,7 +37,7 @@
 		{#key $playerState}
 			<div class="w-full h-full bg-contain bg-no-repeat blackHole z-[3] top-[14px_!important] ">
 				<div
-					class="relative top-[43%] left-[66%] timer text-[#D2D2D2] text-[10px] leading-[1.5] flex items-center pl-[5px]">
+					class="relative top-[40%] left-[66%] timer text-[#D2D2D2] text-[10px] leading-[1.5] flex items-center pl-[5px]">
 							  <span class="h-[15px] w-[15px] ">
 									{@html timer}
 								</span>
@@ -104,12 +104,13 @@
   .timer {
     width: 90px;
     height: 26px;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 1);
     border-radius: 14px;
     z-index: 2;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
+		scale: 1.6;
   }
 
 

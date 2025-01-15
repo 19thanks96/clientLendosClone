@@ -38,6 +38,10 @@
 		$showPopUpStoreLayout.description = storeOffer.description;
 		$showPopUpStoreLayout.price = storeOffer.price;
 		$showPopUpStoreLayout.type = storeOffer.type;
+		$showPopUpStoreLayout.reward = storeOffer.reward;
+		$showPopUpStoreLayout.bet = storeOffer.bet;
+		$showPopUpStoreLayout.wager = storeOffer.wager;
+		$showPopUpStoreLayout.img = storeOffer.img;
 		$showPopUpStoreLayout.endDate = storeOffer.endDate;
 		$showPopUpStoreLayout.balance = $playerState.general.balance;
 		AdapterCommunicationService.sendMessage({ type: 'openPopup', message: 'click' });
@@ -62,7 +66,7 @@
 
 		<div class="w-[106px] h-full justify-center items-center inline-flex p-[5px] z-[1]">
 			<div
-				style="background-color: brown; background-image: url('{offer.type === StoreOfferType.bonusCash ?  `https://p2w.imgix.net/resources/client/store/Icn_Str_Money.png?auto=compress&auto=format)` : `https://p2w.imgix.net/resources/client/store/Icn_Str_Slot.png?auto=compress&auto=format)`}')"
+				style="background-color: brown; background-image: url('{offer.img  ?  offer.img : `https://p2w.imgix.net/resources/client/store/Icn_Str_Slot.png?auto=compress&auto=format)`}')"
 				class="w-[106px] h-full rounded-lg border bg-contain bg-no-repeat bg-center ">
 
 				<div
@@ -84,13 +88,13 @@
 			</div>
 			<div class="self-stretch h-3.5 text-[#a0a5ad] text-xs font-medium font-['Poppins'] leading-3">Provider name</div>
 			<div>
-				<span class="text-[#a2a6ad] text-xs font-normal font-['Poppins'] leading-[14.40px]">Wager </span>
-				<span class="text-[#e4e4e4] text-sm font-bold font-['Poppins'] leading-[16.80px]">x1</span>
+				<span class="text-[#e4e4e4] text-sm font-bold font-['Poppins'] leading-[16.80px]">{offer.wager ? 'x' + offer.wager :  ''}</span>
+				<span class="text-[#a2a6ad] text-xs font-normal font-['Poppins'] leading-[14.40px]">{offer.wager ? 'Wagering' :  'No wager'} </span>
 			</div>
 
 			<div>
-				<span class="text-[#a2a6ad] text-xs font-normal font-['Poppins'] leading-[14.40px]"> Bet</span>
-				<span class="text-[#e4e4e4] text-sm font-bold font-['Poppins'] leading-[16.80px]">0.5 EUR  </span>
+				<span class="text-[#a2a6ad] text-xs font-normal font-['Poppins'] leading-[14.40px]">Bet</span>
+				<span class="text-[#e4e4e4] text-sm font-bold font-['Poppins'] leading-[16.80px]">{offer.bet ? offer.bet : '???'}   </span>
 			</div>
 		</div>
 
@@ -98,7 +102,7 @@
 			class="h-full flex-col justify-start items-start gap-0.5 inline-flex  absolute right-0 w-[118px] flex flex-col items-center z-[1]">
 			<div
 				class="opacity-80 text-center text-[#e8e8e8] text-2xl font-bold font-['Poppins'] uppercase tracking-tight pt-[30px] mx-auto ">
-				FS {offer.reward ? offer.reward : '???'}</div>
+				 {offer.reward ? offer.reward : '???'}</div>
 			<div class="w-[110px] h-[30px] flex justify-center items-center mx-auto mt-[15px]">
 				<AppButton
 					on:click={() => showStorePopUp(offer)}
@@ -108,6 +112,7 @@
 					isActive={true}
 					bigButton={true}
 					withCoin={true}
+					id={offer.id + '-btn'}
 				/>
 			</div>
 		</div>

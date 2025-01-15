@@ -15,4 +15,7 @@ export const showPopUpStoreLayout = writable<StorePopUpState>({
 	isLoading: false,
 	purchaseSuccessful: false,
 	img: "",
+	reward: '',
+	bet: '',
+	wager: ''
 })

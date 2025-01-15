@@ -150,7 +150,7 @@
 
 
 	const handleChange  = () => {
-		$pbState.desiredHoldDepositAmount = currentPosInBalance +  $playerState.pb.balance
+		$pbState.desiredHoldDepositAmount = currentPosInBalance
 		if(thumb && hint && hint.style.opacity !== '1') {
 			hint.style.opacity = '1';
 			hint.style.transition = 'opacity 0.1s ease-in-out';

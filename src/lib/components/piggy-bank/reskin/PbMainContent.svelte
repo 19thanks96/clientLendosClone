@@ -22,9 +22,7 @@
 		$pbState.desiredHoldDepositAmount === $pbState.bankRemainingBalance && $pbState.desiredHoldDepositAmount > 0 :
 		$pbState.desiredHoldDepositAmount > 0;
 
-	$:{
-		console.log('pbState !!!', $pbState.desiredHoldDepositAmount);
-	}
+
 
 	function calculateMultiplier(percentage: number, baseMultiplier = 1, maxMultiplier = 2) {
 		return baseMultiplier + (percentage / 100) * (maxMultiplier - baseMultiplier);

@@ -88,8 +88,8 @@
 			</div>
 			<div class="self-stretch h-3.5 text-[#a0a5ad] text-xs font-medium font-['Poppins'] leading-3">Provider name</div>
 			<div>
-				<span class="text-[#e4e4e4] text-sm font-bold font-['Poppins'] leading-[16.80px]">{offer.wager ? 'x' + offer.wager :  ''}</span>
-				<span class="text-[#a2a6ad] text-xs font-normal font-['Poppins'] leading-[14.40px]">{offer.wager ? 'Wagering' :  'No wager'} </span>
+				<span class="text-[#e4e4e4] text-sm font-bold font-['Poppins'] leading-[16.80px]">{offer.wager || offer.wager === 0 ? 'x' + offer.wager :  ''}</span>
+				<span class="text-[#a2a6ad] text-xs font-normal font-['Poppins'] leading-[14.40px]">{offer.wager || offer.wager === 0 ? 'Wagering' :  'No wager'} </span>
 			</div>
 
 			<div>

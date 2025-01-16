@@ -6,7 +6,7 @@
 
 	<div class="w-[102px] h-[38px] left-[1px] top-[63px] absolute">
 		<div class="left-0 top-[21px] absolute">
-			<span class="text-[#e4e4e4] text-sm font-bold font-['Poppins'] leading-[16.80px]">{$showPopUpStoreLayout.wager ? 'x' + $showPopUpStoreLayout.wager : ''} </span>
+			<span class="text-[#e4e4e4] text-sm font-bold font-['Poppins'] leading-[16.80px]">{$showPopUpStoreLayout.wager && $showPopUpStoreLayout.wager !== '0' ? 'x' + $showPopUpStoreLayout.wager : ''} </span>
 			<span class="text-[#a2a6ad] text-xs font-normal font-['Poppins'] leading-[14.40px]">{$showPopUpStoreLayout.wager ?  'Wagering' : 'No wager'} </span>
 		</div>
 		<div class="left-0 top-0 absolute">

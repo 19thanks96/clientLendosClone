@@ -12,9 +12,8 @@
 		return (handleOfferByType && item.type === 'freeSpins') ||
 			(!handleOfferByType && item.type === 'bonusCash');
 	}) || [];
-	$:console.log(handleOfferByType, filteredOffers.length);
 
-	$:classesByType = handleOfferByType ? ' flex-col  gap-y-[8px]  w-full  mx-auto' : 'flex-row flex-wrap gap-[5px] justify-start items-start ';
+	$:classesByType = handleOfferByType ? ' flex-col  gap-y-[8px]  w-full  mx-auto' : 'flex-row flex-wrap gap-[5px] justify-start items-start w-full';
 </script>
 
 

@@ -31,6 +31,7 @@
 		let isFormWidget = $page.url.searchParams.get('fromWidget');
 		await loadTranslations(Lang[currentLang || 'en'] || 'en');
 
+
 		// open replay
 		// try {
 		//     if (browser) {

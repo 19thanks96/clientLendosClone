@@ -38,6 +38,7 @@ export let index;
 		$showPopUpStoreLayout.id = storeOffer.id;
 		$showPopUpStoreLayout.name = storeOffer.name;
 		$showPopUpStoreLayout.description = storeOffer.description;
+		$showPopUpStoreLayout.reward = storeOffer.reward
 		$showPopUpStoreLayout.price = storeOffer.price;
 		$showPopUpStoreLayout.type = storeOffer.type;
 		$showPopUpStoreLayout.endDate = storeOffer.endDate;
@@ -91,7 +92,7 @@ export let index;
 				<div class="w-[106px] h-[30px] left-0 top-0 absolute justify-center items-center inline-flex">
 					<div class="w-[106px] h-[30px] bg-gradient-to-b from-[rgba(35,2,2,0.2)] to-[rgba(27,1,1,0.4)] rounded-bl-md rounded-br-md"></div>
 				</div>
-				<div class="left-[16px] top-[32px] absolute text-center flex items-center"><span class="text-[#e4e4e4] text-xs font-semibold font-['Poppins'] leading-[14.40px] ">{offer.wager ? offer.wager : '???'}</span>&nbsp;<span class="text-[#a2a6ad] text-[10px] font-normal font-['Poppins'] leading-3"> Wager </span></div>
+				<div class="left-[16px] top-[32px] absolute text-center flex items-center"><span class="text-[#e4e4e4] text-xs font-semibold font-['Poppins'] leading-[14.40px] ">{offer.wager  ? offer.wager : '???'}</span>&nbsp;<span class="text-[#a2a6ad] text-[10px] font-normal font-['Poppins'] leading-3"> Wager </span></div>
 			</div>
 			<div class="w-full top-[116px] absolute text-center text-white text-base font-bold font-['Poppins'] uppercase tracking-tight">{offer.reward ? offer.reward  : '???'} </div>
 

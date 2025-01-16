@@ -1,11 +1,8 @@
 <script lang="ts">
-    import {base} from '$app/paths'
-    import SpinningLight from './SpinningLight.svelte';
-    import ScaledImg from './ScaledImg.svelte';
+
     import RewardText from './RewardText.svelte';
     import {createEventDispatcher} from "svelte";
     import RewardCongratulationText from './RewardCongratulationText.svelte';
-    import AppButton from "$lib/components/common/AppButton.svelte";
     import UserBalance from '$lib/components/common/Money.svelte';
     import {userBalanceBeforeRewardState} from "$lib/state/oldUserBalance.state";
     import {AdapterCommunicationService} from '$lib/adapter-listener';

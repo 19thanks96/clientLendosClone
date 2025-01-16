@@ -112,7 +112,7 @@
 	</div>
 	<div class="w-full pt-[8px]">
 
-		<PbCard currentBalance={ $playerState.pb.balance}   on:click={clickClaim} id='pbClaimButton'
+		<PbCard currentBalance={ $playerState.pb.balance}   on:click={clickClaim} id='pbClaimIntermediateButton'
 						price={piggyBank.balanceMax / 100 * piggyBank.intermediateMultiplierPercents}
 						priceDescription='Space reward' finalCoins={Math.round(calculateAdjustedMinReward())}
 						multiplier={calculateMultiplier(piggyBank.intermediateMultiplierPercents)} />

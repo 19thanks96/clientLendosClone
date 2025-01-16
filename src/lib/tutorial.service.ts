@@ -320,8 +320,8 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
                 });
             }
             await tick();
-            const offerElement = document.getElementById('tutorialOffer');
-            selectItemsOnPage(['tutorialOffer-btn'])
+            const offerElement = document.getElementById('tutorialOffer-btn');
+            selectItemsOnPage(['tutorialOffer'])
             setTimeout(() => {
 
             const coordinates = offerElement?.getBoundingClientRect();
@@ -340,7 +340,7 @@ export const handleTutorialStep = async (step: TutorialSteps) => {
             break;
         }
         case TutorialSteps.offerStep2: {
-            deselectItemsOnPage(['tutorialOffer-btn'])
+            deselectItemsOnPage(['tutorialOffer'])
             await tick();
             const sorePopUpBuyButton = document.getElementById('sorePopUpBuyButton');
             const coordinates = sorePopUpBuyButton?.getBoundingClientRect();

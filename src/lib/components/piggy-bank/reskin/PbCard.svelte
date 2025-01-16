@@ -3,6 +3,8 @@ import { base } from '$app/paths';
 import coin from '$lib/components/common/Coin.svelte?raw';
 import SecondAppButton from '$lib/components/common/SecondAppButton.svelte';
 import { pbState } from '$lib/state/pb.state';
+import {playerState} from '$lib/state/player.state';
+
 
 export let multiplier:number = 1;
 export let price:number = 1;
@@ -11,6 +13,9 @@ export let finalCoins:number = 1;
 export let currentBalance:number = 0;
 export let id:string;
 
+const isPbClaimButton = id === 'pbClaimIntermediateButton';
+const isBalanceNotMax = isPbClaimButton && currentBalance === $playerState.pb.balanceMax;
+const checker = currentBalance >= price && !isBalanceNotMax;
 </script>
 
 
@@ -41,7 +46,7 @@ export let id:string;
 				{price}
 			</div>
 		</div>
-		<div class="w-[166px] h-[30px] mt-[10px] {currentBalance < price ? 'opacity-30' : 'opacity-[1]'} flex justify-center items-center">
+		<div class="w-[166px] h-[30px] mt-[10px] { checker ? 'opacity-[1]' : 'opacity-30'} flex justify-center items-center">
 			<SecondAppButton caption="OPEN"  on:click variant="reward" isLoading={$pbState?.isLoading} {id}/>
 		</div>
 
@@ -67,7 +72,8 @@ export let id:string;
     font-size: 58px;
   }
   .card-description{
-    width: max-content;
+    width: 157px;
+		text-align: center;
     height: 32px;
     font-size: 17px;
   }

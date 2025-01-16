@@ -12,13 +12,23 @@
 	import ExitButton from '$lib/components/common/ExitButton.svelte';
 	import timer from '$lib/components/common/Timer.svelte?raw';
 
+	import {userBalanceBeforeRewardState} from "$lib/state/oldUserBalance.state";
+	let i = 0
+
 	let missions, balance, dateEnd, name;
 	$: if ($playerState.isInitialized && $playerState?.mg && $playerState?.mg?.missions) {
 		missions = $playerState.mg.missions;
 		dateEnd = $playerState.mg.dateEnd;
 		name = $playerState.mg.name;
 		balance = $playerState.general.balance;
+
 	}
+		// if(i === 0) {
+		// 	$rewardState.isOpen = true;
+		// 	$rewardState.amount = 1000;
+		// 	$userBalanceBeforeRewardState = 5000;
+		// 	i++;
+		// }
 
 
 	const exit = () => AdapterCommunicationService.sendMessage({ type: 'exit', message: 'click' });
@@ -26,7 +36,7 @@
 
 <div style='height: 100dvh;' class=" w-screen overflow-hidden">
 
-	{#if $playerState?.isInitialized && $playerState?.mg && $playerState?.mg?.missions?.length > 0}
+	{#if $playerState?.isInitialized && $playerState?.mg }
 		<div class="{$rewardState.isOpen ? 'opacity-0' :'opacity-1'} z-[6] relative">
 			<UserBalance {balance} isNotReward={true}
 			/>

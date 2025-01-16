@@ -119,6 +119,7 @@
 	const traceAnimationAndExit = () => {
 
 		if ($showPopUpStoreLayout.id === 'tutorialOffer' && $playerState.tutorial?.step === 3) {
+
 			AdapterCommunicationService.sendMessage({
 				type: 'track',
 				message: { type: 'clickTutorOfferS2ClaimButton' }
@@ -137,6 +138,7 @@
 				componentPositions: component?.getBoundingClientRect()
 			}
 		});
+
 
 		// setTimeout(() => {
 		handleClosePopup();
@@ -175,7 +177,7 @@
 					<div class="w-[370px] h-[153px] flex flex-row">
 
 
-						<div style={$showPopUpStoreLayout.type === StoreOfferType.bonusCash ? `background-image: url(${base}/reskin/FX_Yellow_Offer.svg); background-size: contain;` : ''}  class="w-[110px] h-[140px] relative left-[5px] top-[5px] mr-[5px] {$showPopUpStoreLayout.type === StoreOfferType.bonusCash ? 'bg-[#e6d81e]' : '' }">
+						<div   class="w-[110px] h-[140px] relative left-[5px] top-[5px] mr-[5px] ">
 							<div
 								class="absolute flex justify-center items-center w-[calc(100%-8px)] h-[24px] bg-neutral-950/60 rounded-md z-[2] left-[4px] top-[4px]">
 								<div
@@ -186,10 +188,11 @@
 
 							</div>
 							<div class="w-[110px] h-[140px] left-0 top-0 absolute flex-col justify-start items-start inline-flex">
-								<div class="w-[110px] h-[140px] bg-[#131417] rounded-[9px] border border-[#1e2025]"></div>
+								<div style={$showPopUpStoreLayout.type === StoreOfferType.bonusCash ? `background-image: url(${base}/reskin/FX_Yellow_Offer.svg); background-size: contain;` : ''}
+										 class="w-[110px] h-[140px] {$showPopUpStoreLayout.type === StoreOfferType.bonusCash ? 'bg-[#e6d81e]' : 'bg-[#131417]'} rounded-[9px] border border-[#1e2025]"></div>
 							</div>
 							<div
-								class="left-[30px] top-[112px] absolute text-center text-white text-base font-bold font-['Poppins'] uppercase tracking-tight">
+								class="left-0 w-full top-[112px] absolute text-center text-white text-base font-bold font-['Poppins'] uppercase tracking-tight">
 								{$showPopUpStoreLayout.reward ? $showPopUpStoreLayout.reward : '???'}
 							</div>
 							<div class="w-[110px] h-[110px] left-0 top-0 absolute justify-center items-center inline-flex">
@@ -251,15 +254,20 @@
 				</div>
 				</div>
 					<div class="flex justify-center items-center w-full h-[45px] m-auto px-[10px] mt-[15px]">
-
+{#if $showPopUpStoreLayout.id !== 'tutorialOffer'}
 						<SecondAppButton on:click={() => handleClosePopup()} caption="Close" variant="default"/>
+
+{/if}
 					</div>
 			</div>
 			<div class="w-full absolute top-[-15px]">
 
 				<UserBalance balance={$playerState.general.balance} isNotReward={true}/>
 				<div class="absolute top-[36px] right-[15px] z-[9]">
+					{#if $showPopUpStoreLayout.id !== 'tutorialOffer'}
+
 					<ExitButton on:click={handleClosePopup} />
+						{/if}
 				</div>
 			</div>
 			<!--<div class="z-[22]">-->

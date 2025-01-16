@@ -10,22 +10,39 @@
 	let coinLeft: string, coinWidth: string, coinHeight: string, coinTop: string;
 	let startAnimationLeft: string, startAnimationTop: string, startAnimationWidth: string, startAnimationHeight: string;
 
-	onMount(() => {
+	const loadAnimationPos = () => {
 		let coin = document.querySelector('.getPos')?.getBoundingClientRect();
-		if (coin) {
+		if (coin && coin.width !== 0) {
 
 			coinLeft = `${coin.left}px`;
 			coinWidth = `${coin.width}px`;
 			coinHeight = `${coin.height}px`;
 			coinTop = `${coin.top}px`;
+		} else {
+			setTimeout(() => {
+
+			loadAnimationPos()
+			},10)
+			return
 		}
 		let startPositionAnimateCoin = document.querySelector('.startPosAnimateCoin')?.getBoundingClientRect();
-		if (startPositionAnimateCoin) {
+		if (startPositionAnimateCoin && startPositionAnimateCoin.width !== 0) {
 			startAnimationLeft = `${startPositionAnimateCoin.left}px`;
 			startAnimationTop = `${startPositionAnimateCoin.top}px`;
 			startAnimationWidth = `${startPositionAnimateCoin.width}px`;
 			startAnimationHeight = `${startPositionAnimateCoin.height}px`;
+		} else {
+			setTimeout(() => {
+
+				loadAnimationPos()
+			},10)
+			return
 		}
+	}
+
+
+	onMount(() => {
+		loadAnimationPos()
 	});
 
 </script>
@@ -101,43 +118,8 @@ flex-direction: column;"
     }
   }
 
-  .to-monney {
-    animation: to-monney 1s ease-in-out forwards;
-    will-change: transform;
-    z-index: 18;
-  }
 
-  @keyframes to-monney {
-    0% {
-      opacity: 1;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: var(--startAnimationWidth);
-      height: var(--startAnimationHeight);
-      transform: translate(var(--startAnimationLeft), var(--startAnimationTop));
-      margin-left: 0vw;
-      margin-bottom: 0vh;
 
-    }
-    50% {
-      margin-left: -12vw;
-      margin-bottom: -12vh;
-    }
-
-    100% {
-      opacity: 1;
-      width: var(--coinWidth);
-      height: var(--coinHeight);
-      left: 0;
-      top: 0;
-      margin-left: 0vw;
-      margin-bottom: 0vh;
-      transform: translate(var(--coinLeft), var(--coinTop)) scale(1);
-    }
-  }
-
-  @media (orientation: portrait) {
     .to-monney {
       animation: to-monneyMob 1s ease-in-out forwards;
       animation-delay: 1s;
@@ -159,10 +141,10 @@ flex-direction: column;"
         margin-left: -15vw;
 
       }
-      100% {
+      99% {
         opacity: 1;
-        width: var(--coinWidth);
-        height: var(--coinHeight);
+        width: var(--startAnimationWidth);
+        height: var(--coinWidth);
 		position: fixed;
         left: 0;
         top: 0;
@@ -170,6 +152,9 @@ flex-direction: column;"
         margin-bottom: 0vh;
         transform: translate(calc(var(--coinLeft)), calc(var(--coinTop))) scale(1);
       }
+			100%{
+        opacity: 0;
+			}
     }
-  }
+
 </style>

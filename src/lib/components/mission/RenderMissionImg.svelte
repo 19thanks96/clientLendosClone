@@ -13,7 +13,9 @@
 
 		<div
 			class="absolute z-[6] right-[3px] top-[3px]  w-[16px] h-[16px] ">
-			<InfoButton rounded={6}/>
+			{#if !isTutorialMission}
+				<InfoButton rounded={6}/>
+			{/if}
 		</div>
 		{#if isTutorialMission}
 			<img class="z-[7] absolute top-[-4%] left-[-4%] w-[44%] aspect-[1/1]  pointer-events-none"

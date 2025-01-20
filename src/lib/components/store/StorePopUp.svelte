@@ -138,7 +138,7 @@
 				componentPositions: component?.getBoundingClientRect()
 			}
 		});
-
+		console.log('trace animation in client');
 
 		// setTimeout(() => {
 		handleClosePopup();
@@ -237,7 +237,7 @@
 								caption={$showPopUpStoreLayout.price}
 								color={'green'}
 								isActive={true}
-								bigButton={true}
+
 								withCoin={true}
 								textClasses="h-[20px] text-[20px] leading-[1.5]"
 							/>
@@ -245,7 +245,7 @@
 					{/if}
 							{#if $showPopUpStoreLayout.mode === StorePopUpMode.claim}
 									<div id="sorePopUpClaimButton" class="w-full h-[44px] flex justify-center items-center mx-auto mt-[15px] px-[10px]  relative z-20">
-											<AppButton on:click={traceAnimationAndExit} bigButton={true}
+											<AppButton on:click={traceAnimationAndExit}
 																 caption="Claim"
 																 isActive={true}
 																 color={'green'}></AppButton>

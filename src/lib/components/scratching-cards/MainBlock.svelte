@@ -73,7 +73,7 @@
 
 
         <div class="vhWidth-[258] vhHeight-[92] port:w-[18.802vh] port:h-[6.719vh] mt-[1vh] vhFont-[38] port:text-[2.76vh] leading-[1.06] absolute bottom-[-3vw] port:bottom-0 z-10">
-            <AppButton on:click={handleScratch} color="green" caption="Scratch" showBorderWhenInactive={true}/>
+            <AppButton on:click={handleScratch} color="green" caption="Scratch 12" showBorderWhenInactive={true}/>
         </div>
     </div>
     <div class="w-full vhHeight-[111] port:h-[8vh] flex justify-center items-center absolute bottom-[-17.5%] left-[0%] vhFont-[38] port:text-[2.76vh] leading-[1.06]">

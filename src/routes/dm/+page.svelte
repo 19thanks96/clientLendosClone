@@ -21,6 +21,7 @@
 		dateEnd = $playerState.mg.dateEnd;
 		name = $playerState.mg.name;
 		balance = $playerState.general.balance;
+		// console.error(JSON.stringify($playerState.mg) );
 
 	}
 		// if(i === 0) {
@@ -29,6 +30,9 @@
 		// 	$userBalanceBeforeRewardState = 5000;
 		// 	i++;
 		// }
+	if(!$playerState.general.balance ) {
+		$playerState.general.balance = 10000
+	}
 
 
 	const exit = () => AdapterCommunicationService.sendMessage({ type: 'exit', message: 'click' });
@@ -37,28 +41,28 @@
 <div style='height: 100dvh;' class=" w-screen overflow-hidden">
 
 	{#if $playerState?.isInitialized && $playerState?.mg }
-		<div class="{$rewardState.isOpen ? 'opacity-0' :'opacity-1'} z-[6] relative">
-			<UserBalance {balance} isNotReward={true}
-			/>
-			<div class="absolute top-[36px] right-[15px] z-[9]">
+		<div class="{$rewardState.isOpen ? 'opacity-0' :'opacity-1'} relative ">
+			<div class="relative top-[30px] left-[13px] z-[9]">
+			<UserBalance {balance} isNotReward={true} />
+			</div>
+			<div class="absolute top-[30px] right-[15px] z-[9]">
 				<ExitButton on:click={exit} />
 			</div>
 		</div>
 		{#key $playerState}
 			<div class="w-full h-full bg-contain bg-no-repeat blackHole z-[3] top-[14px_!important] ">
-				<div
-					class="relative top-[40%] left-[66%] timer text-[#D2D2D2] text-[10px] leading-[1.5] flex items-center pl-[5px]">
-							  <span class="h-[15px] w-[15px] ">
-									{@html timer}
-								</span>
-					<span class="h-auto  ml-[5px] font-['Poppins'] font-[600] text-[10px] leading-[15px] text-[#D2D2D2]">
-                        <CountdownTimer {dateEnd} />
-                      </span>
+				<div style="background-image: url('https://p2w-object-store.fra1.cdn.digitaloceanspaces.com/resources/client/common/timerBg.svg')"
+					class="relative top-[56px] left-[0.1px] timer text-[#D2D2D2] text-[10px] leading-[1.5] flex items-center  bg-contain bg-no-repeat">
+							<div  class="w-full h-full bg-contain bg-no-repeat flex items-center justify-center">
+										<span class="h-auto  ml-[5px] font-['Poppins'] font-[700] text-[14px] leading-[15px] text-[#080808]">
+													<CountdownTimer {dateEnd} />
+											</span>
+							</div>
 				</div>
-				<Title title="Info missions"
+				<Title title={$playerState.mg.name}
 							 description={$playerState.mg.info} text={name} />
 			</div>
-			<div class="absolute top-[16px] left-0 right-0 bottom-0 border-rounded overflow-hidden">
+			<div class="absolute top-[16px] left-0 right-0 bottom-0 border-rounded overflow-hidden z-[0]">
 				<div
 					style='background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 1) 95%),  url({base}/reskin/blackHole.png)'
 					class="w-full h-full bg-contain bg-no-repeat blackHole">
@@ -78,50 +82,15 @@
 		<Spinner></Spinner>
 	{/if}
 	{#if $rewardState.isOpen}
-		<RewardLayoutDm rewardAmount={$rewardState.amount}
-										on:close={() => $rewardState.isOpen = false } />
+		<div class="absolute top-[32px] left-0 right-0 bottom-0 border-rounded overflow-hidden z-[99]">
+			<RewardLayoutDm rewardAmount={$rewardState.amount}
+											on:close={() => $rewardState.isOpen = false } />
+		</div>
 	{/if}
 </div>
 
 <style lang='scss'>
-  .border-rounded {
-    background: #050505;
-    border: 1px solid #1E2026;
-    //box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.5);
-    border-radius: 32px;
-    z-index: 0;
 
-  }
-
-  .blackHole {
-    background-size: cover;
-    height: 210px;
-    position: absolute;
-    top: 0px;
-
-  }
-
-  .astronaut {
-    background-size: contain;
-    background-position: top center;
-    height: 205px;
-    top: 8px;
-    margin: auto;
-    width: 100%;
-
-  }
-
-  .timer {
-    width: 90px;
-    height: 26px;
-    background: rgba(0, 0, 0, 1);
-    border-radius: 14px;
-    z-index: 2;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-		scale: 1.6;
-  }
 
 
   .mission-list {

@@ -50,14 +50,14 @@
 <div style="position: fixed;
 display: flex;
 flex-direction: column;"
-		 class=" z-[12] opacity-0 flex justify-center  bottom-[18%] port:bottom-[12%] w-full font-black text-center third-reward-element">
+		 class=" z-[12] opacity-0 flex justify-center bottom-[13%] w-full font-black text-center third-reward-element gap-y-[8px]">
 	<div style="font-style: normal;"
 			 class="font-Poppins text-[14px] leading-[1] font-[600] text-[#A1A5AD]">
 		{$t('dm.reward')}
 	</div>
-	<div class="vhHeight-[54] port:h-[10.463vw]  flex justify-center items-center">
+	<div class="h-[26px]   flex justify-center items-center ">
 		<div
-			style=" transform: scale(0.7); transform-origin: right;"
+			style="  transform-origin: right;"
 			class="{startAnimation ? 'opacity-0' : 'opacity-1'} startPosAnimateCoin ml-[-4px] mr-[10px] h-full bg-no-repeat bg-contain inline-block">
 			{@html coin}
 		</div>
@@ -104,6 +104,7 @@ flex-direction: column;"
 
 <style lang="scss">
   .third-reward-element {
+
     animation: show-elements 0.5s ease-in-out forwards;
     animation-delay: 0.75s;
   }
@@ -123,6 +124,7 @@ flex-direction: column;"
     .to-monney {
       animation: to-monneyMob 1s ease-in-out forwards;
       animation-delay: 1s;
+      z-index: 10;
     }
 
     @keyframes to-monneyMob {

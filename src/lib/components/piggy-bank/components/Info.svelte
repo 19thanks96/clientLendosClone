@@ -47,11 +47,14 @@
     --os-padding-axis: 0;
     --os-track-border-radius: 5px;
     --os-track-bg:rgba(0, 0, 0, 0.4) ;
-    --os-handle-border-radius: 3px;
-    --os-handle-bg: rgba(14, 81, 255, 1);
+    --os-handle-border-radius: 6px;
+    --os-handle-bg: #303848;
+    --os-handle-max-size: 20px;
+    --os-handle-min-size : 20px;
+
     }
     :global(.os-scrollbar-vertical) {
-        margin-right: 5px;
+        margin-right: 13px;
     }
     .info{
         position: absolute;

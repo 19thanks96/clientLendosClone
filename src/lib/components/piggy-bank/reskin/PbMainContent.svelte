@@ -23,7 +23,6 @@
 		$pbState.desiredHoldDepositAmount > 0;
 
 
-
 	function calculateMultiplier(percentage: number, baseMultiplier = 1, maxMultiplier = 2) {
 		return baseMultiplier + (percentage / 100) * (maxMultiplier - baseMultiplier);
 	}
@@ -113,7 +112,7 @@
 	<div class="w-full pt-[8px]">
 
 		<PbCard currentBalance={ $playerState.pb.balance}   on:click={clickClaim} id='pbClaimIntermediateButton'
-						price={piggyBank.balanceMax / 100 * piggyBank.intermediateMultiplierPercents}
+						price={piggyBank.balanceMax / 100 * piggyBank.intermediateThreshold}
 						priceDescription='Space reward' finalCoins={Math.round(calculateAdjustedMinReward())}
 						multiplier={calculateMultiplier(piggyBank.intermediateMultiplierPercents)} />
 
@@ -129,7 +128,7 @@
 			caption={'Deposit'}
 			color={'green'}
 			isActive={holdAllowed}
-			bigButton={true}
+
 			id=''
 		/>
 	</div>

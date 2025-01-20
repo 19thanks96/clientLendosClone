@@ -58,7 +58,7 @@
 					 class="pr-[15%] port:pr-[15%] max-h-[58%] pt-[3%] port:max-h-[58%] scroll-privacy vhFont-[15] leading-[1.2] port:text-[2.963vw] port:pt-[3%] port:leading-[1.28]">{$showPopUpLayout.description}</div>
 			<div class="   w-[69%] h-[9%] absolute bottom-[8%] port:bottom-[8%] vhFont-[19]  port:text-[3.963vw]">
 
-				<AppButton caption={'Ok'} on:click={closePopup} isActive={true} color={'green'} bigButton={false}></AppButton>
+				<AppButton caption={'Ok'} on:click={closePopup} isActive={true} color={'green'} ></AppButton>
 			</div>
 		</div>
 

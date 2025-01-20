@@ -14,8 +14,8 @@
 </script>
 
 <div
-	class="shrink overflow-hidden justify-evenly port:justify-between  grow flex h-full  flex-col px-[5px] py-[10px] leading-none ">
-	<div>
+	class="shrink overflow-hidden justify-evenly port:justify-between  grow flex h-full  flex-col p-[10px] leading-none ">
+	<div class="gap-[3px] grid">
 
 		<div style="white-space:nowrap; "
 				 class="name ">{name}</div>

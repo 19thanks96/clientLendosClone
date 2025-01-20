@@ -4,11 +4,13 @@ import type {MissionGroupType} from "../../common/models/mission-group.type";
 import type {PiggyBankType} from "../../common/models/piggy-bank.type";
 import type {StoreType} from "../../common/models/store.type";
 import type {GeneralDataType} from "../../common/models/general-data.type";
+import type {ScratchCardType} from "../../common/models/scratch-card.type";
 
 export const playerState = writable<PlayerDataType & { isInitialized: boolean }>({
     mg: {} as MissionGroupType,
     pb: {} as PiggyBankType,
     store: {} as StoreType,
+    sc: {} as ScratchCardType,
     general: {} as GeneralDataType,
     isInitialized: false,
     isLiveReload: false,

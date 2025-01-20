@@ -49,16 +49,11 @@
 
 <style>
     .timer {
-
-        border-image-slice: 61% fill;
-        border-image-width: 50%;
-        border-image-outset: 0.3vh;
-        border-image-repeat: stretch;
-    }
-
-    @media (min-width: 624px) {
-        .timer {
-            border-image-outset: 1vh;
-        }
+        width: 111px;
+        height: 48px;
+        z-index: 2;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
     }
 </style>

@@ -319,7 +319,8 @@ html[data-overlayscrollbars-body]>body{
 [data-overlayscrollbars-viewport]:not([data-overlayscrollbars]){
     --os-vaw:0;
     --os-vah:0;
-    outline:none
+    outline:none;
+    display:flex;
 }
 [data-overlayscrollbars-viewport]:not([data-overlayscrollbars]):focus{
     outline:none
@@ -485,7 +486,7 @@ body>.os-scrollbar{
 }
 .os-scrollbar-vertical .os-scrollbar-handle{
     height:calc(var(--os-viewport-percent)*100%);
-    right:0;
+    right:50%;
     top:calc(var(--os-scroll-percent-directional)*100%);
     transform:translateY(calc(var(--os-scroll-percent-directional)*-100%))
 }
@@ -499,7 +500,7 @@ body>.os-scrollbar{
     }
     .os-scrollbar-vertical .os-scrollbar-handle{
         top:auto;
-        transform:translateY(calc(var(--os-scroll-percent-directional)*100cqh + var(--os-scroll-percent-directional)*-100%))
+        transform:translate(50%, calc(var(--os-scroll-percent-directional)*100cqh + var(--os-scroll-percent-directional)*-100%))
     }
     .os-scrollbar-rtl.os-scrollbar-horizontal .os-scrollbar-handle{
         left:0;
@@ -539,8 +540,8 @@ body>.os-scrollbar{
     --os-handle-border:none;
     --os-handle-border-hover:none;
     --os-handle-border-active:none;
-    --os-handle-min-size:33px;
-    --os-handle-max-size:none;
+    --os-handle-min-size:20px;
+    --os-handle-max-size:20px;
     --os-handle-perpendicular-size:100%;
     --os-handle-perpendicular-size-hover:100%;
     --os-handle-perpendicular-size-active:100%;
@@ -663,4 +664,37 @@ body>.os-scrollbar{
     --os-handle-bg:hsla(0,0%,100%,.44);
     --os-handle-bg-hover:hsla(0,0%,100%,.55);
     --os-handle-bg-active:hsla(0,0%,100%,.66)
+}
+
+.border-rounded {
+    background: #050505;
+    border: 1px solid #1E2026;
+    border-radius: 32px;
+}
+
+.blackHole {
+    background-size: cover;
+    height: 210px;
+    position: absolute;
+    top: 0px;
+
+}
+
+.astronaut {
+    background-size: contain;
+    background-position: top center;
+    height: 205px;
+    top: 8px;
+    margin: auto;
+    width: 100%;
+
+}
+
+.timer {
+    width: 111px;
+    height: 48px;
+    z-index: 2;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
 }

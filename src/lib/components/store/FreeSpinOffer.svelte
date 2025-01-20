@@ -107,12 +107,13 @@
 				<AppButton
 					on:click={() => showStorePopUp(offer)}
 					isLoading={$showPopUpStoreLayout.isOpen}
-					caption={offer.price}
+					caption={`${offer.price}`}
 					color={'green'}
 					isActive={true}
-					bigButton={true}
+
 					withCoin={true}
 					id={offer.id + '-btn'}
+					textClasses="h-[20px]"
 				/>
 			</div>
 		</div>

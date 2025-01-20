@@ -6,7 +6,7 @@
 	const maxPos = 87;
 	const minPos = 14;
 
-	let intermediateMultiplierPosition = Math.max(60, Math.min(40 + $playerState.pb.intermediateMultiplierPercents * 3.1, 330));
+	let intermediateMultiplierPosition = Math.max(maxPos, Math.min(minPos + $playerState.pb.intermediateThreshold * 3.1, 330));
 	let currentPos = ($playerState.pb.balance / $playerState.pb.balanceMax) * 325 || 0;
 	let isMoreThenIntermediate = ($playerState.pb.balance / $playerState.pb.balanceMax) * 100 >= $playerState.pb.intermediateMultiplierPercents;
 	let isMoreThenMax = $playerState.pb.balance >= $playerState.pb.balanceMax;
@@ -56,7 +56,7 @@
 					{ pb.balance}
 			</span>
 			<span style="left:{intermediateMultiplierPosition}px; transform:translateX(-50%)" class="absolute  ">
-					{pb.balanceMax / 100 * pb.intermediateMultiplierPercents}
+					{pb.balanceMax / 100 * pb.intermediateThreshold}
 			</span>
 			<span class="absolute right-[0%] translate-x-[-50%]">
 					{pb.balanceMax}

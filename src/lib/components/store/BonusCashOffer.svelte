@@ -68,8 +68,9 @@ export let index;
 					color={'green'}
 					id={offer.id}
 					isActive={true}
-					bigButton={true}
+
 					withCoin={true}
+					textClasses="h-[14px]"
 				/>
 
 

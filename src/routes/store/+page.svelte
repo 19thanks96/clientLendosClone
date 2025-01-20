@@ -12,6 +12,7 @@
 	import BonusCashSvg from '$lib/components/common/BonusCashSvg.svelte';
 	import OfferList from '$lib/components/store/OfferList.svelte';
 	import StorePopUp from '$lib/components/store/StorePopUp.svelte';
+	import CountdownTimer from '$lib/components/common/CountdownTimer.svelte';
 
 
 	let balance: unknown | number;
@@ -26,28 +27,35 @@
 </script>
 <div style='height: 100dvh;' class=" w-screen overflow-hidden">
 	{#if $playerState.isInitialized && $playerState.store }
-		<div class="{$rewardState.isOpen ? 'opacity-0' :'opacity-1'} z-[1] relative">
-			<UserBalance {balance} isNotReward={true}/>
-			<div class="absolute top-[36px] right-[15px] ">
+		<div class="{$rewardState.isOpen ? 'opacity-0' :'opacity-1'} relative ">
+			<div class="relative top-[30px] left-[13px] z-[9]">
+				<UserBalance {balance} isNotReward={true} />
+			</div>
+			<div class="absolute top-[30px] right-[15px] z-[9]">
 				<ExitButton on:click={exit} />
 			</div>
 		</div>
 		{#key $playerState}
+
+			<div class="w-full h-full bg-contain bg-no-repeat blackHole z-[3] top-[14px_!important] ">
+				<div
+					style=""
+					class="relative top-[56px] left-[0.1px] timer text-[#D2D2D2] text-[10px] leading-[1.5] flex items-center  bg-contain bg-no-repeat">
+
+				</div>
+				<Title title='Space Store'
+							 description={$playerState.store.info} text={name}  className="top-[89px]"/>
+			</div>
+			<div class="absolute top-[16px] left-0 right-0 bottom-0 border-rounded overflow-hidden z-[0]">
+				<div
+					style='background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 1) 95%),  url({base}/reskin/blackHole.png)'
+					class="w-full h-full bg-contain bg-no-repeat blackHole">
+
+				</div>
+			</div>
 			<div style='background-image: url({base}/reskin/astronautStore.png)'
 					 class="absolute h-full bg-contain bg-no-repeat astronaut">
 
-			</div>
-				<div class="w-full h-full bg-contain bg-no-repeat blackHole z-[2]">
-					<div class="absolute top-[64%] left-0  w-full ">
-
-						<Title  title="Info Store"
-							description={$playerState.store.info} text={'store'} />
-					</div>
-				</div>
-			<div class="absolute top-[16px] left-0 right-0 bottom-0 border-rounded overflow-hidden">
-				<div style='background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 1) 95%), url({base}/reskin/blackHole.png)'
-						 class="w-full h-full bg-contain bg-no-repeat blackHole ">
-				</div>
 			</div>
 			<div class="offer-list flex flex-col items-start p-0 absolute top-[32%] left-0 right-0  h-11 h-[auto] ">
 				<div style=" scrollbar-width: none;"
@@ -94,41 +102,4 @@
 			<Spinner />
 		</div>
 	{/if}
-
 </div>
-
-<style lang='scss'>
-  .border-rounded {
-    background: #050505;
-    border: 1px solid #1E2026;
-    border-radius: 32px;
-		z-index: -2;
-  }
-
-  .blackHole {
-    background-size: cover;
-    height: 210px;
-    position: absolute;
-    top: 0px;
-    z-index: 0;
-
-  }
-
-  .astronaut {
-    background-size: contain;
-    background-position: top center;
-    height: 205px;
-    top: 8px;
-    margin: auto;
-    width: 100%;
-    z-index: 0;
-
-  }
-
-
-	.offer-list{
-		//z-index: 5;
-	}
-
-
-</style>

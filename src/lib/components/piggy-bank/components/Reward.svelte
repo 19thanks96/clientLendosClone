@@ -23,8 +23,16 @@
     const decreaseAmount = rewardAmount / 200;
     const redirectOrHideAfterTimeout = () => {
         if (!!$playerState.store && $playerState.store.offers.length !== 0 && !$playerState.mg.missions.some((m => m.missionType === 'pbClaim' && m.status === 'completed'))) {
+            AdapterCommunicationService.sendMessage({
+                type: 'redirect',
+                message: '/store'
+            })
             goto('/store')
         } else if (!!$playerState.mg && $playerState.mg.missions.length !== 0) {
+            AdapterCommunicationService.sendMessage({
+                type: 'redirect',
+                message: '/dm'
+            })
             goto('/dm')
         } else {
             AdapterCommunicationService.sendMessage({type: 'exit', message: 'click'})
@@ -56,6 +64,10 @@
                         message: {step: 2}
                     });
                     $playerState.tutorial.step = 3;
+                    AdapterCommunicationService.sendMessage({
+                        type: 'redirect',
+                        message: '/dm'
+                    })
                     goto('/dm')
                 } else {
                     redirectOrHideAfterTimeout()
@@ -95,7 +107,7 @@
     <div class='first-reward-element'>
         <RewardCongratulationText first="You" second="Open box!"/>
     </div>
-    <div class="third-reward-element balance-pos">
+    <div class="third-reward-element balance-pos top-[13px] left-[13px] z-[9] relative">
         <UserBalance {balance} isNotReward={false}/>
     </div>
     <div style="background-image: url('https://p2w.imgix.net/resources/client/dm/DMReward.png?auto=compress&auto=format');background-position: bottom; background-size: 100% 100%; " class='second-reward-element w-full h-full bg-cover bg-no-repeat  bg-black'>

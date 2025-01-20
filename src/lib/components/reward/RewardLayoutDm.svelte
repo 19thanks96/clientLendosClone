@@ -84,10 +84,10 @@
     <div class='first-reward-element'>
         <RewardCongratulationText/>
     </div>
-    <div class="third-reward-element balance-pos">
+    <div class="third-reward-element balance-pos top-[13px] left-[13px] z-[9] relative">
         <UserBalance {balance} isNotReward={false}/>
     </div>
-    <div style="background-image: url('https://p2w.imgix.net/resources/client/dm/DMReward.png?auto=compress&auto=format');background-position: bottom; background-size: 100% 100%; " class='second-reward-element w-full h-full bg-cover bg-no-repeat  bg-black'>
+    <div style="background-image: url('https://p2w.imgix.net/resources/client/dm/DMReward.png?auto=compress&auto=format');background-position: 50% -10px; background-size: 100% 100%; " class='second-reward-element w-full h-full bg-cover bg-no-repeat  bg-black'>
     </div>
     <div style="background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 38.5%, rgba(0, 0, 0, 0.7) 61%, rgba(0, 0, 0, 0) 100%);"
          class="w-full h-[138px] fixed  right-0 bottom-0  z-[12]">

@@ -6,7 +6,7 @@
 	export let pathToImg = 'https://p2w-object-store.fra1.cdn.digitaloceanspaces.com/p2w/mission-logos/';
 </script>
 
-<div style="aspect-ratio: 1/1;" class="w-[99px] relative rounded-[8px]  ml-[4px]">
+<div style="aspect-ratio: 1/1;" class="w-[98px] relative rounded-[8px]  ml-[3px]">
 	<button on:click style="aspect-ratio: 1/1;" class="w-full  h-full absolute top-0 z-[4]">
 		<div style="background-image: url('{pathToImg}{image}'); aspect-ratio: 1/1; background-position: center center;"
 				 class=" rounded-[8px] bg-[gray] bg-contain h-full bg-no-repeat flex self-center"></div>

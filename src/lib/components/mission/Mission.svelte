@@ -3,7 +3,6 @@
 	import AboutMissionText from './AboutMissionText.svelte';
 	import RenderMissionImg from './RenderMissionImg.svelte';
 	import MissionStatusBlock from './MissionStatusBlock.svelte';
-	import AppButton from '$lib/components/common/AppButton.svelte';
 	import { showPopUpLayout } from '$lib/state/popup.state';
 	import { onMount } from 'svelte';
 	import { AdapterCommunicationService } from '$lib/adapter-listener';
@@ -15,6 +14,7 @@
 	import { TutorialSteps } from '../../../common/enums';
 	import { userBalanceBeforeRewardState } from '$lib/state/oldUserBalance.state';
 	import { playerState } from '$lib/state/player.state';
+	import MainButton from '$lib/components/common/MainButton.svelte';
 
 	let ready = false;
 	export let mission: Mission;
@@ -135,9 +135,7 @@
 		AdapterCommunicationService.sendMessage({ type: 'openPopup', message: 'click' });
 		ctaHandler[mission?.status]();
 	};
-	const requiresAttentionSeeker =
-		mission.status === MissionStatus.completed ||
-		(isTutorialMission && $playerState?.tutorial?.step > 1);
+
 </script>
 
 <div
@@ -183,17 +181,15 @@
 					<div
 						id={mission.id === 'mgTutorialMission' ? 'missionClaimButton' : undefined}
 						slot="svg"
-						class="w-full h-full flex justify-center items-center"
+						class="flex w-[84px] h-[30px] justify-center items-center text-[#e8e8e8] text-xs font-semibold font-['Poppins'] uppercase rounded-lg  "
 					>
-						<AppButton
-							{index}
-							{requiresAttentionSeeker}
+						<MainButton
 							on:click={() => handleCta()}
 							isLoading={$missionClaimState.isLoading}
 							caption={missionDataByStatus[mission?.status].buttonText}
-							color={missionDataByStatus[mission?.status].color}
-							isActive={mission?.status === MissionStatus.completed ||
-								mission?.status === MissionStatus.started}
+							textStyles=" color: #e8e8e8; font-size: 12px; font-weight: 600; "
+							wrapBtnStyles="width: 84px; height: 30px; border-radius: 8px; "
+							variant="default"
 						/>
 					</div>
 				</MissionStatusBlock>

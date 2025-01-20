@@ -11,14 +11,14 @@
 
 </script>
 
-<div id={id} style="" class="flex flex-col w-[100px]  h-full py-[10px]   justify-between text-left grow-0">
+<div id={id} style="" class="flex flex-col w-[100px]  h-full  text-left grow-0">
     <div
-            class=" flex w-[90px] h-[38px] justify-center items-center ">
+            class=" flex w-[84px] h-[30px] justify-center items-center text-[#e8e8e8] text-xs font-semibold font-['Poppins'] uppercase rounded-lg my-[15px]">
         <slot name="svg"/>
     </div>
-    <div class=" h-[29px] flex justify-center items-center ">
+    <div class=" h-[29px] flex justify-center items-center my-[10px]">
         <div
-                class="flex relative flex-col justify-center items-center   h-[12px] gap-x-[3px]  ">
+                class="flex relative flex-col justify-center items-center   h-[12px] gap-[3px]  ">
 
             <div class="reward-text">Reward:</div>
             <span class="flex relative  justify-center items-center   h-[12px] gap-x-[3px]  ">

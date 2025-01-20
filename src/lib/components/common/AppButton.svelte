@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Spinner from '$lib/components/common/Spinner.svelte';
-	import Coin from '$lib/components/common/Coin.svelte?raw';
+	import coin from "$lib/components/common/Coin.svelte?raw";
 
 	export let isActive: boolean = true;
 	export let showBorderWhenInactive: boolean = false;
@@ -9,10 +9,10 @@
 	export let index: number | undefined = undefined;
 	export let isLoading: boolean = false;
 	export let requiresAttentionSeeker: boolean | undefined = undefined;
-	export let bigButton: boolean = false;
 	export let withCoin: boolean = false;
 	export let id:string = '';
-	export let textClasses:string = 'w-[12px] h-[12px]'
+	export let textClasses:string = ''
+	export let wrapBtnStyles:string = ''
 
 
 	const animationDelay = 1 + (index + 1) / 2 + 's';
@@ -53,33 +53,33 @@
 			gap: 4px;
 			`,
 			secondBg: ` `,
-			stroke: `width: ${bigButton ? '100%' : '96px'} ; height: ${bigButton ? '100%' : '30px'}`
+			stroke: `width : 100%; height: 100%;}`
 		}
 	};
 </script>
 
 {#if !isLoading}
 	{#if isActive}
-		<div style={images[color].stroke} class="w-full h-full relative">
+		<div style={images[color].stroke} class="w-full h-full relative {!isLoading
+					? 'animate-updated-button'
+					: ''}">
 			<button
 				on:click
 				id={id}
-				style=" {images[color].mainbg} {requiresAttentionSeeker
+				style="{wrapBtnStyles} {images[color].mainbg} {requiresAttentionSeeker
 					? ` --scaling-delay: ${animationDelay}`
 					: ''}"
 				class="
 				{requiresAttentionSeeker
 					? 'requiresAttentionSeeker '
 					: ''}
-					w-full h-full relative flex flex-row justify-center items-center father-anima z-[2] text-[12px] leading-[18px]
-				{!isLoading
-					? 'animate-updated-button'
-					: ''}"
+					w-full h-full relative flex flex-row justify-center items-center father-anima z-[2]
+				"
 			>
 				<div class="absolute w-full h-full flex justify-center items-center  gap-[3px] {textClasses}">
 					{#if withCoin}
 						<span class="{textClasses}">
-							{@html Coin}
+							{@html coin}
 						</span>
 						&nbsp;
 					{/if}
@@ -95,9 +95,7 @@
 		<div
 			style=" -webkit-text-stroke-width: thin; -webkit-text-stroke-color: {images[color]
 				.stroke}; text-shadow: 0px 0.1em {images[color].stroke}; {images[color].mainbg}"
-			class="opacity-40 {bigButton
-				? 'big-button-border'
-				: ' button-border'} relative w-full h-full font-['Fira_Sans'] overflow-hidden font-black text-slate-200 bg-[length:100%_100%] father-anima flex justify-center items-center"
+			class="opacity-40  relative w-full h-full font-['Fira_Sans'] overflow-hidden font-black text-slate-200 bg-[length:100%_100%] father-anima flex justify-center items-center"
 		>
 			<div class="w-full h-full flex relative overflow-hidden {color + '-button'}  ">
 				<div
@@ -122,46 +120,18 @@
 
 <style lang="scss">
   .btn{
-
     background: linear-gradient(90deg, #8C52E9 0%, #5F42E3 100%);
-
   }
-  .animate-updated-button{
-    transition: all 0.3s ease;
-  }
-
-  .animate-updated-button:not(:active) {
-    animation: shrink 0.5s ease forwards;
+  .animate-updated-button button{
+    transform: scale(1);
+    transition: all 0.5s ease;
   }
 
-  .animate-updated-button:active {
-    animation: decrease 0.5s ease forwards;
+  .animate-updated-button:hover button {
+    transform: scale(0.9);
   }
 
-  .animate-updated-button:hover {
-    animation: decrease 0.5s ease forwards;
+  .animate-updated-button:not(:hover) button {
+    transform: scale(1);
   }
-
-  .animate-updated-button:not(:hover) {
-    animation: shrink 0.5s ease forwards;
-  }
-
-  @keyframes decrease {
-    from {
-      transform: scale(1);
-    }
-    to {
-      transform: scale(0.9);
-    }
-  }
-
-  @keyframes shrink {
-    from {
-      transform: scale(0.9);
-    }
-    to {
-      transform: scale(1);
-    }
-  }
-
 </style>

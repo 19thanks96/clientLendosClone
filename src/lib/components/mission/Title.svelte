@@ -7,6 +7,7 @@
     export let text: string;
     export let description: string = "";
     export let withInfoButton : boolean = true;
+    export let className : string = "top-[72px]";
 
     function openPopup() {
         console.log(description)
@@ -21,7 +22,7 @@
 
 
 <div
-  class="relative top-[45%] left-[0%] title text-[#D2D2D2] text-[10px] leading-[1.5] flex items-center justify-center pl-[5px]">
+  class="{className} relative  left-[0%] title text-[#D2D2D2] text-[10px] leading-[1.5] flex items-center justify-center pl-[5px]">
     {text}
     {#if withInfoButton}
     <button on:click={openPopup} style="aspect-ratio: 1/1" class="absolute top-0 right-[5%] sm:right-[2%] h-full flex items-center  justify-center  z-[6] scale-50">

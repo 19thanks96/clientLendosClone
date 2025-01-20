@@ -6,7 +6,6 @@
 	import coin from '$lib/components/common/Coin.svelte?raw';
 	import { onDestroy, onMount } from 'svelte';
 	import LessGreaterThanSvg from '$lib/components/piggy-bank/reskin/LessGreaterThanSvg.svelte?raw';
-	let isSendTutorialRequest = false;
 	let currentPos =  0;
 	let step = $pbState.step / $playerState.pb.balanceMax * 100
 	let maxPercent = ($playerState.general.balance  / ($playerState.pb.balanceMax -  $playerState.pb.balance)  * 100)
@@ -24,7 +23,9 @@
 		currentPosInPercent = Math.max(0, Math.min( Math.max(0, Math.min(currentPosInPercent + step, 100) ), maxPercent) );
 		currentPosInBalance = Math.round(($playerState.pb.balanceMax - $playerState.pb.balance) / 100 * currentPosInPercent)  || 0 ;
 		handleChange()
-
+		if (container) {
+				container.style.setProperty('--currentPercent', `${currentPosInPercent}%`);
+		}
 
 	}
 
@@ -48,7 +49,7 @@
 
 
 		if ($playerState.tutorial && $playerState.tutorial.step === 2 && $pbState.desiredHoldDepositAmount === $pbState.bankRemainingBalance) {
-			// if (isSendTutorialRequest) return;
+
 			const holdPbButton = document.getElementById('pbHoldButton');
 			const coordinates = holdPbButton?.getBoundingClientRect();
 			AdapterCommunicationService.sendMessage({
@@ -62,7 +63,7 @@
 					}
 				}
 			})
-			// isSendTutorialRequest = true;
+
 		}
 	}
 
@@ -73,8 +74,9 @@
 		currentPosInPercent = Math.max(0, Math.min(Math.min(100, Math.max(currentPosInPercent - step, 0) ), maxPercent) );
 		currentPosInBalance = Math.round(($playerState.pb.balanceMax - $playerState.pb.balance) / 100 * currentPosInPercent)  || 0 ;
 		handleChange()
-
-
+		if (container) {
+			container.style.setProperty('--currentPercent', `${currentPosInPercent}%`);
+		}
 		//#tutorial
 		if ($playerState.tutorial && $playerState.tutorial.step === 2 && $pbState.desiredHoldDepositAmount === $pbState.bankRemainingBalance) {
 			return;
@@ -121,6 +123,9 @@
 			currentPosInPercent = Math.max(0, Math.min(leftInPercent,  ($playerState.general.balance  / ($playerState.pb.balanceMax -  $playerState.pb.balance)  * 100)) );
 			currentPosInBalance = Math.round(($playerState.pb.balanceMax - $playerState.pb.balance) / 100 * currentPosInPercent)  || 0 ;
 			handleChange()
+			if (container) {
+				container.style.setProperty('--currentPercent', `${currentPosInPercent}%`);
+			}
 		}
 	};
 
@@ -165,10 +170,14 @@
 				hideTimeoutHint = undefined;
 			}, 1500);
 		}
+		startLockedMinus = currentPosInPercent === 0
 		if($playerState.tutorial && $playerState.tutorial.step === 2 ) {
 			handleIncreaseTutorialStep()
 		}
 	}
+
+
+	let startLockedMinus = true
 
 
 	onMount(() => {
@@ -190,7 +199,7 @@
 	});
 </script>
 
-<button class="control-buttons minus"  on:click={decreaseDesiredHoldAmount}>
+<button class="{startLockedMinus ? 'startLockedMinus' : ''} control-buttons minus "  on:click={decreaseDesiredHoldAmount}>
 </button>
 <div bind:this={hint} style="left: {currentPosInHalfPercent}%" class="absolute top-[0] slider-description bg-white flex justify-center items-center opacity-[0]	">
 	<div class="coin-wrapper px-[6px] flex flex-row text-xl">
@@ -222,6 +231,13 @@
 </button>
 
 <style lang="scss">
+
+	.startLockedMinus.minus{
+    background: #1E2025;
+    border-color: #272A30;
+		pointer-events: none;
+    opacity: 0.5;
+	}
 
   .control-buttons {
     width: 38px;
@@ -283,8 +299,8 @@
 
   .slider-container {
     position: relative;
-    width: 225px;
-    margin: 0 20px;
+    width: 215px;
+    margin: 0 25px;
     height: 32px;
     display: flex;
     justify-content: center;
@@ -295,12 +311,25 @@
     -webkit-appearance: none;
     width: 100%;
     height: 6px;
-    background-color: #333;
+    background: linear-gradient(to right, rgba(58, 59, 69, 1) var(--currentPercent), rgba(0, 0, 0, 0) 0%);
     border-radius: 3px;
     outline: none;
     margin: 0;
     position: relative;
   }
+
+	.slider:before {
+		content: '';
+		position: absolute;
+		top: -1px;
+		left: -1px;
+		right: -1px;
+		bottom: -1px;
+		border-radius: 6px;
+		outline: 1px solid #11131A;
+
+
+	}
 
 
   #my-thumb {
@@ -334,18 +363,11 @@
     height: 32px;
   }
 
-  .slider {
-    width: 100%;
-    height: 6px;
-    background-color: #333;
-    border-radius: 3px;
-    position: relative;
-  }
 
   .thumb {
     width: 32px;
     height: 32px;
-    background-color: #292929;
+    background-color: #1E2025;
     border-radius: 50%;
     position: absolute;
     cursor: grab;

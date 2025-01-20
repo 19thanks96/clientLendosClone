@@ -12,8 +12,13 @@
 	import ExitButton from '$lib/components/common/ExitButton.svelte';
 	import timer from '$lib/components/common/Timer.svelte?raw';
 
-	import {userBalanceBeforeRewardState} from "$lib/state/oldUserBalance.state";
-
+	let missions, balance, dateEnd, name;
+	$: if ($playerState.isInitialized && $playerState?.mg && $playerState?.mg?.missions) {
+		missions = $playerState.mg.missions;
+		dateEnd = $playerState.mg.dateEnd;
+		name = $playerState.mg.name;
+		balance = $playerState.general.balance;
+	}
 
 
 	const exit = () => AdapterCommunicationService.sendMessage({ type: 'exit', message: 'click' });

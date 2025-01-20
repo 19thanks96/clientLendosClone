@@ -18,8 +18,6 @@
     import {  syncWithPlayerPbState } from '$lib/state/pb.state';
 
     import PbMainContent from '$lib/components/piggy-bank/reskin/PbMainContent.svelte';
-    import {userBalanceBeforeRewardState} from "$lib/state/oldUserBalance.state";
-    let i = 0
 
     let pb:PiggyBankType;
     let balance:number;
@@ -34,12 +32,7 @@
             syncWithPlayerPbState($playerState);
         }
     }
-    // if(i === 0) {
-    //     $rewardState.isOpen = true;
-    //     $rewardState.amount = 1000;
-    //     $userBalanceBeforeRewardState = 5000;
-    //     i++;
-    // }
+
 
     const exit = () => AdapterCommunicationService.sendMessage({type: 'exit', message: 'click'});
 

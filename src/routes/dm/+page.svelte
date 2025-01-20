@@ -13,26 +13,7 @@
 	import timer from '$lib/components/common/Timer.svelte?raw';
 
 	import {userBalanceBeforeRewardState} from "$lib/state/oldUserBalance.state";
-	let i = 0
 
-	let missions, balance, dateEnd, name;
-	$: if ($playerState.isInitialized && $playerState?.mg && $playerState?.mg?.missions) {
-		missions = $playerState.mg.missions;
-		dateEnd = $playerState.mg.dateEnd;
-		name = $playerState.mg.name;
-		balance = $playerState.general.balance;
-		// console.error(JSON.stringify($playerState.mg) );
-
-	}
-		// if(i === 0) {
-		// 	$rewardState.isOpen = true;
-		// 	$rewardState.amount = 1000;
-		// 	$userBalanceBeforeRewardState = 5000;
-		// 	i++;
-		// }
-	if(!$playerState.general.balance ) {
-		$playerState.general.balance = 10000
-	}
 
 
 	const exit = () => AdapterCommunicationService.sendMessage({ type: 'exit', message: 'click' });

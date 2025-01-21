@@ -11,6 +11,7 @@
 	import { TutorialSteps } from '../../../common/enums';
 	import { StorePopUpMode } from '../../../types/storePopup.type';
 	import { AdapterCommunicationService } from '$lib/adapter-listener';
+	import MainButton from '$lib/components/common/MainButton.svelte';
 
 	export let offer;
 	export let index;
@@ -57,8 +58,8 @@
            }
          }}
 		 on:click={() => showStorePopUp(offer)}
-		 class="w-[370px] h-[116px] justify-center items-center inline-flex" id={offer.id}>
-	<div class="w-[370px] h-[116px] bg-[#0e0f12] rounded-xl border border-[#1e2025] flex flex-row relative">
+		 class="w-[370px] h-[116px] justify-center items-center inline-flex store-item" id={offer.id}>
+	<div class="w-[370px] h-[116px] bg-[#0e0f12] rounded-xl border border-[#1e2025] flex flex-row relative store-card">
 
 
 		<div class="absolute left-0 bottom-0 w-full h-[44px] bg-black/40 z-[0] rounded-br-[11px]"
@@ -104,19 +105,35 @@
 				class="opacity-80 text-center text-[#e8e8e8] text-2xl font-bold font-['Poppins'] uppercase tracking-tight pt-[30px] mx-auto ">
 				 {offer.reward ? offer.reward : '???'}</div>
 			<div class="w-[110px] h-[30px] flex justify-center items-center mx-auto mt-[15px]">
-				<AppButton
+<!--				<AppButton-->
+<!--					on:click={() => showStorePopUp(offer)}-->
+<!--					isLoading={$showPopUpStoreLayout.isOpen}-->
+<!--					caption={`${offer.price}`}-->
+<!--					color={'green'}-->
+<!--					isActive={true}-->
+
+<!--					withCoin={true}-->
+<!--					id={offer.id + '-btn'}-->
+<!--					textClasses="h-[20px]"-->
+<!--				/>-->
+				<MainButton
 					on:click={() => showStorePopUp(offer)}
 					isLoading={$showPopUpStoreLayout.isOpen}
 					caption={`${offer.price}`}
-					color={'green'}
-					isActive={true}
-
 					withCoin={true}
 					id={offer.id + '-btn'}
-					textClasses="h-[20px]"
+					textStyles="color: #E9E9E9; font-size: 14px; font-family: Poppins; font-weight: 600; line-height: 16.80px; word-wrap: break-word; height: 14px;"
+					wrapBtnStyles="width: 110px; height: 30px; border-radius: 8px; "
+					variant="default"
 				/>
 			</div>
 		</div>
 
 	</div>
 </div>
+
+<style lang="scss">
+	.store-item, .store-card {
+      width: 100%;
+	}
+</style>

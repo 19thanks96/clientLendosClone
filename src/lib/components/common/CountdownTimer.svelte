@@ -1,28 +1,49 @@
 <script lang="ts">
-    import { intervalToDuration } from 'date-fns';
-    import { onMount } from 'svelte';
     import { t } from '$lib/i18n/config';
+    import {onDestroy} from "svelte";
 
     export let dateEnd: Date;
-    let remaining;
 
-    const updateRemaining = () => {
-        remaining = intervalToDuration({ start: new Date(), end: dateEnd });
-    };
+    let targetDate = new Date(dateEnd)
+    let days, hours, minutes, seconds;
 
-    updateRemaining()
+    let isEnded = false;
 
-    onMount(() => {
-        updateRemaining();
-        const interval = setInterval(updateRemaining, 1000);
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate.getTime() - now;
 
+      days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+      if (distance < 0) {
+          isEnded = true;
+      days = 0;
+      hours = 0;
+      minutes = 0;
+    }
+    }
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+
+    onDestroy(() => {
+      clearInterval(interval);
     });
 </script>
 
+{#if !isEnded}
 <span >
-    <span>{remaining.days ?? 0}{$t('kit.dateFormat.date')}</span>
-    <span>{remaining.hours ?? 0}{$t('kit.dateFormat.hours')}</span>
-    <span>{remaining.minutes ?? 0}{$t('kit.dateFormat.minutes')}</span>
+    <span>{days ?? 0}{$t('kit.dateFormat.date')}</span>
+    <span>{hours ?? 0}{$t('kit.dateFormat.hours')}</span>
+    <span>{minutes ?? 0}{$t('kit.dateFormat.minutes')}</span>
 
 </span>
-
+{:else}
+    <span>
+        Expired
+    </span>
+{/if}

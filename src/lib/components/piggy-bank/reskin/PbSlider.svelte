@@ -252,6 +252,7 @@
     text-align: center;
     color: #BEC2C9;
     border-radius: 11px;
+	flex-shrink: 0;
   }
 
   .control-buttons::before,
@@ -357,11 +358,6 @@
     height: 18px;
   }
 
-  .slider-container {
-    position: relative;
-    width: 225px;
-    height: 32px;
-  }
 
 
   .thumb {

@@ -8,6 +8,10 @@
 <style>
     .lds-ellipsis {
         color:#ffec14;
+        position: relative;
+        top: 50%;
+        left: 0;
+        transform: translate(0%, -50%);
     }
     .lds-ellipsis,
     .lds-ellipsis div {
@@ -17,11 +21,12 @@
         display: inline-block;
         position: relative;
         width: 80px;
-        height: 80px;
+        height: 100%
     }
     .lds-ellipsis div {
         position: absolute;
-        top: 33.33333px;
+        top: 50%;
+        transform: translateY(-50%);
         width: 13.33333px;
         height: 13.33333px;
         border-radius: 50%;
@@ -46,26 +51,26 @@
     }
     @keyframes lds-ellipsis1 {
         0% {
-            transform: scale(0);
+            transform: translateY(-50%) scale(0);
         }
         100% {
-            transform: scale(1);
+            transform: translateY(-50%) scale(1);
         }
     }
     @keyframes lds-ellipsis3 {
         0% {
-            transform: scale(1);
+            transform:translateY(-50%) scale(1);
         }
         100% {
-            transform: scale(0);
+            transform: translateY(-50%) scale(0);
         }
     }
     @keyframes lds-ellipsis2 {
         0% {
-            transform: translate(0, 0);
+            transform: translateY(-50%) translate(0, 0);
         }
         100% {
-            transform: translate(24px, 0);
+            transform: translateY(-50%) translate(24px, 0);
         }
     }
 

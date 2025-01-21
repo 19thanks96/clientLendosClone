@@ -13,6 +13,7 @@
 	import { playerState } from '$lib/state/player.state';
 	import { rewardState } from '$lib/state/reward.state';
 	import { userBalanceBeforeRewardState } from '$lib/state/oldUserBalance.state';
+	import MainButton from '$lib/components/common/MainButton.svelte';
 
 
 	export let piggyBank: PiggyBankType;
@@ -117,19 +118,19 @@
 						multiplier={calculateMultiplier(piggyBank.intermediateMultiplierPercents)} />
 
 	</div>
-	<div class="w-full h-[100px] flex justify-center items-center relative">
+	<div class="w-full h-[100px] flex justify-center items-center relative slider-controller">
 		<PbSlider />
 	</div>
 	<div id="pbHoldButton" class="w-[340px] h-[44px] flex justify-center items-center">
 
-		<AppButton
+		<MainButton
 			on:click={clickHold}
 			isLoading={$pbState?.isLoading}
 			caption={'Deposit'}
-			color={'green'}
-			isActive={holdAllowed}
-
-			id=''
+			textStyles="color: #E9E9E9; font-size: 14px; font-family: Poppins; font-weight: 700; text-transform: uppercase; letter-spacing: 0.20px; word-wrap: break-word; height: 18px;"
+			wrapBtnStyles="width: 344px; height: 44px; border-radius: 12px; "
+			variant="default"
+			disabled={!holdAllowed}
 		/>
 	</div>
 </div>
@@ -144,6 +145,10 @@
     overflow-y: scroll;
     scrollbar-width: none;
   }
-
+  @media screen and (max-width: 380px) {
+	.slider-controller {
+      width: 90%;
+	}
+  }
 
 </style>

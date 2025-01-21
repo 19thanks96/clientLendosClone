@@ -2,7 +2,7 @@
     import {goto} from '$app/navigation';
     import {playerState} from '$lib/state/player.state';
     import {page} from "$app/stores";
-		import coin from "$lib/components/common/Coin.svelte?raw";
+		import Coin from "$lib/components/common/Coin.svelte";
 		import { AdapterCommunicationService } from '$lib/adapter-listener';
 
     export let balance: number;
@@ -31,7 +31,7 @@
 
 <div tabindex="0"  on:click={onClickBalance} class="absolute h-[26px] rounded-[14px] bg-black  p-[4px_8px_4px_4px] flex flex-row gap-[7px] ">
 	<div class={isNotReward ? '' : 'getPos'}>
-	{@html coin }
+	<Coin styleCoins="width: 18px; height: 18px;"/>
 	</div>
 <div class="monney-wrapper">
 	{frontMoney}

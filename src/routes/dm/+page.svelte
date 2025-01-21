@@ -18,8 +18,6 @@
 		dateEnd = $playerState.mg.dateEnd;
 		name = $playerState.mg.name;
 		balance = $playerState.general.balance;
-	}
-
 
 	const exit = () => AdapterCommunicationService.sendMessage({ type: 'exit', message: 'click' });
 </script>
@@ -65,7 +63,9 @@
 		{/key}
 
 	{:else}
+		<div class="w-full h-full flex justify-center items-center relative left-1/2 translate-x-[-50%] ">
 		<Spinner></Spinner>
+		</div>
 	{/if}
 	{#if $rewardState.isOpen}
 		<div class="absolute top-[32px] left-0 right-0 bottom-0 border-rounded overflow-hidden z-[99]">

@@ -43,14 +43,14 @@
 		</OverlayScrollbarsComponent>
 	</div>
 	<div class="flex justify-center items-center w-[90%] h-[45px] m-auto">
-		<SecondAppButton on:click={() => dispatch('close')} caption="Ok" variant="default" textClasses="text-[#9d9d9d] text-sm font-bold font-['Poppins'] uppercase "/>
+<!--		<SecondAppButton on:click={() => dispatch('close')} caption="Ok" variant="default" textClasses="text-[#9d9d9d] text-sm font-bold font-['Poppins'] uppercase "/>-->
 		<MainButton
 			on:click={() => dispatch('close')}
 			isLoading={false}
 			caption='Ok'
 			textStyles="color: #9d9d9d; font-size: 14px; font-weight: 700; font-family: 'Poppins', sans-serif; text-transform: uppercase;"
-			wrapBtnStyles="width: 90%; height: 45px; border-radius: 12px; border: 1px solid #272A30; background: #050505; "
-			variant="default"
+			wrapBtnStyles="width: 100%; height: 45px; border-radius: 12px;  background: #050505; "
+			variant="black"
 		/>
 
 	</div>

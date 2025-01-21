@@ -12,6 +12,7 @@
 	import {TutorialSteps} from '../../../common/enums';
 	import {StorePopUpMode} from '../../../types/storePopup.type';
 	import {AdapterCommunicationService} from '$lib/adapter-listener';
+	import MainButton from '$lib/components/common/MainButton.svelte';
 
 
 export let offer;
@@ -61,18 +62,28 @@ export let index;
 		<div class="w-[120px] h-[204px] relative">
 
 			<div class="w-[110px] h-[30px] left-[4px] top-[169px] absolute text-[#e8e8e8] text-sm font-semibold font-['Poppins'] leading-[16.80px] flex justify-center items-center" >
-				<AppButton
+<!--				<AppButton-->
+<!--					on:click={() => showStorePopUp(offer)}-->
+<!--					isLoading={$showPopUpStoreLayout.isOpen}-->
+<!--					caption={formatNumber(offer.price)}-->
+<!--					color={'green'}-->
+<!--					id={offer.id}-->
+<!--					isActive={true}-->
+
+<!--					withCoin={true}-->
+<!--					textClasses="h-[14px]"-->
+<!--				/>-->
+				<MainButton
 					on:click={() => showStorePopUp(offer)}
 					isLoading={$showPopUpStoreLayout.isOpen}
-					caption={formatNumber(offer.price)}
-					color={'green'}
-					id={offer.id}
-					isActive={true}
-
+					caption={`${offer.price}`}
 					withCoin={true}
-					textClasses="h-[14px]"
-				/>
+					id={offer.id}
 
+					textStyles="color: #E9E9E9; font-size: 14px; font-family: Poppins; font-weight: 600; line-height: 16.80px; word-wrap: break-word; height: 14px;"
+					wrapBtnStyles="width: 110px; height: 30px; border-radius: 8px; "
+					variant="default"
+				/>
 
 
 			</div>

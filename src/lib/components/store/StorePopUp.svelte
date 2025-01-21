@@ -19,6 +19,7 @@
 	import ExitButton from '$lib/components/common/ExitButton.svelte';
 	import FreeSpinPopupText from '$lib/components/store/FreeSpinPopupText.svelte';
 	import BonusCashPopupText from '$lib/components/store/BonusCashPopupText.svelte';
+	import MainButton from '$lib/components/common/MainButton.svelte';
 
 	let isAnimationFinished = false;
 	let price = $showPopUpStoreLayout.price;
@@ -167,7 +168,7 @@
 
 						<Title
 							text={$showPopUpStoreLayout.type === StoreOfferType.bonusCash ?'Buy bonus cash' : 'Buy free spins'}
-							withInfoButton={false} />
+							withInfoButton={false} className="top-0 " />
 					</div>
 				</div>
 			</div>
@@ -231,45 +232,76 @@
 					{#if $showPopUpStoreLayout.mode === StorePopUpMode.view}
 						<div id="sorePopUpBuyButton"
 								 class="w-full h-[44px] flex justify-center items-center mx-auto  px-[10px] text-[20px] {isEnoughCoins ? 'opacity-100' : 'opacity-20' } relative z-20">
-							<AppButton
+<!--							<AppButton-->
+<!--								on:click={isEnoughCoins ? handleBuyAction : handleEarnCoinsAction}-->
+<!--								isLoading={$showPopUpStoreLayout.isLoading}-->
+<!--								caption={$showPopUpStoreLayout.price}-->
+<!--								color={'green'}-->
+<!--								isActive={true}-->
+<!--								withCoin={true}-->
+<!--								textClasses="h-[20px] text-[20px] leading-[1.5]"-->
+<!--							/>-->
+
+							<MainButton
 								on:click={isEnoughCoins ? handleBuyAction : handleEarnCoinsAction}
 								isLoading={$showPopUpStoreLayout.isLoading}
 								caption={$showPopUpStoreLayout.price}
-								color={'green'}
-								isActive={true}
-
 								withCoin={true}
-								textClasses="h-[20px] text-[20px] leading-[1.5]"
+								textStyles="color: #E9E9E9; font-size: 20px; font-family: Poppins; font-weight: 700; text-transform: uppercase; letter-spacing: 0.20px; word-wrap: break-word; height: 18px;"
+								wrapBtnStyles="width: 352px; height: 44px; border-radius: 12px; "
+								variant="default"
 							/>
 						</div>
 					{/if}
 							{#if $showPopUpStoreLayout.mode === StorePopUpMode.claim}
-									<div id="sorePopUpClaimButton" class="w-full h-[44px] flex justify-center items-center mx-auto mt-[15px] px-[10px]  relative z-20">
-											<AppButton on:click={traceAnimationAndExit}
-																 caption="Claim"
-																 isActive={true}
-																 color={'green'}></AppButton>
+									<div id="sorePopUpClaimButton" class="w-full h-[44px] flex justify-center items-center mx-auto mt-[5px] px-[10px]  relative z-20">
+										<MainButton
+											on:click={traceAnimationAndExit}
+											caption='claim'
+											withCoin={false}
+											textStyles="color: #E9E9E9; font-size: 20px; font-family: Poppins; font-weight: 700; text-transform: uppercase; letter-spacing: 0.20px; word-wrap: break-word; height: 18px;"
+											wrapBtnStyles="width: 352px; height: 44px; border-radius: 12px; "
+											variant="default"
+										/>
 									</div>
 							{/if}
 				</div>
 				</div>
 					<div class="flex justify-center items-center w-full h-[45px] m-auto px-[10px] mt-[15px]">
-{#if $showPopUpStoreLayout.id !== 'tutorialOffer'}
-						<SecondAppButton on:click={() => handleClosePopup()} caption="Close" variant="default"/>
-
-{/if}
+						{#if $showPopUpStoreLayout.mode !== StorePopUpMode.claim}
+					{#if $showPopUpStoreLayout.id !== 'tutorialOffer'  }
+						<MainButton
+							on:click={() => handleClosePopup()}
+							caption="close"
+							withCoin={false}
+							textStyles="color: #9D9D9D; font-size: 14px; font-family: Poppins; font-weight: 700;text-transform: uppercase;word-wrap: break-word"
+							wrapBtnStyles="width: 344px; height: 44px; border-radius: 12px; "
+							variant="black"
+						/>
+					{/if}
+						{/if}
 					</div>
 			</div>
-			<div class="w-full absolute top-[-15px]">
+<!--			<div class="w-full absolute top-[16px] left-[16px]">-->
 
-				<UserBalance balance={$playerState.general.balance} isNotReward={true}/>
-				<div class="absolute top-[36px] right-[15px] z-[9]">
-					{#if $showPopUpStoreLayout.id !== 'tutorialOffer'}
+<!--				<UserBalance balance={$playerState.general.balance} isNotReward={true}/>-->
+<!--				<div class="absolute top-[36px] right-[15px] z-[9]">-->
+<!--					{#if $showPopUpStoreLayout.id !== 'tutorialOffer'}-->
 
-					<ExitButton on:click={handleClosePopup} />
-						{/if}
+<!--					<ExitButton on:click={handleClosePopup} />-->
+<!--						{/if}-->
+<!--				</div>-->
+<!--			</div>-->
+
+				<div class="absolute top-[13px] left-[13px] z-[9]">
+					<UserBalance balance={$playerState.general.balance} isNotReward={true} />
 				</div>
-			</div>
+				<div class="absolute top-[13px] right-[13px] z-[9]">
+					{#if  $showPopUpStoreLayout.mode !== StorePopUpMode.claim}
+						<ExitButton on:click={handleClosePopup} />
+					{/if}
+				</div>
+
 			<!--<div class="z-[22]">-->
 			<!--	<UserBalance balance={$showPopUpStoreLayout.balance}-->
 			<!--	/>-->

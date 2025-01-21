@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Spinner from '$lib/components/common/Spinner.svelte';
-	import coin from "$lib/components/common/Coin.svelte?raw";
+	import Coin from "$lib/components/common/Coin.svelte";
 
 	export let isActive: boolean = true;
 	export let showBorderWhenInactive: boolean = false;
@@ -79,7 +79,8 @@
 				<div class="absolute w-full h-full flex justify-center items-center  gap-[3px] {textClasses}">
 					{#if withCoin}
 						<span class="{textClasses}">
-							{@html coin}
+								<Coin styleCoins="width: 18px; height: 18px;"/>
+
 						</span>
 						&nbsp;
 					{/if}

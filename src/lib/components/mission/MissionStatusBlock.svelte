@@ -1,6 +1,6 @@
 <script lang="ts">
     import {formatNumber} from '$lib/utils';
-    import coin from "$lib/components/common/Coin.svelte?raw";
+    import Coin from "$lib/components/common/Coin.svelte";
 
     export let money: string;
     export let IcnCoin: string;
@@ -23,7 +23,8 @@
             <div class="reward-text">Reward:</div>
             <span class="flex relative  justify-center items-center   h-[12px] gap-x-[3px]  ">
 
-            {@html coin}
+           	<Coin styleCoins="width: 12px; height: 12px;"/>
+
             <span
                     class=" shade-numbers  flex justify-center items-center">{frontMoney}</span>
             </span>
@@ -50,6 +51,7 @@
 
       width: 41px;
       height: 12px;
+      margin-bottom: 3px;
 
       font-family: 'Poppins';
       font-style: normal;

@@ -16,6 +16,7 @@
 
 
 	let balance: unknown | number;
+
 	$: if ($playerState.isInitialized && $playerState.store && $playerState.store.offers) {
 		balance = $playerState.general.balance;
 	}
@@ -27,7 +28,7 @@
 </script>
 <div style='height: 100dvh;' class=" w-screen overflow-hidden">
 	{#if $playerState.isInitialized && $playerState.store }
-		<div class="{$rewardState.isOpen ? 'opacity-0' :'opacity-1'} relative ">
+		<div class="{$showPopUpStoreLayout.isOpen ? ' pointer-events-none opacity-0 ' : 'opacity-1'} relative ">
 			<div class="relative top-[30px] left-[13px] z-[9]">
 				<UserBalance {balance} isNotReward={true} />
 			</div>
@@ -44,7 +45,7 @@
 
 				</div>
 				<Title title='Space Store'
-							 description={$playerState.store.info} text={name}  className="top-[89px]"/>
+							 description={$playerState.store.info} text='space store' className="top-[89px]"/>
 			</div>
 			<div class="absolute top-[16px] left-0 right-0 bottom-0 border-rounded overflow-hidden z-[0]">
 				<div
@@ -97,8 +98,7 @@
 			</div>
 		{/key}
 	{:else}
-		<div style="transform: translate(0, calc(50vh - 50%));"
-				 class="w-full h-full flex justify-center items-center">
+		<div class="w-full h-full flex justify-center items-center relative left-1/2 translate-x-[-50%] ">
 			<Spinner />
 		</div>
 	{/if}

@@ -19,6 +19,7 @@
 
     import PbMainContent from '$lib/components/piggy-bank/reskin/PbMainContent.svelte';
 
+
     let pb:PiggyBankType;
     let balance:number;
     let dateEnd
@@ -32,7 +33,6 @@
             syncWithPlayerPbState($playerState);
         }
     }
-
 
     const exit = () => AdapterCommunicationService.sendMessage({type: 'exit', message: 'click'});
 
@@ -73,7 +73,7 @@
             </div>
             <div class="w-full h-full bg-contain bg-no-repeat blackHole z-[3] top-[14px_!important] ">
                 <div style="background-image: url('https://p2w-object-store.fra1.cdn.digitaloceanspaces.com/resources/client/common/timerBg.svg')"
-                     class="relative top-[56px] left-[0.1px] timer text-[#D2D2D2] text-[10px] leading-[1.5] flex items-center  bg-contain bg-no-repeat">
+                     class="relative top-[61px] left-[0.1px] timer text-[#D2D2D2] text-[10px] leading-[1.5] flex items-center  bg-contain bg-no-repeat">
                     <div  class="w-full h-full bg-contain bg-no-repeat flex items-center justify-center">
 										<span class="h-auto  ml-[5px] font-['Poppins'] font-[700] text-[14px] leading-[15px] text-[#080808]">
 													<CountdownTimer {dateEnd} />
@@ -95,8 +95,7 @@
 
         {/key}
     <!--{:else}-->
-<!--          <div style='transform: translate(calc(50vw - 50%), calc(50vh - 50%));'-->
-<!--                             class="w-full h-full flex justify-center items-center">-->
+<!--    <div class="w-full h-full flex justify-center items-center relative left-1/2 translate-x-[-50%] ">-->
 <!--                            <Spinner/>-->
 <!--          </div>-->
     <!--{/if}-->

@@ -30,7 +30,7 @@
 	<div style="--overlayscrollbars-height: 100%; --os-border-vertical: 1px solid rgba(17, 19, 26, 1);
     --os-border-radius-vertical: 6px;" class="w-full h-[77.5%]  pt-[60px] pb-[25px]  flex justify-center items-center  scroll-container text-[rgba(161,_165,_173,_1)] overflow-hidden;">
 		<OverlayScrollbarsComponent>
-			<div class="h-auto px-[50px] w-full flex justify-center items-center text-center">
+			<div class="h-auto px-[50px] w-full flex justify-center items-start text-center">
 				{#if $showPopUpLayout.additionalText}
 					<div>
 

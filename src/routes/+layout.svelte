@@ -21,8 +21,9 @@
 	import { enrichTutorialMissions, handleTutorialStep } from '$lib/tutorial.service';
 	import { tutorialState } from '$lib/state/tutorial.state';
 	import { get } from 'svelte/store';
+		import { initOpenReplay } from '$lib/openreplay';
+		import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
-	// import {browser} from '$app/environment';
 	// import Tracker from '@openreplay/tracker'
 
 	onMount(async () => {
@@ -142,6 +143,7 @@
 						mg: data.mg,
 						pb: data.pb,
 						store: data.store,
+						sc:data.sc,
 						general: data.general,
 						isLiveReload: data.isLiveReload ?? false,
 						tutorial: data.tutorial ? data.tutorial : undefined
@@ -231,7 +233,34 @@
 			async (url: string) => {
 				await goto(url)
 				console.log('redirecting to ' + url);
-			}
+			},
+            (onScratchResponse) => {
+                //TODO
+               //$playerState.general.balance = onScratchResponse.general.balance;
+
+                if(!onScratchResponse.result){
+                    $playerState = {
+                        ...$playerState,
+                        general:{
+                            ...$playerState.general,
+                            balance: onScratchResponse.balance,
+                        },
+                        sc:{
+                            ...$playerState.sc,
+                            jackpotBase: onScratchResponse.jackpotBase,
+                            type: onScratchResponse.type,
+                            reward: onScratchResponse.reward,
+                        },
+                    }
+                }else {
+                    $playerState.sc = {
+                        ...$playerState.sc,
+                        error: onScratchResponse.result.message,
+                    }
+                }
+
+                console.log('onScratchResponse', onScratchResponse);
+            },
 		);
 
 		AdapterCommunicationService.sendMessage({

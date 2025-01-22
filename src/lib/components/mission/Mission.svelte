@@ -186,7 +186,7 @@
 						<MainButton
 							on:click={() => handleCta()}
 							isLoading={$missionClaimState.isLoading}
-							caption={missionDataByStatus[mission?.status].buttonText}
+							caption={missionDataByStatus[mission?.status].buttonText || '???'}
 							textStyles=" color: #e8e8e8; font-size: 12px; font-weight: 600; "
 							wrapBtnStyles="width: 84px; height: 30px; border-radius: 8px; "
 							variant="default"

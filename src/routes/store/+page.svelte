@@ -27,7 +27,7 @@
 
 </script>
 <div style='height: 100dvh;' class=" w-screen overflow-hidden">
-	{#if $playerState.isInitialized && $playerState.store }
+	<!--{#if $playerState.isInitialized && $playerState.store }-->
 		<div class="{$showPopUpStoreLayout.isOpen ? ' pointer-events-none opacity-0 ' : 'opacity-1'} relative ">
 			<div class="relative top-[30px] left-[13px] z-[9]">
 				<UserBalance {balance} isNotReward={true} />
@@ -36,7 +36,7 @@
 				<ExitButton on:click={exit} />
 			</div>
 		</div>
-		{#key $playerState}
+		<!--{#key $playerState}-->
 
 			<div class="w-full h-full bg-contain bg-no-repeat blackHole z-[3] top-[14px_!important] ">
 				<div
@@ -60,7 +60,7 @@
 			</div>
 			<div class="offer-list flex flex-col items-start p-0 absolute top-[32%] left-0 right-0  h-11 h-[auto] ">
 				<div style=" scrollbar-width: none;"
-						 class="h-[350px] flex-col justify-start items-start gap-2 inline-flex w-full overflow-y-auto ">
+						 class="h-[350px] flex-col justify-start items-start gap-2 inline-flex w-full overflow-y-auto offer-list__overflow">
 					<OfferList offers={$playerState.store?.offers} handleOfferByType={isFreespinOnScreen}
 					/>
 				</div>
@@ -96,10 +96,23 @@
 					<StorePopUp />
 				{/if}
 			</div>
-		{/key}
-	{:else}
-		<div class="w-full h-full flex justify-center items-center relative left-1/2 translate-x-[-50%] ">
-			<Spinner />
-		</div>
-	{/if}
+		<!--{/key}-->
+	<!--{:else}-->
+<!--		<div class="w-full h-full flex justify-center items-center relative left-1/2 translate-x-[-50%] ">-->
+<!--			<Spinner />-->
+<!--		</div>-->
+<!--	{/if}-->
 </div>
+
+<style lang='scss'>
+	.offer-list {
+      top: 197px;
+	  &__overflow {
+        &::-webkit-scrollbar {
+          width: 0;
+          height: 0;
+          display: none;
+        }
+	  }
+	}
+</style>

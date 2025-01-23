@@ -138,11 +138,8 @@
 
 </script>
 
-<div
-	id={mission.id}
-	style={missionDataByStatus[mission?.status]?.cardStyle}
-	class=" w-full rounded-[12px] h-[108px]
-        {mission?.status !== MissionStatus.claimed && mission?.status !== MissionStatus.inactive
+<div id={mission.id}
+		   class="mission-item  {mission?.status !== MissionStatus.claimed && mission?.status !== MissionStatus.inactive
 		? 'pulse-ping-animation'
 		: ''}
         {mission?.status === MissionStatus.completed && ready ? 'updated-yellow-border' : ''}
@@ -151,17 +148,9 @@
 	ready &&
 	!$rewardState.isOpen
 		? 'updated-yellow-border'
-		: ''} relative shade-mission overflow-hidden"
->
-	<div
-		style="border-radius: 0px 0px 11px 11px;"
-		class="absolute left-0 bottom-0 w-full h-[44px] bg-[rgba(0,_0,_0,_0.4)]"
-	></div>
-	<div
-		style={missionDataByStatus[mission?.status]?.filter + ``}
-		class="absolute flex h-full w-full justify-center items-center"
-	>
-		<div class="h-full w-full flex justify-center items-center z-[4]">
+		: ''} shade-mission">
+	<div style={missionDataByStatus[mission?.status]?.filter } class="mission-card f-center-jcsb">
+		<div class="mission-card__offer f-center">
 			<RenderMissionImg
 				image={mission?.iconUrl}
 				on:click={() => openInfoPopUp()}
@@ -173,30 +162,73 @@
 				status={`${formatNumber(mission?.progress)}/${formatNumber(mission?.progressMax)}`}
 				progress={(mission?.progress / mission?.progressMax) * 100}
 			/>
-			{#key mission?.status}
-				<MissionStatusBlock
-					money={mission.rewards}
-					IcnCoin={`https://p2w.imgix.net/resources/client/common/Icn_Coin.png?auto=compress&auto=format`}
-				>
-					<div
-						id={mission.id === 'mgTutorialMission' ? 'missionClaimButton' : undefined}
-						slot="svg"
-						class="flex w-[84px] h-[30px] justify-center items-center text-[#e8e8e8] text-xs font-semibold font-['Poppins'] uppercase rounded-lg  "
-					>
-						<MainButton
-							on:click={() => handleCta()}
-							isLoading={$missionClaimState.isLoading}
-							caption={missionDataByStatus[mission?.status].buttonText || '???'}
-							textStyles=" color: #e8e8e8; font-size: 12px; font-weight: 600; "
-							wrapBtnStyles="width: 84px; height: 30px; border-radius: 8px; "
-							variant="default"
-						/>
-					</div>
-				</MissionStatusBlock>
-			{/key}
 		</div>
+		{#key mission?.status}
+			<MissionStatusBlock
+				money={mission.rewards}
+				IcnCoin={`https://p2w.imgix.net/resources/client/common/Icn_Coin.png?auto=compress&auto=format`}
+			>
+				<div
+					id={mission.id === 'mgTutorialMission' ? 'missionClaimButton' : undefined}
+					slot="svg"
+					class="flex w-[84px] h-[30px] justify-center items-center text-[#e8e8e8] text-xs font-semibold font-['Poppins'] uppercase rounded-lg  "
+				>
+					<MainButton
+						on:click={() => handleCta()}
+						isLoading={$missionClaimState.isLoading}
+						caption={missionDataByStatus[mission?.status].buttonText}
+						status={mission.status}
+						textStyles=" color: #e8e8e8; font-size: 12px; font-weight: 600; "
+						wrapBtnStyles="width: 84px; height: 30px; border-radius: 8px; "
+						variant="default"
+					/>
+				</div>
+			</MissionStatusBlock>
+		{/key}
 	</div>
 </div>
 
 <style lang="scss">
+  .f-center {
+	display: flex;
+	align-items: center;
+  }
+  .f-center-jcsb {
+	display: flex;
+    justify-content: space-between;
+	align-items: center;
+  }
+	.mission {
+
+	  &-item {
+        margin-bottom: 8px;
+        position: relative;
+        z-index: 1;
+		&:last-child {
+          margin-bottom: 0;
+		}
+	  }
+	  &-card {
+        padding: 5px;
+        border-radius: 12px;
+        border: 1px solid #30333B;
+        background: #202229;
+			&:before {
+				content: '';
+				position: absolute;
+				bottom: 1px;
+				left: 1px;
+				width: calc(100% - 2px);
+				height: 41%;
+				background: rgba(0,0,0,0.5);
+				z-index: 0;
+        border-radius: 0 0 11px 11px;
+
+      }
+		&__offer {
+          width: 100%;
+          gap: 8px;
+		}
+	  }
+	}
 </style>

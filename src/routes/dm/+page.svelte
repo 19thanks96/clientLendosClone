@@ -38,7 +38,7 @@
 			</div>
 		</div>
 		{#key $playerState}
-			<div class="w-full h-full bg-contain bg-no-repeat blackHole z-[3] top-[14px_!important] ">
+			<div class="w-full h-full bg-contain bg-no-repeat blackHole z-[1] top-[14px_!important] ">
 				<div style="background-image: url('https://p2w-object-store.fra1.cdn.digitaloceanspaces.com/resources/client/common/timerBg.svg')"
 					class="relative top-[56px] left-[0.1px] timer text-[#D2D2D2] text-[10px] leading-[1.5] flex items-center  bg-contain bg-no-repeat">
 							<div  class="w-full h-full bg-contain bg-no-repeat flex items-center justify-center">
@@ -92,6 +92,11 @@
     overflow-y: auto;
     scrollbar-width: none;
     //z-index: 2;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
+    }
   }
 
   @media screen and (max-width: 370px) {

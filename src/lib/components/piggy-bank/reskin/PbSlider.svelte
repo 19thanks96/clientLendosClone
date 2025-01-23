@@ -275,7 +275,7 @@
   }
 
 	.slider-description{
-		top: -62%;
+		top: -90%;
     z-index: 2;
     width: 165px;
     height: 50px;

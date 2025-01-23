@@ -144,6 +144,12 @@
     /*gap: 8px;*/
     overflow-y: scroll;
     scrollbar-width: none;
+	&::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+	  display: none;
+    }
+
   }
   @media screen and (max-width: 380px) {
 	.slider-controller {

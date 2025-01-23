@@ -10,6 +10,10 @@
 	export let wrapBtnStyles:string = ''
 	export let variant: "default" | "blue" | 'black'
 	export let disabled: boolean = false;
+	export let status: 'inactive' | 'completed'| "started" = 'started'
+
+	let componentAnimation = null as HTMLElement | null;
+	let timeout = 0
 
 	const handleStylesByVariant = {
 		default:
@@ -18,6 +22,24 @@
 			main-btn_blue_gradient
 		`,
 		black: `main-btn_black_gradient`
+	}
+
+
+	if (status === 'completed') {
+		const animate = () => {
+			if (timeout <= 360) {
+				timeout++;
+			} else {
+				timeout = 0;
+			}
+
+			if (componentAnimation) {
+				componentAnimation.style.setProperty('--percentage', `${timeout}deg`);
+			}
+
+			 requestAnimationFrame(animate);
+		};
+		 requestAnimationFrame(animate);
 	}
 
 </script>
@@ -30,8 +52,9 @@
 				on:click
 				{disabled}
 				id={id}
+				bind:this={componentAnimation}
 				style="{wrapBtnStyles}  "
-				class="{handleStylesByVariant[variant]} w-full h-full relative flex flex-row justify-center items-center father-anima z-[2] main-btn "
+				class="{handleStylesByVariant[variant]} {'p2w-btn-' + status}   w-full h-full relative flex flex-row justify-center items-center father-anima z-[2] main-btn "
 			>
 				<div style={textStyles} class=" absolute w-full h-full flex justify-center items-center  gap-[4px] text-center font-['Poppins']  ">
 					{#if withCoin}
@@ -53,6 +76,7 @@
 {/if}
 
 <style lang="scss">
+
 	.main-btn {
 		position: relative;
 	    overflow: hidden;
@@ -63,6 +87,32 @@
 		&_accent {
 			border: 1px solid #4F44B6;
 			background: linear-gradient(90deg, #272D3F 0%, #161924 100%);
+
+      &.p2w-btn-completed {
+        background: conic-gradient(
+                        from var(--percentage),
+                        transparent 0% 96%,
+                        white 99% 100%
+        );
+
+        &:after {
+          background: linear-gradient(90deg, #8C52E9 0%, #5F42E3 100%);
+          z-index: 0;
+					opacity: 1;
+					width: calc(100% - 2px);
+          height: calc(100% - 2px);
+					left: 1px;
+					top: 1px;
+					border-radius: 6px;
+
+        }
+			}
+      &.p2w-btn-inactive{
+       //pointer-events: none;
+				cursor: not-allowed;
+				opacity: 0.7;
+			}
+
 			&:after, &:before {
 			  content: '';
 			  display: block;

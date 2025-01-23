@@ -11,12 +11,12 @@
 
 </script>
 
-<div id={id} style="" class="flex flex-col w-[100px]  h-full  text-left grow-0">
+<div id={id} style="" class="flex flex-col w-[100px]    text-left grow-0 justify-end  h-[98px] ">
     <div
-            class=" flex w-[84px] h-[30px] justify-center items-center text-[#e8e8e8] text-xs font-semibold font-['Poppins'] uppercase rounded-lg my-[15px]">
+            class=" flex w-[84px] h-[30px] justify-center items-center text-[#e8e8e8] text-xs font-semibold font-['Poppins'] uppercase rounded-lg ">
         <slot name="svg"/>
     </div>
-    <div class=" h-[29px] flex justify-center items-center my-[10px]">
+    <div class=" h-[29px] flex justify-center items-center m-[21px_0_4px_0]">
         <div
                 class="flex relative flex-col justify-center items-center   h-[12px] gap-[3px]  ">
 

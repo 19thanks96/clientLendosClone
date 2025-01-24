@@ -9,5 +9,6 @@ export type ScratchCardType = {
     jackpotDescription: string,
     reward: {} | null,
     type:string,
-    error:string | undefined
+    error:string | undefined,
+    newCostOfScratch:number | null
 }

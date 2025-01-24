@@ -49,8 +49,6 @@
 		// } catch (e) {
 		//     console.error(e);
 		// }
-		$playerState = {"isInitialized":true,"mg":{"id":"7790b5d3-9f75-4295-b6b0-6e74ab64cd2c","name":"1MG","dateEnd":"2025-02-27T23:00:00.000Z","info":"test1","missions":[{"id":"a274239d-6f99-4789-ab8e-9bfc8b65acf6","name":"TEST1","shortDesc":"TEST1","longDesc":"TEST1","unlockDesc":"TEST1","ctaUrl":"https://moonwin-staging.casino.p6m.tech/game/aloha-king-elvis","rewards":1,"progress":"0","progressMax":25,"status":"started","iconUrl":null,"ctaCaptionInactive":"inactive","ctaCaptionActive":"start","ctaCaptionClaim":"complete","ctaCaptionClaimed":"collect","widget":{"widgetInAllGames":true,"showInfoInSlot":true,"widgetGames":[],"widgetProviders":[],"minBet":1,"winMultiplier":1,"widgetInfoDescriptionMinBet":"Win bet","widgetInfoDescriptionMultiplier":"Win multiplier","widgetWarningMessageAttention":"Attention","widgetWarningMessageRequirement":"Mission requirement","widgetCollectTitle":"Mission completed","widgetCollectText":"Collect your rewards"},"missionType":"betsCount","hiddenBeforeTutorial":false,"priority":1}]},"pb":{"id":"473dd589-6441-445f-ae44-522e551325a6","name":"PB1","balance":0,"balanceMax":1000,"intermediateThreshold":48,"dateEnd":"2025-02-27T23:00:00.000Z","finalMultiplierPercents":170,"finalMultiplierReward":1500,"intermediateMultiplierPercents":120,"intermediateMultiplierReward":250,"ctaCaptionHold":"hold","ctaCaptionClaim":"claim"},"store":{"offers":[{"id":"cf493f76-a40a-4b1d-afc5-3a904307635a","name":"test1","description":"test1","type":"bonusCash","price":50,"endDate":"2025-01-30T21:00:00.000Z","reward":"10 AUD","reusable":false},{"id":"41c7b7b5-6c4c-4843-9a81-010ba68a3bed","name":"test1","description":"test1","type":"freeSpins","price":50,"endDate":"2025-01-30T20:00:00.000Z","reward":"10 FS","reusable":false}],"info":"test1","terms":"test"},"general":{"dmRed":false,"pbRed":false,"storeRed":false,"balance":10000},"isLiveReload":false};
-		// $playerState.isInitialized = true;
 
 		//#tutorial
 		let loadMissionsForTutorial = () => {
@@ -252,12 +250,13 @@
                             jackpotBase: onScratchResponse.jackpotBase,
                             type: onScratchResponse.type,
                             reward: onScratchResponse.reward,
+                            newCostOfScratch: onScratchResponse.newCostOfScratch,
                         },
                     }
                 }else {
                     $playerState.sc = {
                         ...$playerState.sc,
-                        error: onScratchResponse.result.message,
+                        error: onScratchResponse.result.success === false ? onScratchResponse.result.message : '',
                     }
                 }
 

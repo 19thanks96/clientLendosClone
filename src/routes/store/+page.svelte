@@ -27,7 +27,7 @@
 
 </script>
 <div style='height: 100dvh;' class=" w-screen overflow-hidden">
-	<!--{#if $playerState.isInitialized && $playerState.store }-->
+	{#if $playerState.isInitialized && $playerState.store }
 		<div class="{$showPopUpStoreLayout.isOpen ? ' pointer-events-none opacity-0 ' : 'opacity-1'} relative ">
 			<div class="relative top-[30px] left-[13px] z-[9]">
 				<UserBalance {balance} isNotReward={true} />
@@ -36,7 +36,7 @@
 				<ExitButton on:click={exit} />
 			</div>
 		</div>
-		<!--{#key $playerState}-->
+		{#key $playerState}
 
 			<div class="w-full h-full bg-contain bg-no-repeat blackHole z-[3] top-[14px_!important] ">
 				<div
@@ -65,11 +65,11 @@
 					/>
 				</div>
 
-				<div class="w-[344px] h-11 justify-center items-center inline-flex m-auto pt-[10px]">
+				<div class="w-[344px] h-11 justify-center items-center flex m-auto pt-[10px]">
 					<div class="w-[344px] h-11 bg-[#030303] rounded-xl border border-[#1e2025]/50 m-auto flex  items-center px-1">
 						<button on:click={() => {isFreespinOnScreen = true}} class="w-[174px] h-9 relative">
 							<div
-								class="w-full h-9 left-0 top-0 absolute  rounded-lg flex justify-center items-center {isFreespinOnScreen ? 'bg-[#141518]' : 'bg-[#000] opacity-30'}">
+								class="w-full h-9 left-0 top-0 absolute  rounded-lg flex justify-center items-center {isFreespinOnScreen ? 'offer-type-btn_active' : 'offer-type-btn_inactive'}">
 								<div
 									class="text-center text-[#bec2c9] text-sm font-medium font-['Poppins'] capitalize leading-[10.55px] h-[18px] flex flex-row justify-center items-center gap-[6px]">
 									Free Spin
@@ -79,10 +79,10 @@
 						</button>
 						<button on:click={() => {isFreespinOnScreen = false}} class="w-[174px] h-9 relative">
 							<div
-								class="w-full h-9 left-0 top-0 absolute  rounded-lg flex justify-center items-center {isFreespinOnScreen ? 'bg-[#000] opacity-30' : 'bg-[#141518]'}">
+								class="w-full h-9 left-0 top-0 absolute  rounded-lg flex justify-center items-center {isFreespinOnScreen ? 'offer-type-btn_inactive' : 'offer-type-btn_active'}">
 								<div
 									class="text-center text-[#bec2c9] text-sm font-medium font-['Poppins'] capitalize leading-[10.55px] h-[18px] flex flex-row justify-center items-center gap-[6px]">
-									bonus Cash
+									Bonus Cash
 									<BonusCashSvg />
 								</div>
 							</div>
@@ -96,12 +96,12 @@
 					<StorePopUp />
 				{/if}
 			</div>
-		<!--{/key}-->
-	<!--{:else}-->
-<!--		<div class="w-full h-full flex justify-center items-center relative left-1/2 translate-x-[-50%] ">-->
-<!--			<Spinner />-->
-<!--		</div>-->
-<!--	{/if}-->
+		{/key}
+	{:else}
+		<div class="w-full h-full flex justify-center items-center relative left-1/2 translate-x-[-50%] ">
+			<Spinner />
+		</div>
+	{/if}
 </div>
 
 <style lang='scss'>
@@ -114,5 +114,14 @@
           display: none;
         }
 	  }
+	}
+
+	.offer-type-btn_active{
+			background-color: #141518;
+	}
+
+	.offer-type-btn_inactive{
+    background-color: #000;
+    opacity: 0.3;
 	}
 </style>
